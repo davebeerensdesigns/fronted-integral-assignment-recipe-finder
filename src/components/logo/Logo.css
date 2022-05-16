@@ -1,0 +1,9 @@
+#app-logo__link{
+    display: block;
+    width: 100%;
+}
+
+#app-logo__img {
+    width: 100%;
+    height: auto;
+}

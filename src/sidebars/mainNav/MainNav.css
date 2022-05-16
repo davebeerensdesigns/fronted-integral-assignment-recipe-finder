@@ -1,0 +1,15 @@
+#main-nav__wrapper{
+    width: 100%;
+    max-width: 345px;
+    background-color: var(--white);
+    padding:2rem;
+}
+
+#main-nav__list{
+    display: flex;
+    flex-direction: column;
+}
+
+.main-nav__link{
+    display: block;
+}

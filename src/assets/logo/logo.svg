@@ -1,0 +1,17 @@
+<svg id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="430" height="114" viewBox="0 0 430 114">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_1" data-name="Rectangle 1" width="114" height="114" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Group_9" data-name="Group 9" transform="translate(134.643 5.182)">
+    <text id="RecipeFinder" transform="translate(0.357 45.818)" fill="#2e2e2e" font-size="44" font-family="Poppins-Bold, Poppins" font-weight="700"><tspan x="0" y="0">RecipeFinder</tspan></text>
+    <text id="You_pick_the_ingredients_" data-name="You pick the ingredients!" transform="translate(0.357 86.818)" fill="#837d8e" font-size="24" font-family="Poppins-Regular, Poppins"><tspan x="0" y="0">You pick the ingredients!</tspan></text>
+  </g>
+  <g id="Group_10" data-name="Group 10">
+    <g id="Group_10-2" data-name="Group 10" clip-path="url(#clip-path)">
+      <path id="Path_4" data-name="Path 4" d="M86.309,0H27.619A27.834,27.834,0,0,0,0,28.044V85.885a27.834,27.834,0,0,0,27.619,28.044h58.69a27.178,27.178,0,0,0,14.5-4.173L82.552,91.5A42.978,42.978,0,1,1,91.5,82.552l18.219,18.219a28.229,28.229,0,0,0,4.21-14.886V28.044A27.834,27.834,0,0,0,86.309,0" fill="#ff8000"/>
+      <path id="Path_5" data-name="Path 5" d="M92.882,92.882a30.322,30.322,0,0,0,29.35,50.714l-13.318-13.312a6.742,6.742,0,0,1-4.447,1.136,6.291,6.291,0,0,1-4.665-2.987l-5.529-8.687a1.174,1.174,0,0,1-.169-.826,1.153,1.153,0,0,1,.427-.723,1.174,1.174,0,0,1,.8-.258,1.011,1.011,0,0,1,.769.406l7.518,7.441.907-.907-6.842-8.614a.975.975,0,0,1-.213-.671.994.994,0,0,1,1.61-.722l8.608,6.836.907-.907-7.5-7.508a1.183,1.183,0,0,1-.342-.774,1.183,1.183,0,0,1,.988-1.224,1.151,1.151,0,0,1,.819.17l8.688,5.524a6.306,6.306,0,0,1,2.987,4.668,6.808,6.808,0,0,1-1.136,4.454l15.156,15.156a30.366,30.366,0,0,0,12.685-12.4l-13.731-13.736a7,7,0,0,1-3.09,1.32,9.35,9.35,0,0,1-7.975-3.3c-5.008-5.008-6.1-12.036-2.443-15.694s10.683-2.559,15.7,2.448a9.089,9.089,0,0,1,2.626,3.643,8.938,8.938,0,0,1,.678,4.329,7.006,7.006,0,0,1-1.32,3.09l12.014,12.015A30.328,30.328,0,0,0,92.882,92.882" transform="translate(-57.36 -57.36)" fill="#ff8000"/>
+    </g>
+  </g>
+</svg>
