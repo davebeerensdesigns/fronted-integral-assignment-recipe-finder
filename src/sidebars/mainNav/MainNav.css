@@ -1,15 +1,34 @@
-#main-nav__wrapper{
+#main-nav__wrapper {
     width: 100%;
     max-width: 345px;
     background-color: var(--white);
-    padding:2rem;
+    padding: 2rem;
 }
 
-#main-nav__list{
-    display: flex;
-    flex-direction: column;
+#main-nav__navigation {
+    margin-top: 2rem;
 }
 
-.main-nav__link{
+.main-nav__link {
     display: block;
+    color: var(--gray-3);
+    text-decoration: none;
+    padding: 1rem 1rem 1rem 2rem;
+    border-radius: var(--border-radius-lg);
+    background-color: var(--white);
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    margin-bottom: .5rem;
+}
+.main-nav__link:hover{
+    background-color: var(--gray-1);
+}
+.main-nav__link:active, .main-nav__link.active{
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.main-nav__link svg{
+    width: 24px;
+    margin-right: 1rem;
 }

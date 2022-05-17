@@ -12,6 +12,10 @@
   --white:#FFFFFF;
   --primary:#FF8000;
   --danger:#FF0000;
+  --border-radius-sm: 4px;
+  --border-radius: 8px;
+  --border-radius-lg: 16px;
+  --font-size-base: 1rem;
 }
 
 body {

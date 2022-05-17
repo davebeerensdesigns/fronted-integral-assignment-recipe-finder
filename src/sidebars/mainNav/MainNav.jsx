@@ -1,9 +1,9 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import Logo from "../../components/logo/Logo";
 import '../../sidebars/mainNav/MainNav.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse } from "@fortawesome/pro-regular-svg-icons"
+import { faHouse, faRefrigerator, faUserChef, faSparkles, faHatChef, faInfoCircle } from "@fortawesome/pro-regular-svg-icons"
 
 
 
@@ -20,42 +20,41 @@ function MainNav(props) {
                 id='main-nav__navigation'
                 className='main-nav__list'
             >
-                <Link
-                    className='main-nav__link'
+                <NavLink className='main-nav__link'
                     to='/'
                 >
-                    <FontAwesomeIcon icon={ faHouse } />  Dashboard
-                </Link>
-                <Link
+                    <FontAwesomeIcon icon={ faHouse } /> <span>Dashboard</span>
+                </NavLink>
+                <NavLink
                     className='main-nav__link'
                     to='/search-pantry'
                 >
-                    Search Pantry
-                </Link>
-                <Link
+                    <FontAwesomeIcon icon={ faRefrigerator } /> <span>Search pantry</span>
+                </NavLink>
+                <NavLink
                     className='main-nav__link'
                     to='/cuisines'
                 >
-                    Cuisines
-                </Link>
-                <Link
+                    <FontAwesomeIcon icon={ faUserChef } /> <span>Cuisines</span>
+                </NavLink>
+                <NavLink
                     className='main-nav__link'
                     to='/popular'
                 >
-                    Popular
-                </Link>
-                <Link
+                    <FontAwesomeIcon icon={ faSparkles } /> <span>Popular</span>
+                </NavLink>
+                <NavLink
                     className='main-nav__link'
                     to='/latest'
                 >
-                    Latest
-                </Link>
-                <Link
+                    <FontAwesomeIcon icon={ faHatChef } /> <span>Latest</span>
+                </NavLink>
+                <NavLink
                     className='main-nav__link'
                     to='/about'
                 >
-                    About
-                </Link>
+                    <FontAwesomeIcon icon={ faInfoCircle } /> <span>About</span>
+                </NavLink>
             </nav>
         </aside>
     );
