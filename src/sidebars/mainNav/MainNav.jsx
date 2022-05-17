@@ -2,6 +2,10 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import Logo from "../../components/logo/Logo";
 import '../../sidebars/mainNav/MainNav.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHouse } from "@fortawesome/pro-regular-svg-icons"
+
+
 
 function MainNav(props) {
     return (
@@ -20,7 +24,7 @@ function MainNav(props) {
                     className='main-nav__link'
                     to='/'
                 >
-                    Dashboard
+                    <FontAwesomeIcon icon={ faHouse } />  Dashboard
                 </Link>
                 <Link
                     className='main-nav__link'
