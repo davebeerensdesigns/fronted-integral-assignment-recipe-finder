@@ -1,13 +1,23 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, NavLink} from "react-router-dom";
 import Logo from "../../components/logo/Logo";
 import './MainNav.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faRefrigerator, faUserChef, faSparkles, faHatChef, faInfoCircle } from "@fortawesome/pro-regular-svg-icons"
+import AuthService from "../../services/auth.service";
 
 
 
 function MainNav(props) {
+
+    const [currentUser, setCurrentUser] = useState(undefined);
+    useEffect(() => {
+        const user = AuthService.getCurrentUser();
+        if (user) {
+            setCurrentUser(user);
+        }
+    }, []);
+
     return (
         <aside id='main-nav__wrapper'>
             <Link
@@ -56,6 +66,15 @@ function MainNav(props) {
                     <FontAwesomeIcon icon={ faInfoCircle } /> <span>About</span>
                 </NavLink>
             </nav>
+            {currentUser ? (
+                <>
+                    Hello {currentUser.username}
+                </>
+            ) : (
+                <>
+                    REGISTER NOW!!
+                </>
+            )}
         </aside>
     );
 }

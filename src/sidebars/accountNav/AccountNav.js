@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './AccountNav.scss';
 import {faUserPlus, faArrowRightToBracket} from "@fortawesome/pro-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import Login from "../../components/login/Login";
+import Register from "../../components/register/Register";
+import AuthService from "../../services/auth.service";
+import Profile from "../../components/profile/Profile";
 
 function AccountNav(props) {
 
@@ -15,10 +19,6 @@ function AccountNav(props) {
 
 
     const { register, errors, handleSubmit } = useForm();
-    const onSubmitLogin = (data) => {
-        console.log(data);
-        loginAccount(data);
-    };
     const onSubmitRegister = (data) => {
         console.log(data);
         createAccount(data);
@@ -88,7 +88,17 @@ function AccountNav(props) {
             });
     }
 
-
+    const [currentUser, setCurrentUser] = useState(undefined);
+    useEffect(() => {
+        const user = AuthService.getCurrentUser();
+        if (user) {
+            setCurrentUser(user);
+        }
+    }, []);
+    const logOut = () => {
+        AuthService.logout();
+        window.location.reload();
+    };
 
 
 
@@ -98,59 +108,36 @@ function AccountNav(props) {
         <aside
             id='account-nav__wrapper'
         >
-            {/* GUEST USER */}
-            <nav>
-                <button onClick={() => {setAccountActiveTab('register')}}>
-                    <FontAwesomeIcon icon={ faUserPlus } />
-                </button>
-                <button onClick={() => {setAccountActiveTab('login')}}>
-                    <FontAwesomeIcon icon={ faArrowRightToBracket } />
-                </button>
-            </nav>
-            <div className='tabs'>
-                {accountActiveTab === 'login' &&
-                    <form id='loginAccount' onSubmit={handleSubmit(onSubmitLogin)}>
-                        <label>Username</label>
-                        <input
-                            type="text"
-                            {...register("usernameLogin", { required: true })}
-                        />
-                        <label>Password</label>
-                        <input
-                            type="password"
-                            autoComplete='on'
-                            {...register("passwordLogin", { required: true })}
-                        />
+            {currentUser ? (
+                <>
+                    Hello {currentUser.username}
+                    <button className="nav-link" onClick={logOut}>
+                        LogOut
+                    </button>
 
-                        <input type="submit" />
-                    </form>
-                }
-                {accountActiveTab === 'register' &&
-                    <form id='registerAccount' onSubmit={handleSubmit(onSubmitRegister)}>
-                        <label>Username</label>
-                        <input
-                            type="text"
-                            {...register("usernameRegister", { required: true })}
-                        />
-                        <label>Email</label>
-                        <input
-                            type="text"
-                            {...register("emailRegister", {
-                                required: true,
-                                pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                            })}
-                        />
-                        <label>Password</label>
-                        <input
-                            type="password"
-                            autoComplete='on'
-                            {...register("passwordRegister", { required: true })}
-                        />
+                    <Profile/>
+                </>
+            ) : (
+                <>
+                    <nav>
+                        <button onClick={() => {setAccountActiveTab('register')}}>
+                            <FontAwesomeIcon icon={ faUserPlus } />
+                        </button>
+                        <button onClick={() => {setAccountActiveTab('login')}}>
+                            <FontAwesomeIcon icon={ faArrowRightToBracket } />
+                        </button>
+                    </nav>
+                    <div className='tabs'>
+                        {accountActiveTab === 'login' &&
+                            <Login/>
+                        }
+                        {accountActiveTab === 'register' &&
+                            <Register/>
+                        }
+                    </div>
+                </>
+            )}
 
-                        <input type="submit" />
-                    </form>
-                }
-            </div>
 
 
 
