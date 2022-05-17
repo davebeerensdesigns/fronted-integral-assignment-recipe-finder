@@ -1,11 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AuthService from "../../services/auth.service";
 import UserService from "../../services/user.service";
-import userService from "../../services/user.service";
 
 function Profile(props) {
 
-    const currentUser = AuthService.getCurrentUser();
+    const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
 
     const setUserImage = () => {
         UserService.setUserImage("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==").then(
@@ -17,8 +16,7 @@ function Profile(props) {
                 }, currentUser);
 
                 localStorage.setItem('user', JSON.stringify(updatedUser));
-                //TODO: use async instead of reloading the app
-                window.location.reload();
+                setCurrentUser(updatedUser);
             },
             (error) => {
                 const resMessage =
