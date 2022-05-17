@@ -8,6 +8,7 @@ function Login(props) {
     const onSubmitLogin = (data) => {
         AuthService.login(data.usernameLogin, data.passwordLogin).then(
             () => {
+                //TODO: use async instead of reloading the app
                 window.location.reload();
             },
             (error) => {
