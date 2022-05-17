@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, NavLink} from "react-router-dom";
 import Logo from "../../components/logo/Logo";
-import '../../sidebars/mainNav/MainNav.css';
+import './MainNav.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faRefrigerator, faUserChef, faSparkles, faHatChef, faInfoCircle } from "@fortawesome/pro-regular-svg-icons"
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import './/Pages.css';
+import './/Pages.scss';
 import Dashboard from "../dashboard/Dashboard";
 import {Route, Routes} from "react-router-dom";
 import About from "../about/About";

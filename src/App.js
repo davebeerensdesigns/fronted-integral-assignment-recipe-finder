@@ -1,21 +1,18 @@
 import React from 'react';
-import { BrowserRouter as Router } from "react-router-dom";
-import './App.css';
+import './App.scss';
 import MainNav from "./sidebars/mainNav/MainNav";
 import AccountNav from "./sidebars/accountNav/AccountNav";
 import Pages from "./pages/pages/Pages";
 
-
 function App() {
-  return (
-    <div id='app__wrapper'>
-        <Router>
+
+    return (
+        <div id='app__wrapper'>
             <MainNav/>
             <Pages/>
-        </Router>
-        <AccountNav/>
-    </div>
-  );
+            <AccountNav/>
+        </div>
+    );
 }
 
 export default App;
