@@ -9,4 +9,4 @@ https://www.bezkoder.com/react-hooks-jwt-auth/
 
 TUTORIALS TODO
 https://www.bezkoder.com/handle-jwt-token-expiration-react/
-https://www.freecodecamp.org/news/react-context-for-beginners/
+https://towardsdatascience.com/react-js-basic-hooks-usestate-useeffect-usecontext-1ed82a799db2
