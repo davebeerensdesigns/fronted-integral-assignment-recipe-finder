@@ -1,6 +1,7 @@
 #main-nav__wrapper {
-    width: 100%;
-    max-width: 345px;
+    flex-basis: 345px;
+    flex-grow: 0;
+    flex-shrink: 0;
     background-color: var(--white);
     padding: 2rem;
 }

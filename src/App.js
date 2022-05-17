@@ -12,8 +12,8 @@ function App() {
         <Router>
             <MainNav/>
             <Pages/>
-            <AccountNav/>
         </Router>
+        <AccountNav/>
     </div>
   );
 }
