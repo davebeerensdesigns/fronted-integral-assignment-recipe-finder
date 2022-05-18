@@ -13,16 +13,20 @@ function AccountNav(props) {
     const [accountActiveTab, setAccountActiveTab] = useState('login');
 
     const [currentUser, setCurrentUser] = useState(undefined);
+
     useEffect(() => {
         const user = AuthService.getCurrentUser();
         if (user) {
             setCurrentUser(user);
         }
     }, []);
+
     const logOut = () => {
-        AuthService.logout();
-        //TODO: use async instead of reloading the app
-        window.location.reload();
+        AuthService.logout().then(
+            () => {
+                window.location.reload();
+            }
+        );
     };
 
     return (

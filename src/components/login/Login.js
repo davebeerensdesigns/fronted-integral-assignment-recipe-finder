@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import AuthService from "../../services/auth.service";
 import {FormProvider, useForm} from "react-hook-form";
 import Input from "../forms/input/Input";
@@ -22,6 +22,7 @@ function Login() {
                     setSuccessMessage('You are successfully logged in!');
                     methods.reset();
                     toggleLoading(false);
+                    //window.location.reload();
                 }
             )
             .catch(
