@@ -7,6 +7,7 @@ function Profile(props) {
     const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
 
     const setUserImage = () => {
+        // TODO: Change uploaded image to base64 and use a buffer
         UserService.setUserImage("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==").then(
             (response) => {
 
