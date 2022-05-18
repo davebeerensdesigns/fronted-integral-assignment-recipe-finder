@@ -1,62 +1,64 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState, useContext} from 'react';
 import './AccountNav.scss';
-import {faUserPlus, faArrowRightToBracket} from "@fortawesome/pro-regular-svg-icons";
+import {faUserPlus, faArrowRightToBracket, faArrowRightFromBracket, faHeart, faCog} from "@fortawesome/pro-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Login from "../../components/login/Login";
 import Register from "../../components/register/Register";
-import AuthService from "../../services/auth.service";
 import Profile from "../../components/profile/Profile";
+import {UserContext} from "../../providers/UserProvider";
+import Logout from "../../components/logout/Logout";
+import Favorites from "../../components/favorites/Favorites";
 
 function AccountNav(props) {
 
     // Tab menu active state
-    const [accountActiveTab, setAccountActiveTab] = useState('login');
+    const [guestAccountActiveTab, setGuestAccountActiveTab] = useState('login');
+    const [userAccountActiveTab, setUserAccountActiveTab] = useState('favorites');
 
-    const [currentUser, setCurrentUser] = useState(undefined);
-
-    useEffect(() => {
-        const user = AuthService.getCurrentUser();
-        if (user) {
-            setCurrentUser(user);
-        }
-    }, []);
-
-    const logOut = () => {
-        AuthService.logout().then(
-            () => {
-                window.location.reload();
-            }
-        );
-    };
+    const [context, setContext] = useContext(UserContext);
+    const {loggedIn} = context;
 
     return (
         <aside
             id='account-nav__wrapper'
         >
-            {currentUser ? (
-                <>
-                    Hello {currentUser.username}
-                    <button className="nav-link" onClick={logOut}>
-                        LogOut
-                    </button>
-
-                    <Profile/>
-                </>
+            {loggedIn ? (
+                    <>
+                        <nav>
+                            <button className='btn btn-icon' onClick={() => {setUserAccountActiveTab('favorites')}}>
+                                <FontAwesomeIcon icon={ faHeart } />
+                            </button>
+                            <button className='btn btn-icon' onClick={() => {setUserAccountActiveTab('profile')}}>
+                                <FontAwesomeIcon icon={ faCog } />
+                            </button>
+                            <Logout buttonClass='btn btn-icon text-danger'>
+                                <FontAwesomeIcon icon={ faArrowRightFromBracket } />
+                            </Logout>
+                        </nav>
+                        <div className='tabs'>
+                            {userAccountActiveTab === 'profile' &&
+                                <Profile/>
+                            }
+                            {userAccountActiveTab === 'favorites' &&
+                                <Favorites/>
+                            }
+                        </div>
+                    </>
             ) : (
                 <>
                     <nav>
-                        <button onClick={() => {setAccountActiveTab('register')}}>
+                        <button onClick={() => {setGuestAccountActiveTab('register')}}>
                             <FontAwesomeIcon icon={ faUserPlus } />
                         </button>
-                        <button onClick={() => {setAccountActiveTab('login')}}>
+                        <button onClick={() => {setGuestAccountActiveTab('login')}}>
                             <FontAwesomeIcon icon={ faArrowRightToBracket } />
                         </button>
                     </nav>
                     <div className='tabs'>
-                        {accountActiveTab === 'login' &&
+                        {guestAccountActiveTab === 'login' &&
                             <Login/>
                         }
-                        {accountActiveTab === 'register' &&
+                        {guestAccountActiveTab === 'register' &&
                             <Register/>
                         }
                     </div>

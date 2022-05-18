@@ -11,7 +11,14 @@ const setUserImage = (image) => {
     });
 };
 
+const getUserDetails = () => {
+    return axios.get(API_URL + "user", {
+        headers: authHeader()
+    });
+};
+
 const UserService = {
-    setUserImage
+    setUserImage,
+    getUserDetails
 };
 export default UserService;

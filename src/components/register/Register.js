@@ -3,21 +3,10 @@ import AuthService from "../../services/auth.service";
 import {FormProvider, useForm} from "react-hook-form";
 import Input from "../forms/input/Input";
 import Password from "../forms/password/Password";
-import {TestContext} from "../../providers/TestProvider";
 
 function Register() {
 
-    const [context, setContext] = useContext(TestContext);
 
-    useEffect(() => {
-        setTimeout(() => {
-            setContext({
-                testString: 'updated string',
-                testInteger: 1,
-                testBoolean: true,
-            });
-        }, 1000);
-    }, [setContext]);
 
     const [loading, toggleLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');

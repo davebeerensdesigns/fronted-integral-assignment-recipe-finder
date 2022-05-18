@@ -24,6 +24,7 @@
 body {
   background-color: var(--gray-light);
   margin: 0;
+  font-size: $font-size-base;
   font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -32,4 +33,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.text-danger{
+  color:$danger;
 }

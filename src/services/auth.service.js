@@ -13,24 +13,25 @@ const register = (username, email, password) => {
 };
 
 const login = (username, password) => {
+
     return axios.post(API_URL + 'signin', {
         username,
         password,
     })
         .then((response) => {
             if(response.data.accessToken){
-                localStorage.setItem('user', JSON.stringify(response.data));
+                localStorage.setItem('token', "Bearer " + response.data.accessToken);
             }
             return response.data;
         });
 }
 
 const logout = () => {
-    localStorage.removeItem('user');
+    localStorage.removeItem('token');
 }
 
 const getCurrentUser = () => {
-    return JSON.parse(localStorage.getItem('user'));
+    return localStorage.getItem('token');
 }
 
 const AuthService = {

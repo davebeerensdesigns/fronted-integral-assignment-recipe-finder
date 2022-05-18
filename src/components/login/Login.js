@@ -1,14 +1,17 @@
-import React, {useState, useContext, useEffect} from "react";
+import React, {useState, useContext} from "react";
 import AuthService from "../../services/auth.service";
 import {FormProvider, useForm} from "react-hook-form";
 import Input from "../forms/input/Input";
 import Password from "../forms/password/Password";
+import {UserContext} from "../../providers/UserProvider";
 
 function Login() {
 
     const [loading, toggleLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+
+    const [context, setContext] = useContext(UserContext);
 
     const methods = useForm({mode: 'onBlur'});
     const {handleSubmit} = methods;
@@ -22,7 +25,9 @@ function Login() {
                     setSuccessMessage('You are successfully logged in!');
                     methods.reset();
                     toggleLoading(false);
-                    //window.location.reload();
+                    setContext({
+                        loggedIn: true
+                    });
                 }
             )
             .catch(

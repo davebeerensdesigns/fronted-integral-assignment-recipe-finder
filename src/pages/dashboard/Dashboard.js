@@ -1,19 +1,17 @@
 import React, {useContext} from "react";
-import { TestContext } from "../../providers/TestProvider";
+import { UserContext } from "../../providers/UserProvider";
 
 function Dashboard(props) {
 
-    const [context, setContext] = useContext(TestContext);
+    const [context, setContext] = useContext(UserContext);
 
-    const {testString, testInteger, testBoolean} = context;
+    const {loggedIn} = context;
 
     return (
         <>
             <div>Dashboard</div>
             <ul>
-                <li>testString: {testString}</li>
-                <li>testInteger: {testInteger}</li>
-                <li>testBoolean: {testBoolean ? 'true': 'false'}</li>
+                <li>loggedIn: {loggedIn ? 'true': 'false'}</li>
             </ul>
         </>
     );

@@ -1,7 +1,7 @@
 @import "../../styles/scss-variables.scss";
 
 #main-nav__wrapper {
-    flex-basis: 345px;
+    flex-basis: 270px;
     flex-grow: 0;
     flex-shrink: 0;
     background-color: var(--white);
@@ -13,10 +13,11 @@
 }
 
 .main-nav__link {
-    display: block;
+    display: flex;
+    align-items: center;
     color: var(--gray-3);
     text-decoration: none;
-    padding: 1rem 1rem 1rem 2rem;
+    padding: 1rem 1.25rem;
     border-radius: var(--border-radius-lg);
     background-color: var(--white);
     font-weight: 500;
@@ -24,7 +25,7 @@
     margin-bottom: .5rem;
 }
 .main-nav__link:hover{
-    background-color: var(--gray-1);
+    background-color: var(--gray-light);
 }
 .main-nav__link:active, .main-nav__link.active{
     background-color: var(--primary);
@@ -32,7 +33,7 @@
 }
 
 .main-nav__link svg{
-    width: 24px;
+    width: 20px;
     margin-right: 1rem;
-    font-size: $font-size-base;
+    font-size: $font-size-base * 1.2;
 }
