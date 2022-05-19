@@ -8,27 +8,32 @@ import Profile from "../../components/profile/Profile";
 import {UserContext} from "../../providers/UserProvider";
 import Logout from "../../components/logout/Logout";
 import Favorites from "../../components/favorites/Favorites";
+import {AccountTabContext} from "../../providers/AccountTabProvider";
 
 function AccountNav(props) {
 
-    // Tab menu active state
-    const [guestAccountActiveTab, setGuestAccountActiveTab] = useState('login');
-    const [userAccountActiveTab, setUserAccountActiveTab] = useState('favorites');
+    // TODO: Make account-nav wrapper use a useContext with localstorage
 
-    const [context, setContext] = useContext(UserContext);
-    const {loggedIn} = context;
+    // Tab menu active state
+
+    const [accountTab, setAccountTab] = useContext(AccountTabContext);
+    const [userValue, setUserValue] = useContext(UserContext);
 
     return (
         <aside
             id='account-nav__wrapper'
+            className={(accountTab['show']) ? 'show' : 'hidden'}
         >
-            {loggedIn ? (
+            <button onClick={() => {{setAccountTab(arr => ({...arr, show: !arr.show }))}}}>
+                {(accountTab['show']) ? 'Close menu' : 'Open menu'}
+            </button>
+            {userValue['loggedIn'] ? (
                     <>
                         <nav>
-                            <button className='btn btn-icon' onClick={() => {setUserAccountActiveTab('favorites')}}>
+                            <button onClick={() => {{setAccountTab(arr => ({...arr, user: 'favorites' }))}}}>
                                 <FontAwesomeIcon icon={ faHeart } />
                             </button>
-                            <button className='btn btn-icon' onClick={() => {setUserAccountActiveTab('profile')}}>
+                            <button onClick={() => {{setAccountTab(arr => ({...arr, user: 'profile' }))}}}>
                                 <FontAwesomeIcon icon={ faCog } />
                             </button>
                             <Logout buttonClass='btn btn-icon text-danger'>
@@ -36,10 +41,10 @@ function AccountNav(props) {
                             </Logout>
                         </nav>
                         <div className='tabs'>
-                            {userAccountActiveTab === 'profile' &&
+                            {accountTab['user'] === 'profile' &&
                                 <Profile/>
                             }
-                            {userAccountActiveTab === 'favorites' &&
+                            {accountTab['user'] === 'favorites' &&
                                 <Favorites/>
                             }
                         </div>
@@ -47,26 +52,23 @@ function AccountNav(props) {
             ) : (
                 <>
                     <nav>
-                        <button onClick={() => {setGuestAccountActiveTab('register')}}>
+                        <button onClick={() => {{setAccountTab(arr => ({...arr, guest: 'register' }))}}}>
                             <FontAwesomeIcon icon={ faUserPlus } />
                         </button>
-                        <button onClick={() => {setGuestAccountActiveTab('login')}}>
+                        <button onClick={() => {{setAccountTab(arr => ({...arr, guest: 'login' }))}}}>
                             <FontAwesomeIcon icon={ faArrowRightToBracket } />
                         </button>
                     </nav>
                     <div className='tabs'>
-                        {guestAccountActiveTab === 'login' &&
+                        {accountTab['guest'] === 'login' &&
                             <Login/>
                         }
-                        {guestAccountActiveTab === 'register' &&
+                        {accountTab['guest'] === 'register' &&
                             <Register/>
                         }
                     </div>
                 </>
             )}
-
-
-
 
         </aside>
     );

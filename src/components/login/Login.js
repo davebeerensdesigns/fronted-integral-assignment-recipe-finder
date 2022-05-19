@@ -11,7 +11,7 @@ function Login() {
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
 
-    const [context, setContext] = useContext(UserContext);
+    const [user, setUser] = useContext(UserContext);
 
     const methods = useForm({mode: 'onBlur'});
     const {handleSubmit} = methods;
@@ -25,7 +25,7 @@ function Login() {
                     setSuccessMessage('You are successfully logged in!');
                     methods.reset();
                     toggleLoading(false);
-                    setContext({
+                    setUser({
                         loggedIn: true
                     });
                 }
