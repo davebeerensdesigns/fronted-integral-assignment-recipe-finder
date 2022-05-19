@@ -12,7 +12,8 @@ import {AccountTabContext} from "../../providers/AccountTabProvider";
 
 function AccountNav(props) {
 
-    // TODO: Make account-nav wrapper use a useContext with localstorage
+    // TODO: Make a message handler so user knows what happened when loggin in or out
+    // TODO: When login or register is unsuccessful then app crashes. this should extend the message handler
 
     // Tab menu active state
 
