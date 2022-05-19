@@ -5,15 +5,21 @@ import './MainNav.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faRefrigerator, faUserChef, faSparkles, faHatChef, faInfoCircle } from "@fortawesome/pro-regular-svg-icons"
 import {UserContext} from "../../providers/UserProvider";
+import {MainNavContext} from "../../providers/MainNavProvider";
 
 function MainNav(props) {
 
-    const [context, setContext] = useContext(UserContext);
-    const {loggedIn} = context;
+    const [mainNav, setMainNav] = useContext(MainNavContext);
+    const [user, setUser] = useContext(UserContext);
 
 
     return (
-        <aside id='main-nav__wrapper'>
+        <aside id='main-nav__wrapper'
+               className={(mainNav['show']) ? 'show' : 'hidden'}
+        >
+            <button onClick={() => {{setMainNav(arr => ({...arr, show: !arr.show }))}}}>
+                {(mainNav['show']) ? 'Close menu' : 'Open menu'}
+            </button>
             <Link
                 id='app-logo__link'
                 to='/'
@@ -60,7 +66,7 @@ function MainNav(props) {
                     <FontAwesomeIcon icon={ faInfoCircle } /> <span>About</span>
                 </NavLink>
             </nav>
-            {!loggedIn &&
+            {!user &&
                 <>
                     REGISTER NOW!!
                 </>
