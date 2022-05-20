@@ -1,18 +1,10 @@
-import React, {useContext} from "react";
-import { UserContext } from "../../providers/UserProvider";
+import React from "react";
 
-function Dashboard(props) {
-
-    const [context, setContext] = useContext(UserContext);
-
-    const {loggedIn} = context;
+function Dashboard() {
 
     return (
         <>
             <div>Dashboard</div>
-            <ul>
-                <li>loggedIn: {loggedIn ? 'true': 'false'}</li>
-            </ul>
         </>
     );
 }
