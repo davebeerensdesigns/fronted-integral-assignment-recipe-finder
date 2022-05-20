@@ -9,15 +9,22 @@ function Profile(props) {
         email: ''
     });
 
-    useEffect( () => {
-        UserService.getUserDetails().then(
-            (success) => {
-                setCurrentUser({
-                    username: success.data.username,
-                    email: success.data.email
+    useEffect(() => {
+        UserService.getUserDetails()
+            .then(
+                (response) => {
+                    setCurrentUser({
+                        username: response.data.username,
+                        email: response.data.email
+                    })
                 })
-            }
-        );
+            .catch(
+                (error) => {
+                    setCurrentUser({
+                        username: 'undefined',
+                        email: 'undefined'
+                    })
+                });
     }, []);
 
 

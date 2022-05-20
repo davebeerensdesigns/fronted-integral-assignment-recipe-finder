@@ -12,13 +12,12 @@ import {AccountTabContext} from "../../providers/AccountTabProvider";
 
 function AccountNav(props) {
 
-    // TODO: Make a message handler so user knows what happened when loggin in or out
-    // TODO: When login or register is unsuccessful then app crashes. this should extend the message handler
+    // TODO: Make a message handler so user knows what happened when logging in or out
 
     // Tab menu active state
 
     const [accountTab, setAccountTab] = useContext(AccountTabContext);
-    const [userValue, setUserValue] = useContext(UserContext);
+    const [user, setUser] = useContext(UserContext);
 
     return (
         <aside
@@ -28,7 +27,7 @@ function AccountNav(props) {
             <button onClick={() => {{setAccountTab(arr => ({...arr, show: !arr.show }))}}}>
                 {(accountTab['show']) ? 'Close menu' : 'Open menu'}
             </button>
-            {userValue['loggedIn'] ? (
+            {user.loggedIn ? (
                     <>
                         <nav>
                             <button onClick={() => {{setAccountTab(arr => ({...arr, user: 'favorites' }))}}}>

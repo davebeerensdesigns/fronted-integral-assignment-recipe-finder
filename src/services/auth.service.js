@@ -13,17 +13,10 @@ const register = (username, email, password) => {
 };
 
 const login = (username, password) => {
-
     return axios.post(API_URL + 'signin', {
         username,
         password,
-    })
-        .then((response) => {
-            if(response.data.accessToken){
-                localStorage.setItem('token', "Bearer " + response.data.accessToken);
-            }
-            return response.data;
-        });
+    });
 }
 
 const logout = () => {

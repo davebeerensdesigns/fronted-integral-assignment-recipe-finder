@@ -3,6 +3,12 @@ import authHeader from "./auth-header";
 
 const API_URL = 'https://frontend-educational-backend.herokuapp.com/api/';
 
+const verifyUser = () => {
+    return axios.get(API_URL + "test/user", {
+        headers: authHeader()
+    });
+};
+
 const setUserImage = (image) => {
     return axios.post(API_URL + "user/image", {
         "base64Image": image,
@@ -18,6 +24,7 @@ const getUserDetails = () => {
 };
 
 const UserService = {
+    verifyUser,
     setUserImage,
     getUserDetails
 };

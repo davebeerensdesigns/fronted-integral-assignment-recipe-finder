@@ -12,7 +12,6 @@ function MainNav(props) {
     const [mainNav, setMainNav] = useContext(MainNavContext);
     const [user, setUser] = useContext(UserContext);
 
-
     return (
         <aside id='main-nav__wrapper'
                className={(mainNav['show']) ? 'show' : 'hidden'}
@@ -66,7 +65,7 @@ function MainNav(props) {
                     <FontAwesomeIcon icon={ faInfoCircle } /> <span>About</span>
                 </NavLink>
             </nav>
-            {!user &&
+            {!user.loggedIn &&
                 <>
                     REGISTER NOW!!
                 </>

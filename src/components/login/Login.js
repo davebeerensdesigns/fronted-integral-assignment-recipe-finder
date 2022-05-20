@@ -19,29 +19,35 @@ function Login() {
         toggleLoading(true);
         setErrorMessage('');
         setSuccessMessage('');
-        await AuthService.login(data.usernameLogin, data.passwordLogin)
+        AuthService.login(data.usernameLogin, data.passwordLogin)
             .then(
-                () => {
-                    setSuccessMessage('You are successfully logged in!');
-                    methods.reset();
+                (response) => {
+                    if(response.data.accessToken){
+                        localStorage.setItem('token', response.data.accessToken);
+                        setSuccessMessage('You are successfully logged in!');
+                        setUser({
+                            loggedIn: true
+                        });
+                        methods.reset();
+                    } else {
+                        setSuccessMessage('Something went wrong');
+                        methods.reset();
+                    }
                     toggleLoading(false);
-                    setUser({
-                        loggedIn: true
-                    });
-                }
-            )
+                })
             .catch(
                 (error) => {
                     const errorMessage =
-                        (error.response &&
-                            error.response.data) ||
+                        (error.response.data.error && (error.response.data.status === 401 ? 'Wrong username and/or password' : error.response.data.error)) ||
+                        error.response.data.message ||
                         error.message ||
                         error.toString();
                     setErrorMessage(errorMessage);
                     methods.reset();
                     toggleLoading(false);
+                    console.clear();
                 }
-            );
+            )
     };
 
     return (

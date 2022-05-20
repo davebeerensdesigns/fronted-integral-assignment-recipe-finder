@@ -6,23 +6,22 @@ import Pages from "./pages/pages/Pages";
 import {useLocation} from "react-router-dom";
 import AuthVerify from "./common/AuthVerify";
 import {UserContext} from "./providers/UserProvider";
-import AccountTabProvider from "./providers/AccountTabProvider";
+import {AccountTabContext} from "./providers/AccountTabProvider";
 import MainNavProvider from "./providers/MainNavProvider";
 
 function App() {
 
     const [userContext, setUserContext] = useContext(UserContext);
+    const [accountTab, setAccountTab] = useContext(AccountTabContext);
 
     const location = useLocation();
 
     useEffect(() => {
-        let status = AuthVerify();
-        if(status){
+        const status = AuthVerify();
             setUserContext({
-                loggedIn: false
+                loggedIn: (status ? false : true)
             });
-        }
-    }, [location, userContext]);
+    }, [location, accountTab]);
 
     return (
         <div id='app__wrapper'>
@@ -30,9 +29,7 @@ function App() {
                 <MainNav/>
             </MainNavProvider>
             <Pages/>
-            <AccountTabProvider>
-                <AccountNav/>
-            </AccountTabProvider>
+            <AccountNav/>
         </div>
     );
 }
