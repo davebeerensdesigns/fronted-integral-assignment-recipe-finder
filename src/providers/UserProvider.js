@@ -7,19 +7,13 @@ const { Provider } = UserContext;
 
 const UserProvider = ({ children }) => {
 
-    const currentUser = AuthService.getCurrentUser();
+    let currentUser = AuthService.getCurrentUser();
+    let currentUserData = (currentUser ? true : false);
 
-    const [userValue, setUserValue] = useState({
-        loggedIn: false
-    });
+    const [userValue, setUserValue] = useState(currentUserData);
 
     useEffect(() => {
-        if(currentUser){
-            setUserValue(prevState => ({
-                ...prevState,
-                loggedIn: (currentUser)
-            }))
-        }
+        setUserValue(currentUser ? true : false);
     }, []);
 
     return <Provider value={[userValue, setUserValue]}>{children}</Provider>;

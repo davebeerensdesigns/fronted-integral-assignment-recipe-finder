@@ -25,9 +25,7 @@ function Login() {
                     if(response.data.accessToken){
                         localStorage.setItem('token', response.data.accessToken);
                         setSuccessMessage('You are successfully logged in!');
-                        setUser({
-                            loggedIn: true
-                        });
+                        setUser(true);
                         methods.reset();
                     } else {
                         setSuccessMessage('Something went wrong');

@@ -65,7 +65,7 @@ function MainNav(props) {
                     <FontAwesomeIcon icon={ faInfoCircle } /> <span>About</span>
                 </NavLink>
             </nav>
-            {!user.loggedIn &&
+            {!user &&
                 <>
                     REGISTER NOW!!
                 </>

@@ -18,7 +18,6 @@ function AccountNav(props) {
 
     const [accountTab, setAccountTab] = useContext(AccountTabContext);
     const [user, setUser] = useContext(UserContext);
-
     return (
         <aside
             id='account-nav__wrapper'
@@ -27,7 +26,7 @@ function AccountNav(props) {
             <button onClick={() => {{setAccountTab(arr => ({...arr, show: !arr.show }))}}}>
                 {(accountTab['show']) ? 'Close menu' : 'Open menu'}
             </button>
-            {user.loggedIn ? (
+            {user ? (
                     <>
                         <nav>
                             <button onClick={() => {{setAccountTab(arr => ({...arr, user: 'favorites' }))}}}>
