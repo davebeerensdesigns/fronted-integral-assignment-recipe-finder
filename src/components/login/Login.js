@@ -42,7 +42,6 @@ function Login() {
                     setErrorMessage(errorMessage);
                     methods.reset();
                     toggleLoading(false);
-                    console.clear();
                 }
             )
     };

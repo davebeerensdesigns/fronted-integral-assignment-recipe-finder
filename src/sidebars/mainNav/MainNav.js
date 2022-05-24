@@ -3,7 +3,7 @@ import {Link, NavLink} from "react-router-dom";
 import Logo from "../../components/logo/Logo";
 import './MainNav.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faRefrigerator, faUserChef, faSparkles, faHatChef, faInfoCircle } from "@fortawesome/pro-regular-svg-icons"
+import { faHouse, faRefrigerator, faUserChef, faSparkles, faHatChef, faInfoCircle, faHeart} from "@fortawesome/pro-regular-svg-icons"
 import {UserContext} from "../../providers/UserProvider";
 import {MainNavContext} from "../../providers/MainNavProvider";
 
@@ -46,6 +46,14 @@ function MainNav(props) {
                 >
                     <FontAwesomeIcon icon={ faUserChef } /> <span>Cuisines</span>
                 </NavLink>
+                {user &&
+                    <NavLink
+                        className='main-nav__link'
+                        to='/favorites'
+                    >
+                        <FontAwesomeIcon icon={ faHeart } /> <span>Favorites</span>
+                    </NavLink>
+                }
                 <NavLink
                     className='main-nav__link'
                     to='/popular'

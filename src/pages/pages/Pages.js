@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './/Pages.scss';
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import routes from "../../config/routes";
+import {UserContext} from "../../providers/UserProvider";
 
 function Pages() {
 
-    const routeComponents = routes.map(({path, element}) => <Route exact path={path} element={element} key={path} />);
+    const [userValue, setUserValue] = useContext(UserContext);
+
+    const routeComponents = routes.map(
+        ({path, element, isPrivate}) => <Route exact path={path} element={isPrivate && !userValue ? (<Navigate to='/' replace />) : (element)} key={path} />
+    );
 
     return (
         <main id='page__wrapper'>
