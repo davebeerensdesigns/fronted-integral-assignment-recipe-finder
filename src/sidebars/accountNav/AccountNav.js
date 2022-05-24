@@ -3,9 +3,7 @@ import './AccountNav.scss';
 import {
     faUserPlus,
     faArrowRightToBracket,
-    faArrowRightFromBracket,
-    faHeart,
-    faCog
+    faArrowRightFromBracket
 } from "@fortawesome/pro-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Login from "../../components/login/Login";
@@ -13,12 +11,9 @@ import Register from "../../components/register/Register";
 import Profile from "../../components/profile/Profile";
 import {UserContext} from "../../providers/UserProvider";
 import Logout from "../../components/logout/Logout";
-import Favorites from "../../components/favorites/Favorites";
 import {AccountTabContext} from "../../providers/AccountTabProvider";
 
 function AccountNav(props) {
-
-    // TODO: Make a message handler so user knows what happened when logging in or out
 
     // Tab menu active state
 
