@@ -1,31 +1,16 @@
 import React from 'react';
 import './/Pages.scss';
-import Dashboard from "../dashboard/Dashboard";
 import {Route, Routes} from "react-router-dom";
-import About from "../about/About";
-import SearchPantry from "../search-pantry/SearchPantry";
-import Cuisines from "../cuisines/Cuisines";
-import Popular from "../popular/Popular";
-import Latest from "../latest/Latest";
+import routes from "../../config/routes";
 
-function Pages(props) {
+function Pages() {
+
+    const routeComponents = routes.map(({path, element}) => <Route exact path={path} element={element} key={path} />);
+
     return (
-        <main
-            id='page__wrapper'
-        >
+        <main id='page__wrapper'>
             <Routes>
-                <Route path="/" exact
-                       element={<Dashboard />}/>
-                <Route path="/search-pantry" exact
-                       element={<SearchPantry />}/>
-                <Route path="/cuisines" exact
-                       element={<Cuisines />}/>
-                <Route path="/popular" exact
-                       element={<Popular />}/>
-                <Route path="/latest" exact
-                       element={<Latest />}/>
-                <Route path="/about" exact
-                       element={<About />}/>
+                {routeComponents}
             </Routes>
         </main>
     );
