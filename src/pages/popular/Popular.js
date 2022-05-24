@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Popular(props) {
+function Popular() {
     return (
         <div>Popular</div>
     );

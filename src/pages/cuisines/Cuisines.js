@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Cuisines(props) {
+function Cuisines() {
     return (
         <div>Cuisines</div>
     );

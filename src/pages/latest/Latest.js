@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Latest(props) {
+function Latest() {
     return (
         <div>Latest</div>
     );
