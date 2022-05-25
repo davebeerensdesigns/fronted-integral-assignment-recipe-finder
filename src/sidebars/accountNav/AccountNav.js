@@ -3,7 +3,8 @@ import './AccountNav.scss';
 import {
     faUserPlus,
     faArrowRightToBracket,
-    faArrowRightFromBracket
+    faArrowRightFromBracket,
+    faClose
 } from "@fortawesome/pro-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Login from "../../components/login/Login";
@@ -29,7 +30,7 @@ function AccountNav(props) {
                     setAccountTab(arr => ({...arr, show: !arr.show}))
                 }
             }}>
-                {(accountTab['show']) ? 'Close menu' : 'Open menu'}
+                <FontAwesomeIcon icon={faClose}/>
             </button>
             {user ? (
                 <>

@@ -3,12 +3,23 @@ import {Link, NavLink} from "react-router-dom";
 import Logo from "../../components/logo/Logo";
 import './MainNav.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faRefrigerator, faUserChef, faSparkles, faHatChef, faInfoCircle, faHeart} from "@fortawesome/pro-regular-svg-icons"
+import {
+    faHouse,
+    faRefrigerator,
+    faUserChef,
+    faSparkles,
+    faHatChef,
+    faInfoCircle,
+    faHeart,
+    faClose
+} from "@fortawesome/pro-regular-svg-icons"
 import {UserContext} from "../../providers/UserProvider";
 import {MainNavContext} from "../../providers/MainNavProvider";
+import {AccountTabContext} from "../../providers/AccountTabProvider";
 
 function MainNav(props) {
 
+    const [accountTab, setAccountTab] = useContext(AccountTabContext);
     const [mainNav, setMainNav] = useContext(MainNavContext);
     const [user, setUser] = useContext(UserContext);
 
@@ -16,8 +27,12 @@ function MainNav(props) {
         <aside id='main-nav__wrapper'
                className={(mainNav['show']) ? 'show' : 'hidden'}
         >
-            <button onClick={() => {{setMainNav(arr => ({...arr, show: !arr.show }))}}}>
-                {(mainNav['show']) ? 'Close menu' : 'Open menu'}
+            <button onClick={() => {
+                {
+                    setMainNav(arr => ({...arr, show: !arr.show}))
+                }
+            }}>
+                <FontAwesomeIcon icon={faClose}/>
             </button>
             <Link
                 id='app-logo__link'
@@ -75,7 +90,13 @@ function MainNav(props) {
             </nav>
             {!user &&
                 <>
-                    REGISTER NOW!!
+                    <button onClick={() => {
+                        {
+                            setAccountTab(arr => ({...arr, show: true, guest: 'register'}))
+                        }
+                    }}>
+                        Register
+                    </button>
                 </>
             }
         </aside>

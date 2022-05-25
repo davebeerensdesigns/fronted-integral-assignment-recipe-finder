@@ -5,7 +5,6 @@ import AccountNav from "./sidebars/accountNav/AccountNav";
 import Pages from "./pages/pages/Pages";
 import {useLocation} from "react-router-dom";
 import {AccountTabContext} from "./providers/AccountTabProvider";
-import MainNavProvider from "./providers/MainNavProvider";
 import {UserContext} from "./providers/UserProvider";
 import AuthService from "./services/auth.service";
 import jwt_decode from "jwt-decode";
@@ -61,9 +60,7 @@ function App() {
         <>
             <ToastContainer/>
             <div id='app__wrapper'>
-                <MainNavProvider>
-                    <MainNav/>
-                </MainNavProvider>
+                <MainNav/>
                 <Pages/>
                 <AccountNav/>
             </div>

@@ -3,6 +3,7 @@ import './/Pages.scss';
 import {Navigate, Route, Routes} from "react-router-dom";
 import routes from "../../config/routes";
 import {UserContext} from "../../providers/UserProvider";
+import PageHeader from "../../components/page-header/PageHeader";
 
 function Pages() {
 
@@ -14,6 +15,7 @@ function Pages() {
 
     return (
         <main id='page__wrapper'>
+            <PageHeader />
             <Routes>
                 {routeComponents}
             </Routes>
