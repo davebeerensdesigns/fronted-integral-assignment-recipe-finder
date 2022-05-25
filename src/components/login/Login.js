@@ -4,12 +4,12 @@ import {FormProvider, useForm} from "react-hook-form";
 import Input from "../forms/input/Input";
 import Password from "../forms/password/Password";
 import {UserContext} from "../../providers/UserProvider";
+import toastMessage from "../../helpers/toastMessage";
 
 function Login() {
 
     const [loading, toggleLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
-    const [successMessage, setSuccessMessage] = useState('');
 
     const [user, setUser] = useContext(UserContext);
 
@@ -18,17 +18,16 @@ function Login() {
     const onSubmitLogin = async (data) => {
         toggleLoading(true);
         setErrorMessage('');
-        setSuccessMessage('');
         AuthService.login(data.usernameLogin, data.passwordLogin)
             .then(
                 (response) => {
                     if(response.data.accessToken){
                         localStorage.setItem('token', response.data.accessToken);
-                        setSuccessMessage('You are successfully logged in!');
+                        toastMessage.notifySuccess('You are successfully logged in!');
                         setUser(true);
                         methods.reset();
                     } else {
-                        setSuccessMessage('Something went wrong');
+                        setErrorMessage('Something went wrong');
                         methods.reset();
                     }
                     toggleLoading(false);
@@ -43,7 +42,6 @@ function Login() {
                     setErrorMessage(errorMessage);
                     methods.reset();
                     toggleLoading(false);
-                    console.clear();
                 }
             )
     };
@@ -93,15 +91,6 @@ function Login() {
                         <div className="alert alert-danger"
                              role="alert">
                             {errorMessage}
-                        </div>
-                    </div>
-                )}
-
-                {successMessage && (
-                    <div className="form-group">
-                        <div className="alert alert-success"
-                             role="alert">
-                            {successMessage}
                         </div>
                     </div>
                 )}

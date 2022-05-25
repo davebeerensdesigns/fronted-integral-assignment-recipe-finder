@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SearchPantry(props) {
+function SearchPantry() {
     return (
         <div>Search Pantry</div>
     );

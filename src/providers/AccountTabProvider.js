@@ -12,7 +12,6 @@ const AccountTabProvider = ({ children }) => {
     const [accountTab, setAccountTab] = useState({
         show: (accountTabData['show'] ? accountTabData['show'] : true),
         guest: (accountTabData['guest'] ? accountTabData['guest'] : 'login'),
-        user: (accountTabData['user'] ? accountTabData['user'] : 'favorites'),
     });
 
     useEffect(() => {

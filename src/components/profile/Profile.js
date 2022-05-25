@@ -4,23 +4,27 @@ import UserService from "../../services/user.service";
 function Profile(props) {
 
 
-    const [currentUser, setCurrentUser] = useState({
+    const [profileData, setProfileData] = useState({
         username: '',
         email: ''
     });
+
+    // TODO: Get available userdata from jwt token or store neccesary data on login. then build the profile with that.
+    // TODO: Add profile image
+    // TODO: Create form to update profile
 
     useEffect(() => {
         UserService.getUserDetails()
             .then(
                 (response) => {
-                    setCurrentUser({
+                    setProfileData({
                         username: response.data.username,
                         email: response.data.email
                     })
                 })
             .catch(
                 (error) => {
-                    setCurrentUser({
+                    setProfileData({
                         username: 'undefined',
                         email: 'undefined'
                     })
@@ -32,15 +36,15 @@ function Profile(props) {
         <div className="profile">
             <header>
                 <h3>
-                    Settings
+                    Profile
                 </h3>
             </header>
 
             <p>
-                <strong>username:</strong> {currentUser.username}
+                <strong>username:</strong> {profileData.username}
             </p>
             <p>
-                <strong>Email:</strong> {currentUser.email}
+                <strong>Email:</strong> {profileData.email}
             </p>
         </div>
     );

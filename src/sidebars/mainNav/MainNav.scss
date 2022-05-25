@@ -6,6 +6,13 @@
     flex-shrink: 0;
     background-color: var(--white);
     padding: 2rem;
+    transition: margin-left .2s ease-in-out;
+}
+#main-nav__wrapper.hidden{
+    margin-left: -270px;
+}
+#main-nav__wrapper.show{
+    margin-left: 0;
 }
 
 #main-nav__navigation {

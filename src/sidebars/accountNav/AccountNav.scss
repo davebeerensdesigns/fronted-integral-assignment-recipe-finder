@@ -4,4 +4,11 @@
     flex-shrink: 0;
     background-color: var(--white);
     padding: 2rem;
+    transition: margin-right .2s ease-in-out;
+}
+#account-nav__wrapper.hidden{
+    margin-right: -320px;
+}
+#account-nav__wrapper.show{
+    margin-right: 0;
 }

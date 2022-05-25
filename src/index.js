@@ -6,6 +6,7 @@ import App from './App';
 import UserProvider from "./providers/UserProvider";
 import {history} from "./helpers/history";
 import AccountTabProvider from "./providers/AccountTabProvider";
+import MainNavProvider from "./providers/MainNavProvider";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +14,9 @@ root.render(
         <BrowserRouter history={history}>
             <UserProvider>
                 <AccountTabProvider>
-                    <App/>
+                    <MainNavProvider>
+                        <App/>
+                    </MainNavProvider>
                 </AccountTabProvider>
             </UserProvider>
         </BrowserRouter>
