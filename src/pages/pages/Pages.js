@@ -8,7 +8,6 @@ import {MainNavContext} from "../../providers/MainNavProvider";
 
 function Pages() {
 
-    const [mainNav, setMainNav] = useContext(MainNavContext);
     const [userValue, setUserValue] = useContext(UserContext);
 
     const routeComponents = routes.map(
@@ -16,7 +15,7 @@ function Pages() {
     );
 
     return (
-        <main id='page__wrapper' className={(mainNav['show']) ? 'main-show' : 'main-hidden'}>
+        <main id='page__wrapper'>
             <PageHeader />
             <div id='page-content'>
                 <Routes>

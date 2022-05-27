@@ -13,11 +13,14 @@ import {toast, ToastContainer} from "react-toastify";
 
 import 'react-toastify/dist/ReactToastify.css';
 import toastMessage from "./helpers/toastMessage";
+import {MainNavContext} from "./providers/MainNavProvider";
+import {classNames} from "./helpers/classNames";
 
 function App() {
 
     const [userValue, setUserValue] = useContext(UserContext);
     const [accountTab, setAccountTab] = useContext(AccountTabContext);
+    const [mainNav, setMainNav] = useContext(MainNavContext);
 
     const location = useLocation();
 
@@ -41,7 +44,7 @@ function App() {
                     toastMessage.notifyError('Something went wrong. Log in again.');
                 })
             }
-        } catch(e) {
+        } catch (e) {
             // token not verified
             AuthService.logout()
             setUserValue(false);
@@ -59,7 +62,12 @@ function App() {
     return (
         <>
             <ToastContainer/>
-            <div id='app__wrapper'>
+            <div id='app__wrapper'
+                 className={classNames(
+                     mainNav['show'] ? 'main-show' : 'main-hidden',
+                     accountTab['show'] ? 'account-show' : 'account-hidden'
+                 )}
+            >
                 <MainNav/>
                 <Pages/>
                 <AccountNav/>

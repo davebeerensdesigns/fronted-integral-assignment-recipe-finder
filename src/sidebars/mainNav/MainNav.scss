@@ -12,10 +12,10 @@
     padding: 2rem;
     transition: left .2s ease-in-out;
 }
-#main-nav__wrapper.hidden{
+.main-hidden #main-nav__wrapper{
     left: -270px;
 }
-#main-nav__wrapper.show{
+.main-show #main-nav__wrapper{
     left: 0;
 }
 

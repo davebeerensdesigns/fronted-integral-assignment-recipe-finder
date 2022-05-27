@@ -23,7 +23,6 @@ function AccountNav(props) {
     return (
         <aside
             id='account-nav__wrapper'
-            className={(accountTab['show']) ? 'show' : 'hidden'}
         >
             <button onClick={() => {
                 {

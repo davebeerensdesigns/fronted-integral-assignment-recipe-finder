@@ -8,10 +8,11 @@
     background-color: var(--white);
     padding: 2rem;
     transition: right .2s ease-in-out;
+    z-index: 1010;
 }
-#account-nav__wrapper.hidden{
+.account-hidden #account-nav__wrapper{
     right: -320px;
 }
-#account-nav__wrapper.show{
+.account-show #account-nav__wrapper{
     right:0;
 }

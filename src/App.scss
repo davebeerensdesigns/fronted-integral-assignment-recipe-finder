@@ -1,6 +1,28 @@
 @import "styles/scss-variables.scss";
 
-#app__wrapper{
-    position: relative;
-    background-color: $gray-1;
+#app__wrapper {
+  position: relative;
+  background-color: $gray-1;
+  min-height: 100vh;
+}
+
+#app__wrapper:before {
+  display: block;
+  content: '';
+  background-color: rgba(0, 0, 0, 0.3);
+  top: 0;
+  bottom: 0;
+  position: fixed;
+  transition: opacity .2s ease-in-out;
+  z-index: 1000;
+}
+#app__wrapper.account-hidden:before {
+  opacity: 0;
+  width: 1px;
+  right: -1px;
+}
+#app__wrapper.account-show:before {
+  opacity: 1;
+  width: 100%;
+  right: 0;
 }

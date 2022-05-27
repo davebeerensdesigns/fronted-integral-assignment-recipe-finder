@@ -2,10 +2,10 @@
     width: 100%;
     transition: padding-left .2s ease-in-out;
 }
-#page__wrapper.main-hidden{
+.main-hidden #page__wrapper{
     padding-left: 0;
 }
-#page__wrapper.main-show{
+.main-show #page__wrapper{
     padding-left: 270px;
 }
 
