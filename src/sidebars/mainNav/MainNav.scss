@@ -8,7 +8,7 @@
     top:0;
     bottom:0;
     left:0;
-    background-color: var(--white);
+    background-color: var(--recipe-white);
     padding: 2rem;
     transition: left .2s ease-in-out;
 }
@@ -26,21 +26,21 @@
 .main-nav__link {
     display: flex;
     align-items: center;
-    color: var(--gray-3);
+    color: var(--recipe-gray-3);
     text-decoration: none;
     padding: 1rem 1.25rem;
-    border-radius: var(--border-radius-lg);
-    background-color: var(--white);
+    border-radius: var(--recipe-border-radius-lg);
+    background-color: var(--recipe-white);
     font-weight: 500;
-    font-size: var(--font-size-base);
+    font-size: var(--recipe-font-size-base);
     margin-bottom: .5rem;
 }
 .main-nav__link:hover{
-    background-color: var(--gray-light);
+    background-color: var(--recipe-gray-light);
 }
 .main-nav__link:active, .main-nav__link.active{
-    background-color: var(--primary);
-    color: var(--white);
+    background-color: var(--recipe-primary);
+    color: var(--recipe-white);
 }
 
 .main-nav__link svg{

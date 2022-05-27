@@ -2,6 +2,7 @@ import React, {useFormContext} from 'react-hook-form';
 import {classNames} from '../../../helpers/classNames';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faExclamationCircle} from "@fortawesome/pro-regular-svg-icons";
+import '../Forms.scss'
 
 
 export default function Input(

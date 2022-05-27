@@ -3,6 +3,7 @@ import {useFormContext} from 'react-hook-form';
 import {classNames} from '../../../helpers/classNames';
 import {faEye, faEyeSlash, faExclamationCircle} from "@fortawesome/pro-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import './Password.scss';
 
 export default function Password(
     {
@@ -47,19 +48,20 @@ export default function Password(
                       placeholder={placeholder}
                       aria-describedby={id}
                 />
-                <button
+                <span
+                    type=''
                     onClick={(e) => {
                         e.preventDefault();
                         togglePassword();
                     }}
-                    className='absolute inset-y-0 right-0 flex items-center p-1 mr-3 rounded-lg focus:outline-none focus:ring focus:ring-primary-500'
+                    className='btn__show-password'
                 >
                     {showPassword ? (
                         <FontAwesomeIcon icon={faEyeSlash}/>
                     ) : (
                         <FontAwesomeIcon icon={faEye}/>
                     )}
-                </button>
+                </span>
                 {errors[id] && (
                     <span className='form-field__icon form-field__icon-error'>
                         <FontAwesomeIcon icon={faExclamationCircle}/>

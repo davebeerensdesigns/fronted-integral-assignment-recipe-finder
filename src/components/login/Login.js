@@ -5,6 +5,7 @@ import Input from "../forms/input/Input";
 import Password from "../forms/password/Password";
 import {UserContext} from "../../providers/UserProvider";
 import toastMessage from "../../helpers/toastMessage";
+import Button from "../buttons/Button";
 
 function Login() {
 
@@ -72,19 +73,7 @@ function Login() {
                     />
                 </div>
 
-                <button className='btn btn__primary'
-                        type='submit'>
-                    Login
-                </button>
-
-                {loading && (
-                    <div className="form-group">
-                        <div className="alert alert-info"
-                             role="alert">
-                            Loading...
-                        </div>
-                    </div>
-                )}
+                <Button type='submit' style='btn-primary'>{loading ? 'Loading' : 'Login'}</Button>
 
                 {errorMessage && (
                     <div className="form-group">

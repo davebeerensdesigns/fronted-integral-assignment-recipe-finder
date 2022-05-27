@@ -3,6 +3,8 @@ import AuthService from "../../services/auth.service";
 import {FormProvider, useForm} from "react-hook-form";
 import Input from "../forms/input/Input";
 import Password from "../forms/password/Password";
+import Button from "../buttons/Button";
+import Alert from "../alert/Alert";
 
 function Register() {
 
@@ -99,19 +101,7 @@ function Register() {
                     />
                 </div>
 
-                <button className='btn btn__primary'
-                       type='submit'>
-                    Register
-                </button>
-
-                {loading && (
-                    <div className="form-group">
-                        <div className="alert alert-info"
-                             role="alert">
-                            Loading...
-                        </div>
-                    </div>
-                )}
+                <Button type='submit' style='btn-primary'>{loading ? 'Loading' : 'Register'}</Button>
 
                 {errorMessage && (
                     <div className="form-group">
@@ -123,11 +113,10 @@ function Register() {
                 )}
 
                 {successMessage && (
-                    <div className="form-group">
-                        <div className="alert alert-success"
-                             role="alert">
+                    <div className="form-notice">
+                        <Alert type='success'>
                             {successMessage}
-                        </div>
+                        </Alert>
                     </div>
                 )}
             </form>
