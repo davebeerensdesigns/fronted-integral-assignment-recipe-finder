@@ -1,3 +1,14 @@
 #page__wrapper{
     width: 100%;
+    transition: padding-left .2s ease-in-out;
+}
+#page__wrapper.main-hidden{
+    padding-left: 0;
+}
+#page__wrapper.main-show{
+    padding-left: 270px;
+}
+
+#page-content{
+    padding:2rem
 }

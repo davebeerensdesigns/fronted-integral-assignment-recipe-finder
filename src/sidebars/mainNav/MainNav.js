@@ -27,13 +27,6 @@ function MainNav(props) {
         <aside id='main-nav__wrapper'
                className={(mainNav['show']) ? 'show' : 'hidden'}
         >
-            <button onClick={() => {
-                {
-                    setMainNav(arr => ({...arr, show: !arr.show}))
-                }
-            }}>
-                <FontAwesomeIcon icon={faClose}/>
-            </button>
             <Link
                 id='app-logo__link'
                 to='/'

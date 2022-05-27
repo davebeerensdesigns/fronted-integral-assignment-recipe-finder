@@ -12,6 +12,7 @@ function Profile(props) {
     // TODO: Get available userdata from jwt token or store neccesary data on login. then build the profile with that.
     // TODO: Add profile image
     // TODO: Create form to update profile
+    // TODO: make a loader component with animated icon
 
     useEffect(() => {
         UserService.getUserDetails()

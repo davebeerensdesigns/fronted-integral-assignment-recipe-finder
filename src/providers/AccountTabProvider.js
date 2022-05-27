@@ -10,7 +10,7 @@ const AccountTabProvider = ({ children }) => {
     let accountTabData = (accountTabObject ? accountTabObject : {} )
 
     const [accountTab, setAccountTab] = useState({
-        show: (accountTabData['show'] ? accountTabData['show'] : true),
+        show: (accountTabData['show'] ? accountTabData['show'] : false),
         guest: (accountTabData['guest'] ? accountTabData['guest'] : 'login'),
     });
 

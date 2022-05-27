@@ -1,18 +1,22 @@
 @import "../../styles/scss-variables.scss";
 
 #main-nav__wrapper {
-    flex-basis: 270px;
-    flex-grow: 0;
-    flex-shrink: 0;
+    height: 100vh;
+    max-width: 270px;
+    width: 100%;
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
     background-color: var(--white);
     padding: 2rem;
-    transition: margin-left .2s ease-in-out;
+    transition: left .2s ease-in-out;
 }
 #main-nav__wrapper.hidden{
-    margin-left: -270px;
+    left: -270px;
 }
 #main-nav__wrapper.show{
-    margin-left: 0;
+    left: 0;
 }
 
 #main-nav__navigation {

@@ -1,14 +1,17 @@
 #account-nav__wrapper{
-    flex-basis: 320px;
-    flex-grow: 0;
-    flex-shrink: 0;
+    top:0;
+    right:0;
+    bottom:0;
+    position: fixed;
+    width:100%;
+    max-width: 320px;
     background-color: var(--white);
     padding: 2rem;
-    transition: margin-right .2s ease-in-out;
+    transition: right .2s ease-in-out;
 }
 #account-nav__wrapper.hidden{
-    margin-right: -320px;
+    right: -320px;
 }
 #account-nav__wrapper.show{
-    margin-right: 0;
+    right:0;
 }
