@@ -6,6 +6,8 @@ import Password from "../forms/password/Password";
 import {UserContext} from "../../providers/UserProvider";
 import toastMessage from "../../helpers/toastMessage";
 import Button from "../buttons/Button";
+import Alert from "../alert/Alert";
+import {AccountTabContext} from "../../providers/AccountTabProvider";
 
 function Login() {
 
@@ -13,6 +15,7 @@ function Login() {
     const [errorMessage, setErrorMessage] = useState('');
 
     const [user, setUser] = useContext(UserContext);
+    const [accountTab, setAccountTab] = useContext(AccountTabContext);
 
     const methods = useForm({mode: 'onBlur'});
     const {handleSubmit} = methods;
@@ -27,6 +30,7 @@ function Login() {
                         toastMessage.notifySuccess('You are successfully logged in!');
                         setUser(true);
                         methods.reset();
+                        setAccountTab(arr => ({...arr, show: false}))
                     } else {
                         setErrorMessage('Something went wrong');
                         methods.reset();
@@ -76,11 +80,10 @@ function Login() {
                 <Button type='submit' style='btn-primary'>{loading ? 'Loading' : 'Login'}</Button>
 
                 {errorMessage && (
-                    <div className="form-group">
-                        <div className="alert alert-danger"
-                             role="alert">
+                    <div className="form-notice">
+                        <Alert type='danger'>
                             {errorMessage}
-                        </div>
+                        </Alert>
                     </div>
                 )}
             </form>

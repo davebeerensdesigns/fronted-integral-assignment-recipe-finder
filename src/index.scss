@@ -61,6 +61,6 @@ h6{
   font-size: $h6;
 }
 
-.text-danger{
-  color:$danger;
+@each $color, $value in $theme-colors {
+  .text-#{$color}{ color: #{$value} !important; }
 }

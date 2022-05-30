@@ -27,6 +27,12 @@
   transition: border-color .2s ease-in-out,box-shadow .2s ease-in-out;
 }
 
+.form-field:read-only,
+.form-field:read-only:focus {
+  background-color: var(--recipe-gray-light);
+  cursor: not-allowed;
+}
+
 .form-field:focus {
   color: $gray-4;
   background-color: $white;

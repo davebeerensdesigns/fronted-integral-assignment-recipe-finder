@@ -14,6 +14,7 @@ export default function Input(
         type = 'text',
         readOnly = false,
         validation,
+        value,
         ...rest
     }) {
     const {
@@ -45,6 +46,7 @@ export default function Input(
                     )}
                     placeholder={placeholder}
                     aria-describedby={id}
+                    value={value}
                 />
 
                 {errors[id] && (

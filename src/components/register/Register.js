@@ -104,11 +104,10 @@ function Register() {
                 <Button type='submit' style='btn-primary'>{loading ? 'Loading' : 'Register'}</Button>
 
                 {errorMessage && (
-                    <div className="form-group">
-                        <div className="alert alert-danger"
-                             role="alert">
+                    <div className="form-notice">
+                        <Alert type='danger'>
                             {errorMessage}
-                        </div>
+                        </Alert>
                     </div>
                 )}
 
