@@ -10,8 +10,7 @@
 .form-field__wrapper{
   position: relative;
 }
-.form-field{
-  margin-bottom: .35rem;
+.form-field, input{
   display: block;
   width: 100%;
   padding: 0.5rem 1rem;

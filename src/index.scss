@@ -39,8 +39,21 @@ code {
     monospace;
 }
 
+a, button {
+  outline: 0;
+}
+input::-moz-focus-inner { border: 0; }
+
+a{
+  color: var(--recipe-primary);
+}
+a:hover, a:focus, a:active{
+  color: var(--recipe-primary-hover);
+}
+
 h1, h2, h3, h4, h5, h6{
   color: var(--recipe-black);
+  margin-bottom: .5rem;
 }
 h1{
   font-size: $h1;
@@ -59,6 +72,10 @@ h5{
 }
 h6{
   font-size: $h6;
+}
+
+p{
+  margin-bottom: .5rem;
 }
 
 @each $color, $value in $theme-colors {

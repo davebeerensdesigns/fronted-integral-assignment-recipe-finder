@@ -36,15 +36,15 @@ function AccountNav() {
                         <Profile/>
                     ) : (
                         <>
-                            <nav>
-                                <button onClick={() => {
+                            <nav id='account-nav__tabs-btn'>
+                                <button id='btn-tab__register' className='btn btn-icon' onClick={() => {
                                     {
                                         setAccountTab(arr => ({...arr, guest: 'register'}))
                                     }
                                 }}>
                                     <FontAwesomeIcon icon={faUserPlus}/>
                                 </button>
-                                <button onClick={() => {
+                                <button id='btn-tab__login' className='btn btn-icon' onClick={() => {
                                     {
                                         setAccountTab(arr => ({...arr, guest: 'login'}))
                                     }
@@ -52,7 +52,7 @@ function AccountNav() {
                                     <FontAwesomeIcon icon={faArrowRightToBracket}/>
                                 </button>
                             </nav>
-                            <div className='tabs'>
+                            <div className='account-nav__tabs'>
                                 {accountTab['guest'] === 'login' &&
                                     <Login/>
                                 }

@@ -8,6 +8,9 @@ import toastMessage from "../../helpers/toastMessage";
 import Button from "../buttons/Button";
 import Alert from "../alert/Alert";
 import {AccountTabContext} from "../../providers/AccountTabProvider";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faArrowRightFromBracket, faSpinner} from "@fortawesome/pro-regular-svg-icons";
+import './Login.scss';
 
 function Login() {
 
@@ -52,42 +55,49 @@ function Login() {
     };
 
     return (
-        <FormProvider {...methods}>
-            <form id='loginAccount'
-                  className='form'
-                  onSubmit={handleSubmit(onSubmitLogin)}>
-                <div className='form-field__group'>
-                    <Input
-                        id='usernameLogin'
-                        label='Username'
-                        placeholder='username'
-                        validation={{
-                            required: 'Username is required.',
-                        }}
-                    />
-                </div>
-                <div className='form-field__group'>
-                    <Password
-                        id='passwordLogin'
-                        label='Password'
-                        placeholder='password'
-                        validation={{
-                            required: 'Password is required',
-                        }}
-                    />
-                </div>
-
-                <Button type='submit' style='btn-primary'>{loading ? 'Loading' : 'Login'}</Button>
-
-                {errorMessage && (
-                    <div className="form-notice">
-                        <Alert type='danger'>
-                            {errorMessage}
-                        </Alert>
+        <>
+            <header id='login__header'>
+                <h3>
+                    Login
+                </h3>
+            </header>
+            <FormProvider {...methods}>
+                <form id='loginAccount'
+                      className='form'
+                      onSubmit={handleSubmit(onSubmitLogin)}>
+                    <div className='form-field__group'>
+                        <Input
+                            id='usernameLogin'
+                            label='Username'
+                            placeholder='username'
+                            validation={{
+                                required: 'Username is required.',
+                            }}
+                        />
                     </div>
-                )}
-            </form>
-        </FormProvider>
+                    <div className='form-field__group'>
+                        <Password
+                            id='passwordLogin'
+                            label='Password'
+                            placeholder='password'
+                            validation={{
+                                required: 'Password is required',
+                            }}
+                        />
+                    </div>
+
+                    <Button type='submit' style='btn-primary'>Login {loading && <FontAwesomeIcon icon={faSpinner} spin={true} />}</Button>
+
+                    {errorMessage && (
+                        <div className="form-notice">
+                            <Alert type='danger'>
+                                {errorMessage}
+                            </Alert>
+                        </div>
+                    )}
+                </form>
+            </FormProvider>
+        </>
     );
 }
 

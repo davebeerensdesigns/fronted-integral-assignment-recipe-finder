@@ -13,7 +13,7 @@ function PageHeader(props) {
 
     return (
         <div id='page-header__wrapper'>
-            <button onClick={() => {
+            <button className='btn btn-icon' onClick={() => {
                 {
                     setMainNav(arr => ({...arr, show: !arr.show}))
                 }
@@ -22,7 +22,7 @@ function PageHeader(props) {
             </button>
             <input type='text'
                    placeholder='search recipes'/>
-            <button onClick={() => {
+            <button className='btn btn-icon' onClick={() => {
                 {
                     setAccountTab(arr => ({...arr, show: !arr.show}))
                 }

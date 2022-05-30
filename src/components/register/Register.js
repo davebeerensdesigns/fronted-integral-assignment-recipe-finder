@@ -5,6 +5,8 @@ import Input from "../forms/input/Input";
 import Password from "../forms/password/Password";
 import Button from "../buttons/Button";
 import Alert from "../alert/Alert";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faSpinner} from "@fortawesome/pro-regular-svg-icons";
 
 function Register() {
 
@@ -43,83 +45,90 @@ function Register() {
     }
 
     return (
-        <FormProvider {...methods}>
-            <form id='registerAccount'
-                  onSubmit={handleSubmit(onSubmitRegister)}>
-                <div className='form-field__group'>
-                    <Input
-                        id='usernameRegister'
-                        label='Username'
-                        placeholder='username'
-                        validation={{
-                            required: 'Username is required.',
-                            minLength: {
-                                value: 3,
-                                message: 'The username must be between 3 and 20 characters.'
-                            },
-                            maxLength: {
-                                value: 20,
-                                message: 'The username must be between 3 and 20 characters.'
-                            },
-                            pattern: {
-                                value: /^[A-Za-z][A-Za-z0-9]+$/i,
-                                message: 'The username must start with a letter. No special characters allowed.'
-                            }
-                        }}
-                    />
-                </div>
-                <div className='form-field__group'>
-                    <Input
-                        id='emailRegister'
-                        label='Email'
-                        placeholder='email'
-                        validation={{
-                            required: 'Email is required.',
-                            pattern: {
-                                value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                                message: 'This is not a valid email.'
-                            }
-                        }}
-                    />
-                </div>
-                <div className='form-field__group'>
-                    <Password
-                        id='passwordRegister'
-                        label='Password'
-                        placeholder='password'
-                        validation={{
-                            required: 'Password is required',
-                            minLength: {
-                                value: 6,
-                                message: 'The password must be between 6 and 40 characters.'
-                            },
-                            maxLength: {
-                                value: 40,
-                                message: 'The password must be between 6 and 40 characters.'
-                            },
-                        }}
-                    />
-                </div>
-
-                <Button type='submit' style='btn-primary'>{loading ? 'Loading' : 'Register'}</Button>
-
-                {errorMessage && (
-                    <div className="form-notice">
-                        <Alert type='danger'>
-                            {errorMessage}
-                        </Alert>
+        <>
+            <header id='register__header'>
+                <h3>
+                    Register
+                </h3>
+            </header>
+            <FormProvider {...methods}>
+                <form id='registerAccount'
+                      onSubmit={handleSubmit(onSubmitRegister)}>
+                    <div className='form-field__group'>
+                        <Input
+                            id='usernameRegister'
+                            label='Username'
+                            placeholder='username'
+                            validation={{
+                                required: 'Username is required.',
+                                minLength: {
+                                    value: 3,
+                                    message: 'The username must be between 3 and 20 characters.'
+                                },
+                                maxLength: {
+                                    value: 20,
+                                    message: 'The username must be between 3 and 20 characters.'
+                                },
+                                pattern: {
+                                    value: /^[A-Za-z][A-Za-z0-9]+$/i,
+                                    message: 'The username must start with a letter. No special characters allowed.'
+                                }
+                            }}
+                        />
                     </div>
-                )}
-
-                {successMessage && (
-                    <div className="form-notice">
-                        <Alert type='success'>
-                            {successMessage}
-                        </Alert>
+                    <div className='form-field__group'>
+                        <Input
+                            id='emailRegister'
+                            label='Email'
+                            placeholder='email'
+                            validation={{
+                                required: 'Email is required.',
+                                pattern: {
+                                    value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                                    message: 'This is not a valid email.'
+                                }
+                            }}
+                        />
                     </div>
-                )}
-            </form>
-        </FormProvider>
+                    <div className='form-field__group'>
+                        <Password
+                            id='passwordRegister'
+                            label='Password'
+                            placeholder='password'
+                            validation={{
+                                required: 'Password is required',
+                                minLength: {
+                                    value: 6,
+                                    message: 'The password must be between 6 and 40 characters.'
+                                },
+                                maxLength: {
+                                    value: 40,
+                                    message: 'The password must be between 6 and 40 characters.'
+                                },
+                            }}
+                        />
+                    </div>
+
+                    <Button type='submit' style='btn-primary'>Register {loading && <FontAwesomeIcon icon={faSpinner} spin={true} />}</Button>
+
+                    {errorMessage && (
+                        <div className="form-notice">
+                            <Alert type='danger'>
+                                {errorMessage}
+                            </Alert>
+                        </div>
+                    )}
+
+                    {successMessage && (
+                        <div className="form-notice">
+                            <Alert type='success'>
+                                {successMessage}
+                            </Alert>
+                        </div>
+                    )}
+                </form>
+            </FormProvider>
+        </>
     );
 }
 

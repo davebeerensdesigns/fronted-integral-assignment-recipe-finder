@@ -5,6 +5,8 @@ import Button from "../buttons/Button";
 import {FormProvider, useForm} from "react-hook-form";
 import UserService from "../../services/user.service";
 import Alert from "../alert/Alert";
+import {faSpinner} from "@fortawesome/pro-regular-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 function ProfileUpdate() {
 
@@ -144,7 +146,7 @@ function ProfileUpdate() {
                     />
                 </div>
 
-                <Button type='submit' style='btn-primary'>{loading ? 'Loading' : 'Save settings'}</Button>
+                <Button type='submit' style='btn-primary'>Save settings {loading && <FontAwesomeIcon icon={faSpinner} spin={true} />}</Button>
 
                 {errorMessage && (
                     <div className="form-notice">
