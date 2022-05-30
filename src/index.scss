@@ -25,7 +25,7 @@ body {
   overflow-x: hidden;
   background-color: var(--recipe-gray-light);
   margin: 0;
-  color: $gray-3;
+  color: var(--recipe-gray-dark);
   font-weight: 400;
   line-height: 1.5;
   font-size: $font-size-base;
@@ -39,6 +39,9 @@ code {
     monospace;
 }
 
+h1, h2, h3, h4, h5, h6{
+  color: var(--recipe-black);
+}
 h1{
   font-size: $h1;
 }

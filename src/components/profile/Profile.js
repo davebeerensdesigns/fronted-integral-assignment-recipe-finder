@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import UserService from "../../services/user.service";
+import Logout from "../logout/Logout";
 
-function Profile(props) {
+function Profile() {
 
 
     const [profileData, setProfileData] = useState({
@@ -32,7 +33,6 @@ function Profile(props) {
                 });
     }, []);
 
-
     return (
         <div className="profile">
             <header>
@@ -47,6 +47,9 @@ function Profile(props) {
             <p>
                 <strong>Email:</strong> {profileData.email}
             </p>
+            <Logout buttonClass='btn btn-sm btn-danger'>
+                Logout
+            </Logout>
         </div>
     );
 }

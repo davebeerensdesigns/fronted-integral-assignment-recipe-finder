@@ -1,9 +1,8 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import './AccountNav.scss';
 import {
     faUserPlus,
     faArrowRightToBracket,
-    faArrowRightFromBracket,
     faClose
 } from "@fortawesome/pro-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -11,10 +10,9 @@ import Login from "../../components/login/Login";
 import Register from "../../components/register/Register";
 import Profile from "../../components/profile/Profile";
 import {UserContext} from "../../providers/UserProvider";
-import Logout from "../../components/logout/Logout";
 import {AccountTabContext} from "../../providers/AccountTabProvider";
 
-function AccountNav(props) {
+function AccountNav() {
 
     // Tab menu active state
 
@@ -24,50 +22,49 @@ function AccountNav(props) {
         <aside
             id='account-nav__wrapper'
         >
-            <button onClick={() => {
-                {
+            <button id='account-nav__close' className='btn btn-icon btn-round' onClick={
+                () => {
                     setAccountTab(arr => ({...arr, show: !arr.show}))
                 }
-            }}>
+            }>
                 <FontAwesomeIcon icon={faClose}/>
             </button>
-            {user ? (
-                <>
-                    <Logout buttonClass='btn btn-icon text-danger'>
-                        <FontAwesomeIcon icon={faArrowRightFromBracket}/>
-                    </Logout>
-                    <div className='tabs'>
+
+            {
+                accountTab.show && (
+                    user ? (
                         <Profile/>
-                    </div>
-                </>
-            ) : (
-                <>
-                    <nav>
-                        <button onClick={() => {
-                            {
-                                setAccountTab(arr => ({...arr, guest: 'register'}))
-                            }
-                        }}>
-                            <FontAwesomeIcon icon={faUserPlus}/>
-                        </button>
-                        <button onClick={() => {
-                            {
-                                setAccountTab(arr => ({...arr, guest: 'login'}))
-                            }
-                        }}>
-                            <FontAwesomeIcon icon={faArrowRightToBracket}/>
-                        </button>
-                    </nav>
-                    <div className='tabs'>
-                        {accountTab['guest'] === 'login' &&
-                            <Login/>
-                        }
-                        {accountTab['guest'] === 'register' &&
-                            <Register/>
-                        }
-                    </div>
-                </>
-            )}
+                    ) : (
+                        <>
+                            <nav>
+                                <button onClick={() => {
+                                    {
+                                        setAccountTab(arr => ({...arr, guest: 'register'}))
+                                    }
+                                }}>
+                                    <FontAwesomeIcon icon={faUserPlus}/>
+                                </button>
+                                <button onClick={() => {
+                                    {
+                                        setAccountTab(arr => ({...arr, guest: 'login'}))
+                                    }
+                                }}>
+                                    <FontAwesomeIcon icon={faArrowRightToBracket}/>
+                                </button>
+                            </nav>
+                            <div className='tabs'>
+                                {accountTab['guest'] === 'login' &&
+                                    <Login/>
+                                }
+                                {accountTab['guest'] === 'register' &&
+                                    <Register/>
+                                }
+                            </div>
+                        </>
+                    )
+                )
+
+            }
 
         </aside>
     );

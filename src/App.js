@@ -71,6 +71,9 @@ function App() {
                 <MainNav/>
                 <Pages/>
                 <AccountNav/>
+                <span className='backdrop' onClick={() => {
+                    setAccountTab(arr => ({...arr, show: !arr.show}))
+                }}></span>
             </div>
         </>
     );
