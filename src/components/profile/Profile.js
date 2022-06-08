@@ -7,11 +7,6 @@ import {faArrowRightFromBracket} from "@fortawesome/pro-regular-svg-icons";
 
 function Profile() {
 
-    // TODO: Add profile image
-    // TODO: make a loader component with animated icon
-
-
-
     return (
         <div className="profile">
             <header id='profile__header'>

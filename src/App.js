@@ -19,6 +19,8 @@ import AvatarProvider from "./providers/AvatarProvider";
 
 function App() {
 
+    // TODO: improve styling for responsive breakpoints
+
     const [userValue, setUserValue] = useContext(UserContext);
     const [accountTab, setAccountTab] = useContext(AccountTabContext);
     const [mainNav, setMainNav] = useContext(MainNavContext);
