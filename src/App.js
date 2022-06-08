@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import toastMessage from "./helpers/toastMessage";
 import {MainNavContext} from "./providers/MainNavProvider";
 import {classNames} from "./helpers/classNames";
+import AvatarProvider from "./providers/AvatarProvider";
 
 function App() {
 
@@ -69,8 +70,10 @@ function App() {
                  )}
             >
                 <MainNav/>
-                <Pages/>
-                <AccountNav/>
+                <AvatarProvider>
+                    <Pages/>
+                    <AccountNav/>
+                </AvatarProvider>
                 <span className='backdrop' onClick={() => {
                     setAccountTab(arr => ({...arr, show: !arr.show}))
                 }}></span>

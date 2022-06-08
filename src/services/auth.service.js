@@ -20,7 +20,7 @@ const login = (username, password) => {
 }
 
 const logout = () => {
-    return localStorage.removeItem('token');
+    return (localStorage.removeItem('token'), localStorage.removeItem('image'));
 }
 
 const getCurrentUser = () => {

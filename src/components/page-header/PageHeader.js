@@ -1,15 +1,13 @@
 import React, {useContext} from 'react';
 import {AccountTabContext} from "../../providers/AccountTabProvider";
 import {MainNavContext} from "../../providers/MainNavProvider";
-import {UserContext} from "../../providers/UserProvider";
 import './/PageHeader.scss';
+import AvatarButton from "../avatar-button/AvatarButton";
 
 function PageHeader(props) {
 
 
-    const [accountTab, setAccountTab] = useContext(AccountTabContext);
     const [mainNav, setMainNav] = useContext(MainNavContext);
-    const [user, setUser] = useContext(UserContext);
 
     return (
         <div id='page-header__wrapper'>
@@ -22,13 +20,7 @@ function PageHeader(props) {
             </button>
             <input type='text'
                    placeholder='search recipes'/>
-            <button className='btn btn-icon' onClick={() => {
-                {
-                    setAccountTab(arr => ({...arr, show: !arr.show}))
-                }
-            }}>
-                AVATAR
-            </button>
+            <AvatarButton />
         </div>
     );
 }

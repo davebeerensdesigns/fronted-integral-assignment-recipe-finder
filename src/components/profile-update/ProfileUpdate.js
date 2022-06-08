@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import Input from "../forms/input/Input";
 import Password from "../forms/password/Password";
 import Button from "../buttons/Button";
@@ -7,36 +7,51 @@ import UserService from "../../services/user.service";
 import Alert from "../alert/Alert";
 import {faSpinner} from "@fortawesome/pro-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Image from "../forms/image/Image";
+import Avatar from '../../assets/avatar/avatar.jpg';
+import {AvatarContext} from "../../providers/AvatarProvider";
+import userService from "../../services/user.service";
 
 function ProfileUpdate() {
 
     const [loading, toggleLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+    const [avatarValue, setAvatarValue] = useContext(AvatarContext);
 
     const [profileData, setProfileData] = useState({
         username: '',
         email: ''
     });
 
+    const toBase64 = file => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+
     const methods = useForm({mode: 'onBlur'});
-    const {handleSubmit, getValues} = methods;
+    const {handleSubmit, setError, getValues} = methods;
     const onSubmitUpdate = async (data) => {
         toggleLoading(true);
         setErrorMessage('');
         setSuccessMessage('');
         const saveData = {};
-        if(data.emailUpdate){
+        if (data.emailUpdate) {
             saveData.email = data.emailUpdate
         }
-        if(data.passwordUpdate){
+        if (data.passwordUpdate) {
             saveData.password = data.passwordUpdate
         }
-        if(data.passwordUpdateConfirm){
+        if (data.passwordUpdateConfirm) {
             saveData.repeatedPassword = data.passwordUpdateConfirm
         }
+        if (data.avatarUpdate.length > 0) {
+            saveData.base64Image = await toBase64(data.avatarUpdate[0])
+        }
 
-        if(Object.keys(saveData).length !== 0) {
+        if (Object.keys(saveData).length !== 0) {
             await UserService.updateUserDetails(JSON.stringify(saveData))
                 .then(
                     (response) => {
@@ -44,6 +59,8 @@ function ProfileUpdate() {
                             username: response.data.username,
                             email: response.data.email
                         });
+                        localStorage.setItem('image', response.data.profilePicture)
+                        setAvatarValue(response.data.profilePicture)
                         setSuccessMessage('You have successfully updated your account!');
                         methods.reset();
                         toggleLoading(false);
@@ -86,11 +103,19 @@ function ProfileUpdate() {
                 });
     }, []);
 
+
     return (
         <FormProvider {...methods}>
             <form id='updateAccount'
                   className='form'
                   onSubmit={handleSubmit(onSubmitUpdate)}>
+                <div className='form-field__group'>
+                    <Image
+                        type='file'
+                        id='avatarUpdate'
+                        label='Avatar'
+                    />
+                </div>
                 <div className='form-field__group'>
                     <Input
                         id='usernameUpdate'
@@ -139,14 +164,16 @@ function ProfileUpdate() {
 
                         validation={{
                             validate: (value) => {
-                                const { passwordUpdate } = getValues();
+                                const {passwordUpdate} = getValues();
                                 return passwordUpdate === value || "Password doesn't match!";
                             }
                         }}
                     />
                 </div>
 
-                <Button type='submit' style='btn-primary'>Save settings {loading && <FontAwesomeIcon icon={faSpinner} spin={true} />}</Button>
+                <Button type='submit'
+                        style='btn-primary'>Save settings {loading && <FontAwesomeIcon icon={faSpinner}
+                                                                                       spin={true}/>}</Button>
 
                 {errorMessage && (
                     <div className="form-notice">

@@ -6,11 +6,12 @@
   font-family: $font-family;
   font-weight: bold;
   background-color: $white;
-  color:$gray-4;
+  color: $gray-4;
   border: 1px solid $gray-2;
   padding: .5rem 1.5rem;
   border-radius: $border-radius-base;
-  outline:0;
+  outline: 0;
+  filter: blur(0);
 
   display: inline-block;
   text-decoration: none;
@@ -23,8 +24,6 @@
 }
 .btn:focus,
 .btn:active:focus {
-  background-image: none;
-  outline:0;
   box-shadow: 0 0 0 2px $gray-4;
 }
 .btn:hover,
@@ -34,8 +33,6 @@
 }
 
 .btn:active{
-  background-image: none;
-  outline:0;
   box-shadow: 0 0 0 2px $gray-4;
 }
 

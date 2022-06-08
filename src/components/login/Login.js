@@ -11,9 +11,12 @@ import {AccountTabContext} from "../../providers/AccountTabProvider";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowRightFromBracket, faSpinner} from "@fortawesome/pro-regular-svg-icons";
 import './Login.scss';
+import UserService from "../../services/user.service";
+import {AvatarContext} from "../../providers/AvatarProvider";
 
 function Login() {
 
+    const [avatarValue, setAvatarValue] = useContext(AvatarContext);
     const [loading, toggleLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -29,9 +32,17 @@ function Login() {
             .then(
                 (response) => {
                     if(response.data.accessToken){
-                        localStorage.setItem('token', response.data.accessToken);
                         toastMessage.notifySuccess('You are successfully logged in!');
                         setUser(true);
+                        localStorage.setItem('token', response.data.accessToken);
+                        UserService.getUserDetails().then(
+                            (response) => {
+                                if(response.data.profilePicture){
+                                    localStorage.setItem('image', response.data.profilePicture);
+                                    setAvatarValue(response.data.profilePicture);
+                                }
+                            }
+                        )
                         methods.reset();
                         setAccountTab(arr => ({...arr, show: false}))
                     } else {
