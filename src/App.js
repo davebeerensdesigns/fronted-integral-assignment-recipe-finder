@@ -21,6 +21,7 @@ function App() {
 
     // TODO: improve styling for responsive breakpoints
     // TODO: style register account component
+    // TODO: file cleanup/restructure
 
     const [userValue, setUserValue] = useContext(UserContext);
     const [accountTab, setAccountTab] = useContext(AccountTabContext);
