@@ -20,6 +20,7 @@ import AvatarProvider from "./providers/AvatarProvider";
 function App() {
 
     // TODO: improve styling for responsive breakpoints
+    // TODO: style register account component
 
     const [userValue, setUserValue] = useContext(UserContext);
     const [accountTab, setAccountTab] = useContext(AccountTabContext);
