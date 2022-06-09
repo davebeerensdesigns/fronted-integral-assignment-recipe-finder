@@ -1,3 +1,6 @@
+@import './src/utils/styles/scss-variables';
+@import './src/utils/styles/scss-mixins';
+
 #page__wrapper {
   width: 100%;
   transition: padding-left .2s ease-in-out;
@@ -7,10 +10,20 @@
   padding-left: 0;
 }
 
-.main-show #page__wrapper {
-  padding-left: 270px;
+@include media-breakpoint-up(md) {
+  .main-show #page__wrapper {
+    padding-left: 270px;
+  }
 }
 
 #page-content {
-  padding: 2rem
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+@include media-breakpoint-up(sm){
+  #page-content {
+    padding-top: 2em;
+    padding-bottom: 2rem;
+  }
 }

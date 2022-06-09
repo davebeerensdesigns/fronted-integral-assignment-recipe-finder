@@ -9,20 +9,31 @@ import {
     faSparkles,
     faHatChef,
     faInfoCircle,
-    faHeart
+    faHeart, faClose
 } from "@fortawesome/pro-regular-svg-icons"
 import {UserContext} from "../../../utils/providers/UserContextProvider";
 import {AccountTabContext} from "../../../utils/providers/AccountTabContextProvider";
 import {ReactComponent as AppLogo} from "../../../assets/logo/logo.svg";
+import {MainNavContext} from "../../../utils/providers/MainNavContextProvider";
 
 function MainNav() {
 
     const [, setAccountTab] = useContext(AccountTabContext);
+    const [, setMainNav] = useContext(MainNavContext);
     const [user] = useContext(UserContext);
 
     return (
         <aside id='main-nav__wrapper'
         >
+            <button id='main-nav__close'
+                    className='btn btn-icon btn-round'
+                    onClick={
+                        () => {
+                            setMainNav(arr => ({...arr, show: !arr.show}))
+                        }
+                    }>
+                <FontAwesomeIcon icon={faClose}/>
+            </button>
             <Link
                 id='app-logo__link'
                 to='/'

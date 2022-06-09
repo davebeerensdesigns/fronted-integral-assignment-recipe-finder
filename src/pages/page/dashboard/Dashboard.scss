@@ -1,0 +1,72 @@
+@import './src/utils/styles/scss-variables';
+@import './src/utils/styles/scss-mixins';
+
+.hero-image {
+  img {
+    display: block;
+    max-width: 300px;
+    margin: 0 auto 1rem auto;
+  }
+}
+
+.hero-content {
+  p {
+    margin-bottom: 1rem;
+  }
+
+  .callouts {
+    margin-top: 2rem;
+    display: block;
+
+    span {
+      display: inline-block;
+      margin-right: 1rem;
+
+      b {
+        color: $gray-4;
+        font-size: $h4;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(md){
+  .main-hidden .hero-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+    .hero-image img {
+      width: 200px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+
+@include media-breakpoint-up(lg){
+  .main-show .hero-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+    .hero-image img {
+      width: 250px;
+      margin-bottom: 0;
+    }
+  }
+  .main-hidden .hero-banner {
+    .hero-image img {
+      min-width: 400px;
+    }
+  }
+}
+@include media-breakpoint-up(xl) {
+  .main-show .hero-banner {
+    .hero-image img {
+      min-width: 400px;
+    }
+  }
+}

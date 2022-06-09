@@ -1,8 +1,22 @@
-#page-header__wrapper {
-  padding: 2rem;
+@import './src/utils/styles/scss-variables';
+@import './src/utils/styles/scss-mixins';
+
+#page-header{
   background-color: var(--recipe-white);
+}
+#page-header__wrapper {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1rem;
+}
+
+
+@include media-breakpoint-up(sm){
+  #page-header__wrapper {
+    padding-top: 2em;
+    padding-bottom: 2rem;
+  }
 }

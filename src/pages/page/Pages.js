@@ -4,6 +4,7 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import routes from "../../config/routes";
 import {UserContext} from "../../utils/providers/UserContextProvider";
 import PageHeader from "../../components/headers/PageHeader";
+import Container from "../../components/container/Container";
 
 function Pages() {
 
@@ -21,9 +22,11 @@ function Pages() {
         <main id='page__wrapper'>
             <PageHeader/>
             <div id='page-content'>
-                <Routes>
-                    {routeComponents}
-                </Routes>
+                <Container>
+                    <Routes>
+                        {routeComponents}
+                    </Routes>
+                </Container>
             </div>
         </main>
     );
