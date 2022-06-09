@@ -1,0 +1,11 @@
+#profile__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  h3 {
+    margin-bottom: 0;
+  }
+}

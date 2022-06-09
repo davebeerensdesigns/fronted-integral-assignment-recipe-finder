@@ -1,0 +1,40 @@
+#account-nav__wrapper {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  max-width: 320px;
+  background-color: var(--recipe-white);
+  padding: 2rem;
+  transition: right .2s ease-in-out;
+  z-index: 1010;
+}
+
+.account-hidden #account-nav__wrapper {
+  right: -320px;
+}
+
+.account-show #account-nav__wrapper {
+  right: 0;
+}
+
+#account-nav__close {
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  transform: translateX(-50%);
+  border-radius: 50%;
+}
+
+.account-show #account-nav__close {
+  display: inline-block;
+}
+
+.account-hidden #account-nav__close {
+  display: none;
+}
+
+#account-nav__tabs-btn {
+  margin-bottom: 1rem;
+}

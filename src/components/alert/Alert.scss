@@ -1,0 +1,36 @@
+@import "../../utils/styles/scss-variables.scss";
+
+.alert {
+  position: relative;
+  padding: .75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid $gray-2;
+  border-radius: 0.25rem;
+  color: $gray-3;
+  background-color: $white;
+  font-size: $font-size-base * 0.9;
+}
+
+.alert-primary {
+  color: $primary;
+  background-color: $primary-bg;
+  border-color: $primary;
+}
+
+.alert-danger {
+  color: $danger;
+  background-color: $danger-bg;
+  border-color: $danger;
+}
+
+.alert-success {
+  color: $success;
+  background-color: $success-bg;
+  border-color: $success;
+}
+
+.alert-dark {
+  color: $dark-bg;
+  background-color: $dark-hover;
+  border-color: $dark;
+}

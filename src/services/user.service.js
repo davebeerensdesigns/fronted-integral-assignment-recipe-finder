@@ -9,23 +9,21 @@ const verifyUser = () => {
     });
 };
 
-const setUserImage = (image) => {
-    return axios.post(API_URL + "user/image", {
-        "base64Image": image,
-    }, {
-        headers: authHeader()
-    });
-};
-
 const getUserDetails = () => {
     return axios.get(API_URL + "user", {
         headers: authHeader()
     });
 };
 
+const updateUserDetails = (data) => {
+    return axios.put(API_URL + "user", data, {
+        headers: authHeader()
+    });
+};
+
 const UserService = {
     verifyUser,
-    setUserImage,
-    getUserDetails
+    getUserDetails,
+    updateUserDetails
 };
 export default UserService;

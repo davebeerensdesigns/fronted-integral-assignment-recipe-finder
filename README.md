@@ -8,6 +8,4 @@ https://www.digitalocean.com/community/tutorials/react-tabs-component
 https://www.bezkoder.com/react-hooks-jwt-auth/
 https://towardsdatascience.com/react-js-basic-hooks-usestate-useeffect-usecontext-1ed82a799db2
 https://www.bezkoder.com/handle-jwt-token-expiration-react/
-
-TUTORIALS TODO
 https://soshace.com/react-user-login-authentication-using-usecontext-and-usereducer/

@@ -1,0 +1,16 @@
+#page__wrapper {
+  width: 100%;
+  transition: padding-left .2s ease-in-out;
+}
+
+.main-hidden #page__wrapper {
+  padding-left: 0;
+}
+
+.main-show #page__wrapper {
+  padding-left: 270px;
+}
+
+#page-content {
+  padding: 2rem
+}

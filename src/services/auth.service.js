@@ -5,9 +5,8 @@ const API_URL = 'https://frontend-educational-backend.herokuapp.com/api/auth/';
 const register = (username, email, password) => {
     return axios.post(API_URL + 'signup', {
         "username": username,
-        "email" : email,
-        "password" : password,
-        "info" : "dit is het info veld",
+        "email": email,
+        "password": password,
         "role": ["user"]
     });
 };
@@ -20,7 +19,8 @@ const login = (username, password) => {
 }
 
 const logout = () => {
-    return localStorage.removeItem('token');
+    localStorage.removeItem('token');
+    localStorage.removeItem('image');
 }
 
 const getCurrentUser = () => {

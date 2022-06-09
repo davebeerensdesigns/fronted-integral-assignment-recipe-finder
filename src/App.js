@@ -1,68 +1,56 @@
-import React, {useEffect, useContext, useState} from 'react';
+import React, {useEffect, useContext} from 'react';
 import './App.scss';
-import MainNav from "./sidebars/mainNav/MainNav";
-import AccountNav from "./sidebars/accountNav/AccountNav";
-import Pages from "./pages/pages/Pages";
+import MainNav from "./pages/sidebar/mainNav/MainNav";
+import AccountNav from "./pages/sidebar/accountNav/AccountNav";
+import Pages from "./pages/page/Pages";
 import {useLocation} from "react-router-dom";
-import {AccountTabContext} from "./providers/AccountTabProvider";
-import {UserContext} from "./providers/UserProvider";
+import {AccountTabContext} from "./utils/providers/AccountTabContextProvider";
+import {UserContext} from "./utils/providers/UserContextProvider";
 import AuthService from "./services/auth.service";
-import jwt_decode from "jwt-decode";
-import UserService from "./services/user.service";
-import {toast, ToastContainer} from "react-toastify";
-
+import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import toastMessage from "./helpers/toastMessage";
+import {MainNavContext} from "./utils/providers/MainNavContextProvider";
+import {classNames} from "./helpers/classNames";
+import AvatarContextProvider from "./utils/providers/AvatarContextProvider";
+import {authVerification} from "./services/auth.verification";
 
 function App() {
 
+    // TODO: improve styling for responsive breakpoints
+    // TODO: style register account component
+    // TODO: file cleanup/restructure
+
     const [userValue, setUserValue] = useContext(UserContext);
     const [accountTab, setAccountTab] = useContext(AccountTabContext);
+    const [mainNav] = useContext(MainNavContext);
 
     const location = useLocation();
-
-    const authVerification = (token) => {
-        try {
-            const decodedJwt = jwt_decode(token)
-            const expiresAt = decodedJwt.exp * 1000
-            const currentDate = Date.now()
-            if (currentDate >= expiresAt) {
-                // token is expired
-                AuthService.logout()
-                setUserValue(false);
-                toastMessage.notifyError('Your token has expired. Log in again.');
-            } else {
-                UserService.verifyUser().then((response) => {
-                    setUserValue(true);
-                }).catch((e) => {
-                    // token not verified
-                    AuthService.logout()
-                    setUserValue(false);
-                    toastMessage.notifyError('Something went wrong. Log in again.');
-                })
-            }
-        } catch(e) {
-            // token not verified
-            AuthService.logout()
-            setUserValue(false);
-            toastMessage.notifyError('Something went wrong. Log in again.');
-        }
-    }
 
     useEffect(() => {
         let token = AuthService.getCurrentUser();
         if (token) {
-            authVerification(token);
+            authVerification([userValue, setUserValue], token);
         }
-    }, [location, accountTab]);
+    }, [location, accountTab, userValue, setUserValue]);
 
     return (
         <>
             <ToastContainer/>
-            <div id='app__wrapper'>
+            <div id='app__wrapper'
+                 className={classNames(
+                     mainNav['show'] ? 'main-show' : 'main-hidden',
+                     accountTab['show'] ? 'account-show' : 'account-hidden'
+                 )}
+            >
                 <MainNav/>
-                <Pages/>
-                <AccountNav/>
+                <AvatarContextProvider>
+                    <Pages/>
+                    <AccountNav/>
+                </AvatarContextProvider>
+                <span className='backdrop'
+                      onClick={() => {
+                          setAccountTab(arr => ({...arr, show: !arr.show}))
+                      }}/>
             </div>
         </>
     );
