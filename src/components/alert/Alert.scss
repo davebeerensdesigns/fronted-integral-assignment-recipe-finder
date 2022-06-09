@@ -1,4 +1,4 @@
-@import "../../styles/scss-variables.scss";
+@import "../../utils/styles/scss-variables.scss";
 
 .alert {
   position: relative;
@@ -11,25 +11,25 @@
   font-size: $font-size-base * 0.9;
 }
 
-.alert-primary{
+.alert-primary {
   color: $primary;
   background-color: $primary-bg;
   border-color: $primary;
 }
 
-.alert-danger{
+.alert-danger {
   color: $danger;
   background-color: $danger-bg;
   border-color: $danger;
 }
 
-.alert-success{
+.alert-success {
   color: $success;
   background-color: $success-bg;
   border-color: $success;
 }
 
-.alert-dark{
+.alert-dark {
   color: $dark-bg;
   background-color: $dark-hover;
   border-color: $dark;

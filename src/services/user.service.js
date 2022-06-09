@@ -16,7 +16,7 @@ const getUserDetails = () => {
 };
 
 const updateUserDetails = (data) => {
-    return axios.put(API_URL + "user", data,{
+    return axios.put(API_URL + "user", data, {
         headers: authHeader()
     });
 };

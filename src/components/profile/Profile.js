@@ -1,7 +1,7 @@
 import React from 'react';
-import Logout from "../logout/Logout";
+import Logout from "../buttons/logout/Logout";
 import './Profile.scss';
-import ProfileUpdate from "../profile-update/ProfileUpdate";
+import ProfileUpdate from "./ProfileUpdate";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowRightFromBracket} from "@fortawesome/pro-regular-svg-icons";
 

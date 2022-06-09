@@ -1,51 +1,51 @@
-import Dashboard from "../pages/dashboard/Dashboard";
-import About from "../pages/about/About";
-import SearchPantry from "../pages/search-pantry/SearchPantry";
-import Cuisines from "../pages/cuisines/Cuisines";
-import Popular from "../pages/popular/Popular";
-import Latest from "../pages/latest/Latest";
-import NotFound from "../pages/not-found/NotFound";
-import Favorites from "../pages/favorites/Favorites";
+import Dashboard from "../pages/page/dashboard/Dashboard";
+import About from "../pages/page/about/About";
+import SearchPantry from "../pages/page/search-pantry/SearchPantry";
+import Cuisines from "../pages/page/cuisines/Cuisines";
+import Popular from "../pages/page/popular/Popular";
+import Latest from "../pages/page/latest/Latest";
+import NotFound from "../pages/page/not-found/NotFound";
+import Favorites from "../pages/page/favorites/Favorites";
 
-const routes =[
+const routes = [
     {
-        path:'/',
-        element: <Dashboard />,
+        path: '/',
+        element: <Dashboard/>,
         isPrivate: false,
     },
     {
-        path:'/search-pantry',
-        element: <SearchPantry />,
+        path: '/search-pantry',
+        element: <SearchPantry/>,
         isPrivate: false,
     },
     {
-        path:'/favorites',
-        element: <Favorites />,
+        path: '/favorites',
+        element: <Favorites/>,
         isPrivate: true,
     },
     {
-        path:'/cuisines',
-        element: <Cuisines />,
+        path: '/cuisines',
+        element: <Cuisines/>,
         isPrivate: false,
     },
     {
-        path:'/popular',
-        element: <Popular />,
+        path: '/popular',
+        element: <Popular/>,
         isPrivate: false,
     },
     {
-        path:'/latest',
-        element: <Latest />,
+        path: '/latest',
+        element: <Latest/>,
         isPrivate: false,
     },
     {
-        path:'/about',
-        element: <About />,
+        path: '/about',
+        element: <About/>,
         isPrivate: false,
     },
     {
-        path:'/*',
-        element: <NotFound />,
+        path: '/*',
+        element: <NotFound/>,
         isPrivate: false,
     },
 ]

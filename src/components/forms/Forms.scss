@@ -1,29 +1,33 @@
-@import "../../styles/scss-variables.scss";
+@import "../../utils/styles/scss-variables.scss";
 
-.form-field__group{
+.form-field__group {
   margin-bottom: 1rem;
 }
-.form-field__label{display: inline-block;
+
+.form-field__label {
+  display: inline-block;
   margin-bottom: .35rem;
-  color:$gray-3;
+  color: $gray-3;
 }
-.form-field__wrapper{
+
+.form-field__wrapper {
   position: relative;
 }
-.form-field, input{
+
+.form-field, input {
   display: block;
   width: 100%;
   padding: 0.5rem 1rem;
   color: $gray-4;
   font-size: $font-size-base;
-  line-height:1.5;
-  height:40px;
+  line-height: 1.5;
+  height: 40px;
   background-color: $white;
   background-clip: padding-box;
   border: 1px solid $gray-2;
   appearance: none;
   border-radius: $border-radius-base;
-  transition: border-color .2s ease-in-out,box-shadow .2s ease-in-out;
+  transition: border-color .2s ease-in-out, box-shadow .2s ease-in-out;
 }
 
 .form-field:read-only,
@@ -53,33 +57,34 @@
   color: $gray-3;
 }
 
-.form-field__icon{
+.form-field__icon {
   display: inline-block;
   position: absolute;
-  top:10px;
-  right:.5rem;
+  top: 10px;
+  right: .5rem;
   width: 20px;
   height: 20px;
   text-align: center;
 }
-.form-field__icon-error, .form-field__error{
-  color:$danger;
+
+.form-field__icon-error, .form-field__error {
+  color: $danger;
 }
 
-.form-field__meta{
+.form-field__meta {
   font-size: $font-size-base * 0.9;
   font-style: italic;
 }
 
-.form-notice{
+.form-notice {
   margin-top: 1rem;
 }
 
-#profile-picture{
+#profile-picture {
   display: block;
-  width:75px;
-  height:75px;
-  border:1px solid $gray-2;
+  width: 75px;
+  height: 75px;
+  border: 1px solid $gray-2;
   border-radius: $border-radius-base;
   overflow: hidden;
   margin-top: .25rem;
@@ -87,19 +92,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  img{
+
+  img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 }
-#avatarUpdate{
-  border:0;
-  padding:0;
+
+#avatarUpdate {
+  border: 0;
+  padding: 0;
   overflow: visible;
   border-radius: 0;
   height: auto;
 }
-.form-field__label{
+
+.form-field__label {
   position: relative;
 }

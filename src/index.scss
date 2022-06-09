@@ -1,4 +1,4 @@
-@import "./styles/scss-variables.scss";
+@import "utils/styles/scss-variables.scss";
 
 :root {
   @each $color, $value in $colors {
@@ -15,7 +15,7 @@
   }
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -36,48 +36,60 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
 }
 
 a, button {
   outline: 0;
 }
-input::-moz-focus-inner { border: 0; }
 
-a{
+input::-moz-focus-inner {
+  border: 0;
+}
+
+a {
   color: var(--recipe-primary);
 }
-a:hover, a:focus, a:active{
+
+a:hover, a:focus, a:active {
   color: var(--recipe-primary-hover);
 }
 
-h1, h2, h3, h4, h5, h6{
+h1, h2, h3, h4, h5, h6 {
   color: var(--recipe-black);
   margin-bottom: .5rem;
 }
-h1{
+
+h1 {
   font-size: $h1;
 }
-h2{
+
+h2 {
   font-size: $h2;
 }
-h3{
+
+h3 {
   font-size: $h3;
 }
-h4{
+
+h4 {
   font-size: $h4;
 }
-h5{
+
+h5 {
   font-size: $h5;
 }
-h6{
+
+h6 {
   font-size: $h6;
 }
 
-p{
+p {
   margin-bottom: .5rem;
 }
 
 @each $color, $value in $theme-colors {
-  .text-#{$color}{ color: #{$value} !important; }
+  .text-#{$color} {
+    color: #{$value} !important;
+  }
 }

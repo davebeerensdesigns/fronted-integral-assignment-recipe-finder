@@ -1,4 +1,4 @@
-@import "styles/scss-variables.scss";
+@import "utils/styles/scss-variables.scss";
 
 #app__wrapper {
   position: relative;
@@ -16,11 +16,13 @@
   transition: opacity .2s ease-in-out;
   z-index: 1000;
 }
+
 #app__wrapper.account-hidden span.backdrop {
   opacity: 0;
   width: 1px;
   right: -1px;
 }
+
 #app__wrapper.account-show span.backdrop {
   opacity: 1;
   width: 100%;
