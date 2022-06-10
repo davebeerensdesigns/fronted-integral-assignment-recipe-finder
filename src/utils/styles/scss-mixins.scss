@@ -82,3 +82,21 @@
     }
   }
 }
+
+@mixin scrollbar(){
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $gray-2;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $gray-3;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $gray-4;
+  }
+}
