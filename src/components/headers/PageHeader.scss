@@ -3,6 +3,10 @@
 
 #page-header{
   background-color: var(--recipe-white);
+  position: sticky;
+  top:0;
+  width: 100%;
+  box-shadow: 0 0 6px rgba($gray-2, 0.5);
 }
 #page-header__wrapper {
   padding-top: 1rem;

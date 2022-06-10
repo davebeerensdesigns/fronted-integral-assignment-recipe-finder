@@ -1,0 +1,40 @@
+@import './src/utils/styles/scss-variables';
+
+.cuisine-card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1 1 150px;
+  min-width:150px;
+  height:150px;
+  border-radius: $border-radius-lg;
+  background-color: $white;
+  text-align: center;
+  text-decoration: none;
+  padding:1rem;
+  transition: all .2s ease-in-out;
+  &:hover{
+    background-color: $primary-bg;
+    .letter{
+      background-color: $white;
+    }
+  }
+  .letter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color:$primary;
+    background-color: $primary-bg;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+    transition: all .2s ease-in-out;
+  }
+  .name{
+    color:$gray-3
+  }
+}
