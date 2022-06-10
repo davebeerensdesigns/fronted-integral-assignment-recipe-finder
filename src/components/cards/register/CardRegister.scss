@@ -1,0 +1,56 @@
+@import "../../../utils/styles/scss-variables";
+
+.card-register {
+  background-color: $primary;
+  color: $white;
+  border-radius: $border-radius-lg;
+  padding: 2rem;
+  margin: 1rem 0;
+  position: relative;
+}
+
+.card-register__icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.card-register__content {
+  position: relative;
+  z-index: 2;
+  p {
+    font-weight: bold;
+  }
+}
+.card-register{
+  .element1{
+    width: 150px;
+    height: 150px;
+    background-color: rgba($white,0.2);
+    border-radius: $border-radius-lg;
+    position: absolute;
+    bottom: -45px;
+    right: -60px;
+    transform: rotate(-20deg);
+  }
+  .element2{
+    width: 150px;
+    height: 150px;
+    background-color: rgba($white,0.2);
+    border-radius: $border-radius-lg;
+    position: absolute;
+    bottom: -60px;
+    right: -50px;
+    transform: rotate(-30deg);
+  }
+  .element3{
+    width: 15px;
+    height: 15px;
+    background-color: rgba($white,0.2);
+    border-radius: $border-radius-sm;
+    position: absolute;
+    bottom: 110px;
+    right: 50px;
+    transform: rotate(-45deg);
+  }
+}

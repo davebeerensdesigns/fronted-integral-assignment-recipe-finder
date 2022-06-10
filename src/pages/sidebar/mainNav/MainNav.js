@@ -15,10 +15,11 @@ import {UserContext} from "../../../utils/providers/UserContextProvider";
 import {AccountTabContext} from "../../../utils/providers/AccountTabContextProvider";
 import {ReactComponent as AppLogo} from "../../../assets/logo/logo.svg";
 import {MainNavContext} from "../../../utils/providers/MainNavContextProvider";
+import Button from "../../../components/buttons/button/Button";
+import CardRegister from "../../../components/cards/register/CardRegister";
 
 function MainNav() {
 
-    const [, setAccountTab] = useContext(AccountTabContext);
     const [, setMainNav] = useContext(MainNavContext);
     const [user] = useContext(UserContext);
 
@@ -91,13 +92,7 @@ function MainNav() {
                 </NavLink>
             </nav>
             {!user &&
-                <>
-                    <button onClick={() => {
-                        setAccountTab(arr => ({...arr, show: true, guest: 'register'}))
-                    }}>
-                        Register
-                    </button>
-                </>
+                <CardRegister />
             }
         </aside>
     );
