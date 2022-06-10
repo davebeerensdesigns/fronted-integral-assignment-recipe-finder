@@ -5,6 +5,7 @@ import {faClock} from "@fortawesome/pro-regular-svg-icons";
 import {Link, useParams} from "react-router-dom";
 import './RecipeCard.scss';
 import {calculateRating} from "../../../helpers/calculateRating";
+import RecipeMeta from "../../meta/recipe/RecipeMeta";
 
 function RecipeCard({id, image, title, readyInMinutes, healthScore, summary}) {
     let params = useParams();
@@ -24,14 +25,14 @@ function RecipeCard({id, image, title, readyInMinutes, healthScore, summary}) {
             </figure>
             <div className='recipe-card__content'>
                 <h4>{title}</h4>
-                <div className='recipe-card__meta'>
+                <RecipeMeta>
                     <span className='recipe-card__rating'>
                         <FontAwesomeIcon icon={faStar}/> {calculateRating(healthScore)} Health score
                     </span>
                     <span className='recipe-card__time'>
                         <FontAwesomeIcon icon={faClock}/> {readyInMinutes} min.
                     </span>
-                </div>
+                </RecipeMeta>
                 <p>{trimmedSummary}</p>
             </div>
         </Link>

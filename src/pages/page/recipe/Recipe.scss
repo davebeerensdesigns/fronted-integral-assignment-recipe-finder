@@ -1,0 +1,46 @@
+@import './src/utils/styles/scss-variables';
+@import './src/utils/styles/scss-mixins';
+
+.single-recipe__wrapper {
+  .single_recipe__image {
+    width: 100%;
+    max-width: 450px !important;
+    display: block;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    margin: 0 auto 1rem auto;
+  }
+  .single-recipe__content{
+    border-radius: $border-radius-lg;
+    background-color: $white;
+    padding:2rem;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .main-show .single-recipe__wrapper {
+    display: flex;
+    gap: 2rem;
+
+    .single_recipe__image {
+      width: 100%;
+      height: auto;
+      min-width: 336px;
+      margin:0;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .main-hidden .single-recipe__wrapper {
+    display: flex;
+    gap: 2rem;
+
+    .single_recipe__image {
+      width: 100%;
+      height: auto;
+      min-width: 336px;
+      margin:0;
+    }
+  }
+}

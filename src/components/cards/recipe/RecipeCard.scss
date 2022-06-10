@@ -14,20 +14,6 @@
   color:$gray-3;
   margin-bottom: 1rem;
 
-  .recipe-card__meta{
-    span{
-      margin-right: 1rem;
-      margin-bottom: .5rem;
-      display: inline-block;
-      svg{
-        margin-right: .1rem;
-      }
-    }
-    .recipe-card__rating svg{
-      color:$primary;
-    }
-  }
-
   &:hover {
     background-color: $primary-bg;
     color:$gray-3;
