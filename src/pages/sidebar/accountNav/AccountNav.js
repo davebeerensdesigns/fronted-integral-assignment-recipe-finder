@@ -11,6 +11,7 @@ import Register from "../../../components/forms/form/register/Register";
 import Profile from "../../../components/profile/Profile";
 import {UserContext} from "../../../utils/providers/UserContextProvider";
 import {AccountTabContext} from "../../../utils/providers/AccountTabContextProvider";
+import {classNames} from "../../../helpers/classNames";
 
 function AccountNav() {
 
@@ -40,14 +41,14 @@ function AccountNav() {
                         <>
                             <nav id='account-nav__tabs-btn'>
                                 <button id='btn-tab__register'
-                                        className='btn btn-icon'
+                                        className={classNames(accountTab['guest'] === 'register' ? 'active' : '', 'btn btn-icon')}
                                         onClick={() => {
                                             setAccountTab(arr => ({...arr, guest: 'register'}))
                                         }}>
                                     <FontAwesomeIcon icon={faUserPlus}/>
                                 </button>
                                 <button id='btn-tab__login'
-                                        className='btn btn-icon'
+                                        className={classNames(accountTab['guest'] === 'login' ? 'active' : '', 'btn btn-icon')}
                                         onClick={() => {
                                             setAccountTab(arr => ({...arr, guest: 'login'}))
                                         }}>

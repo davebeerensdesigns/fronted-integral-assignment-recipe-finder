@@ -1,3 +1,5 @@
+@import "../../../utils/styles/scss-variables";
+
 #account-nav__wrapper {
   top: 0;
   right: 0;
@@ -37,4 +39,11 @@
 
 #account-nav__tabs-btn {
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .active{
+    cursor: default;
+    background-color: $gray-1;
+  }
 }
