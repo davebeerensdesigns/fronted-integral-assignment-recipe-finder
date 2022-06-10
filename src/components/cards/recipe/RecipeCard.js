@@ -15,7 +15,8 @@ function RecipeCard({id, image, title, readyInMinutes, healthScore, summary}) {
         <Link to={`/cuisines/${params.cuisineId}/${id}`}
               className='recipe-card'>
             <figure className='recipe-card__image'>
-                <img
+                <img width="312"
+                     height="231"
                      src={image}
                      alt={title}
                      crossOrigin="anonymous"

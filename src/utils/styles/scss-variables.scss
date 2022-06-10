@@ -1,12 +1,10 @@
 @use "sass:math";
 @use "sass:map";
 
-/********************
- * COLORS
- ********************/
+
 $gray-1: #F5F5F5;
 $gray-2: #DBDBDB;
-$gray-3: #837D8E;
+$gray-3: #736f7c;
 $gray-4: #2E2E2E;
 $white: #FFFFFF;
 $primary: #FF8000;
@@ -66,9 +64,7 @@ $container-max-widths: (
         xxl: 1320px
 ) !default;
 
-/********************
- * BORDERS
- ********************/
+
 $border-radius-base: 8px;
 $border-radius-sm: math.div($border-radius-base, 2);
 $border-radius-lg: $border-radius-base * 2;
@@ -84,9 +80,7 @@ $border-radius: map-merge(
 );
 
 
-/********************
- * FONT
- ********************/
+
 $font-family: 'Poppins', sans-serif;
 $font-size-base: .9rem;
 
