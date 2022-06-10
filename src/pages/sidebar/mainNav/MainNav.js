@@ -12,10 +12,8 @@ import {
     faHeart, faClose
 } from "@fortawesome/pro-regular-svg-icons"
 import {UserContext} from "../../../utils/providers/UserContextProvider";
-import {AccountTabContext} from "../../../utils/providers/AccountTabContextProvider";
 import {ReactComponent as AppLogo} from "../../../assets/logo/logo.svg";
 import {MainNavContext} from "../../../utils/providers/MainNavContextProvider";
-import Button from "../../../components/buttons/button/Button";
 import CardRegister from "../../../components/cards/register/CardRegister";
 
 function MainNav() {

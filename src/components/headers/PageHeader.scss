@@ -13,6 +13,16 @@
   gap: 1rem;
 }
 
+a#app-icon__link {
+  display: block;
+  width: 40px;
+  height: 40px;
+  svg{
+    width: 40px;
+    height: auto;
+  }
+}
+
 
 @include media-breakpoint-up(sm){
   #page-header__wrapper {

@@ -66,20 +66,22 @@
 }
 
 #main-nav__close {
-  display: none;
   position: fixed;
   top: 1rem;
-  left: 270px;
   transform: translateX(-50%);
   border-radius: 50%;
+  transition: left .2s ease-in-out;
 }
 
-.main-hidden #main-nav__close {
-  display: none;
+.main-hidden #main-nav__close{
+  left: -50px;
+}
+.main-show #main-nav__close {
+  left: 270px;
 }
 
-@include media-breakpoint-down(md){
-  .main-show #main-nav__close {
-    display: inline-block;
+@include media-breakpoint-up(md){
+  #main-nav__close {
+    display: none;
   }
 }
