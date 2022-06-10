@@ -28,6 +28,19 @@ a#app-icon__link {
 }
 
 
+@include media-breakpoint-only(xs) {
+  #page-header__wrapper{
+    flex-wrap: wrap;
+  }
+  #page-header__wrapper input{
+    order:4;
+    width: 100%;
+  }
+  #page-header__wrapper .btn-avatar{
+    order:3;
+    margin-left: auto;
+  }
+}
 @include media-breakpoint-up(sm){
   #page-header__wrapper {
     padding-top: 2em;
