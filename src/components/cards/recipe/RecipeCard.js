@@ -15,26 +15,36 @@ function RecipeCard({id, image, title, readyInMinutes, healthScore, summary}) {
     return (
         <Link to={`/cuisines/${params.cuisineId}/${id}`}
               className='recipe-card'>
-            <figure className='recipe-card__image'>
-                <img width="312"
-                     height="231"
-                     src={image}
-                     alt={title}
-                     crossOrigin="anonymous"
-                     referrerPolicy="no-referrer"/>
-            </figure>
-            <div className='recipe-card__content'>
-                <h4>{title}</h4>
-                <RecipeMeta>
-                    <span className='recipe-card__rating'>
-                        <FontAwesomeIcon icon={faStar}/> {calculateRating(healthScore)} Health score
-                    </span>
-                    <span className='recipe-card__time'>
-                        <FontAwesomeIcon icon={faClock}/> {readyInMinutes} min.
-                    </span>
-                </RecipeMeta>
-                <p>{trimmedSummary}</p>
-            </div>
+            {image && (
+                <figure className='recipe-card__image'>
+                    <img width="312"
+                         height="231"
+                         src={image}
+                         alt={title}
+                         crossOrigin="anonymous"
+                         referrerPolicy="no-referrer"/>
+                </figure>
+            )}
+            {title && (
+                <div className='recipe-card__content'>
+                    <h4>{title}</h4>
+                    <RecipeMeta>
+                        {healthScore && (
+                            <span className='recipe-card__rating'>
+                            <FontAwesomeIcon icon={faStar}/> {calculateRating(healthScore)} Health score
+                        </span>
+                        )}
+                        {readyInMinutes && (
+                            <span className='recipe-card__time'>
+                            <FontAwesomeIcon icon={faClock}/> {readyInMinutes} min.
+                        </span>
+                        )}
+                    </RecipeMeta>
+                    {trimmedSummary && (
+                        <p>{trimmedSummary}</p>
+                    )}
+                </div>
+            )}
         </Link>
     );
 }

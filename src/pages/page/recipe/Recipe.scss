@@ -2,45 +2,224 @@
 @import './src/utils/styles/scss-mixins';
 
 .single-recipe__intro {
-  .single_recipe__image {
-    width: 100%;
-    max-width: 450px !important;
-    display: block;
+  margin-bottom: 2rem;
+}
+
+.single_recipe__image {
+  width: 100%;
+  max-width: 450px !important;
+  display: block;
+  margin: 0 auto 2rem auto;
+
+  img {
     border-radius: $border-radius-lg;
-    overflow: hidden;
-    margin: 0 auto 1rem auto;
   }
-  .single-recipe__content{
-    border-radius: $border-radius-lg;
-    background-color: $white;
-    padding:2rem;
+}
+
+.single_recipe__image-source {
+  margin-left: .5rem;
+  font-style: italic;
+}
+
+.single-recipe__content, .ingredients__wrapper, .instructions__wrapper {
+  border-radius: $border-radius-lg;
+  background-color: $white;
+  padding: 1rem;
+}
+
+.single-recipe__summary {
+  margin: 1rem 0;
+}
+
+.single-recipe__tags {
+  list-style: none;
+  margin: 0 0 1rem 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .25rem;
+
+  li {
+    background-color: $gray-3;
+    color: $white;
+    padding: .25rem .5rem;
+    border-radius: $border-radius-sm;
+  }
+}
+
+.single-recipe__wine {
+  padding: .5rem;
+  border-radius: $border-radius-base;
+  background-color: $gray-1;
+  margin-bottom: 1rem;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.single-recipe__source {
+  font-style: italic;
+}
+
+.ingredients__wrapper {
+  margin-bottom: 2rem;
+}
+
+.ingredients__metrics {
+  .btn-switch {
+    height: 40px;
+    width: 100%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    span {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      background-color: $gray-1;
+      text-align: center;
+      width: 50%;
+      height: 100%;
+      cursor: pointer;
+
+      &:first-child {
+        border-top-left-radius: $border-radius-base;
+        border-bottom-left-radius: $border-radius-base;
+      }
+
+      &:last-child {
+        border-top-right-radius: $border-radius-base;
+        border-bottom-right-radius: $border-radius-base;
+      }
+
+      &:hover {
+        background-color: $gray-2;
+      }
+
+      &.active {
+        background-color: $primary;
+        color: $white;
+
+        &:hover {
+          background-color: $primary-hover;
+        }
+      }
+    }
+  }
+}
+
+.ingredients__servings {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+
+  .buttons {
+    span {
+      display: inline-block;
+      text-align: center;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      min-width: 50px;
+    }
+  }
+}
+
+.ingredients__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+
+  li:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  li {
+    span{display: block;}
+    .measure {
+      margin-right: 1rem;
+    }
+  }
+}
+
+.single-recipe__instructions{
+  ul{
+    list-style: none;
+    padding:0;
+    margin:0;
+    li:not(:last-child){
+      margin-bottom: 1rem;
+    }
+    li p{
+      margin-bottom: 0;
+    }
+  }
+  .instructions__group{
+    &:not(:last-child){
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .ingredients__list {
+
+    li:not(:last-child) {
+      margin-bottom: .5rem;
+    }
+    li {
+      display: flex;
+      align-items: flex-start;
+
+      .measure {
+        min-width: 80px;
+        width: 30%;
+      }
+    }
+  }
+}
+@include media-breakpoint-up(md) {
+  .single-recipe__content, .ingredients__wrapper, .instructions__wrapper {
+    padding: 2rem;
   }
 }
 
 @include media-breakpoint-up(lg) {
-  .main-hidden .single-recipe__intro {
+  .main-hidden .single-recipe__intro, .main-hidden .single-recipe__widgets {
     display: flex;
     gap: 2rem;
+
+    .single-recipe__ingredients {
+      min-width: 40%;
+    }
 
     .single_recipe__image {
       width: 100%;
       height: auto;
       min-width: 40%;
-      margin:0;
+      margin: 0;
     }
   }
 }
 
 @include media-breakpoint-up(xl) {
-  .main-show .single-recipe__intro {
+  .main-show .single-recipe__intro, .main-show .single-recipe__widgets {
     display: flex;
     gap: 2rem;
+
+    .single-recipe__ingredients {
+      min-width: 40%;
+    }
 
     .single_recipe__image {
       width: 100%;
       height: auto;
       min-width: 40%;
-      margin:0;
+      margin: 0;
     }
   }
 }
