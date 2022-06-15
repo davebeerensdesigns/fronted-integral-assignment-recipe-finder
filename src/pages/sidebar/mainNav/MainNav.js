@@ -41,6 +41,7 @@ function MainNav() {
             <Link
                 id='app-logo__link'
                 to='/'
+                onClick={closeMenu}
             >
                 <AppLogo
                     id='app-logo__img'
