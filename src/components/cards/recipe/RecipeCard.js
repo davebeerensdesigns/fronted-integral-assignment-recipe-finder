@@ -29,7 +29,7 @@ function RecipeCard({id, image, title, readyInMinutes, healthScore, summary}) {
                 <div className='recipe-card__content'>
                     <h4>{title}</h4>
                     <RecipeMeta>
-                        {healthScore && (
+                        {healthScore > 0 && (
                             <span className='recipe-card__rating'>
                             <FontAwesomeIcon icon={faStar}/> {calculateRating(healthScore)} Health score
                         </span>

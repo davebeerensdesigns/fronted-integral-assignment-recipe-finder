@@ -10,7 +10,6 @@ import MainNavContextProvider from "./utils/providers/MainNavContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
         <BrowserRouter history={history}>
             <UserContextProvider>
                 <AccountTabContextProvider>
@@ -20,5 +19,4 @@ root.render(
                 </AccountTabContextProvider>
             </UserContextProvider>
         </BrowserRouter>
-    </React.StrictMode>
 );
