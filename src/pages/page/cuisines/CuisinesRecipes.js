@@ -6,6 +6,7 @@ import BackButton from "../../../components/buttons/back/BackButton";
 import RecipeList from "../../../components/list/RecipeList";
 import axios from "axios";
 import RecipeListPagination from "../../../components/pagination/RecipeListPagination";
+import notifyToast from "../../../utils/hooks/notifyToast";
 
 function CuisinesRecipes(props) {
 
@@ -82,7 +83,7 @@ function CuisinesRecipes(props) {
                 }
             ).catch(
                 (error) => {
-                    setError(error.response.data.message);
+                    notifyToast.notifyError(error.response.data.message);
                 }
             )
         }
@@ -100,7 +101,6 @@ function CuisinesRecipes(props) {
             <div className='page-title'>
                 <h1>{cuisine.name} cuisine</h1>
             </div>
-            {error !== '' && <div className='error'>{error}</div> }
             {!loading && (<>
                     <h3>{data.totalResults} recipes for {cuisine.name} cuisine {type ? ' - ' + type : ''}</h3>
                     <div className='type-filter'>
