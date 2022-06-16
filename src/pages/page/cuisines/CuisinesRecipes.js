@@ -11,11 +11,12 @@ import getQuery from "../../../helpers/getQuery";
 import cacheService from "../../../services/cache.service";
 import createPagination from "../../../helpers/createPagination";
 import spoonacularService from "../../../services/spoonacular.service";
+import RecipeListCurrentPage from "../../../components/pagination/RecipeListCurrentPage";
+import FilterType from "../../../components/filters/FilterType";
 
 function CuisinesRecipes() {
 
     let {cuisineId} = useParams();
-    let navigate = useNavigate();
     let location = useLocation();
 
     const cacheKey = cacheService.CreateKey(location);
@@ -38,19 +39,14 @@ function CuisinesRecipes() {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
 
-    const handleTypeSelect = (event) => {
-        const target = event.target.value !== '' ? '?type=' + event.target.value : '';
-        navigate(location.pathname + target)
-    };
-
     const fetchData = async (API) => {
         let getNewData = true;
         setLoading(true)
         const cachedData = cacheService.GetCachedData(cacheKey);
-        if(cachedData){
+        if (cachedData) {
             const parsedCacheData = JSON.parse(cachedData);
             const timeNow = Date.now();
-            if ((timeNow - parsedCacheData.timeStamp) < (15 * 60 * 1000)){
+            if ((timeNow - parsedCacheData.timeStamp) < (15 * 60 * 1000)) {
                 setData(parsedCacheData.response)
                 getNewData = false;
                 setLoading(false);
@@ -59,7 +55,7 @@ function CuisinesRecipes() {
                 getNewData = true;
             }
         }
-        if(getNewData === true){
+        if (getNewData === true) {
             await axios.get(API).then(
                 (response) => {
                     setLoading(false);
@@ -102,31 +98,28 @@ function CuisinesRecipes() {
             <div className='page-title'>
                 <h1>{cuisine.name} cuisine</h1>
             </div>
-            {!loading && (<>
-                    <h3>{data.totalResults} recipes for {cuisine.name} cuisine {type ? ' - ' + type : ''}</h3>
-                    <div className='type-filter'>
-                        <select value={type}
-                                onChange={handleTypeSelect}>
-                            <option value=''>all types</option>
-                            {
-                                types.map((type, index) => {
-                                    return (<option key={index}
-                                                    value={type}>{type}</option>)
-                                })
-                            }
-                        </select>
-                    </div>
-                    <RecipeList recipesObject={data} />
+            {!loading && (
+                <div className='recipe-list-wrapper'>
 
-                    <RecipeListPagination>
-                        {((data.offset > 0) && (data.offset - data.number) >= 0) &&
-                            <Link to={`/cuisines/${cuisineId}?page=${previousPage}${type ? '&type='+type : ''}`}>PREVIOUS</Link>
-                        }
-                        {((data.offset + data.number) < data.totalResults) &&
-                            <Link to={`/cuisines/${cuisineId}?page=${nextPage}${type ? '&type='+type : '' }`}>NEXT</Link>
-                        }
-                    </RecipeListPagination>
-                </>
+                    <h3>{data.totalResults} recipes for {cuisine.name} cuisine {type ? ' - ' + type : ''}</h3>
+
+                    <FilterType navigateOnChange={location.pathname}
+                                currentType={type}/>
+
+                    <RecipeListCurrentPage offset={data.offset}
+                                           number={data.number}
+                                           totalResults={data.totalResults}/>
+
+                    <RecipeList recipesObject={data}/>
+
+                    <RecipeListPagination offset={data.offset}
+                                          number={data.number}
+                                          totalResults={data.totalResults}
+                                          previousLink={`/cuisines/${cuisineId}?page=${previousPage}${type ? '&type=' + type : ''}`}
+                                          previousLabel='PREVIOUS'
+                                          nextLink={`/cuisines/${cuisineId}?page=${nextPage}${type ? '&type=' + type : ''}`}
+                                          nextLabel='NEXT'/>
+                </div>
             )}
 
         </div>
