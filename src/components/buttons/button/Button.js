@@ -1,5 +1,4 @@
 import React from 'react';
-import './Button.scss';
 import {classNames} from "../../../helpers/classNames";
 
 function Button({type, customClass, size, customClick, children}) {

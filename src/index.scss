@@ -52,7 +52,9 @@ a {
 }
 
 a:hover, a:focus, a:active {
-  color: var(--recipe-primary-hover);
+  &:not(.btn){
+    color: var(--recipe-primary-hover);
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -98,4 +100,137 @@ img{
   width:100%;
   max-width: 100%;
   height: auto;
+}
+
+
+.btn, button {
+  height: 40px;
+  font-size: $font-size-base;
+  font-family: $font-family;
+  font-weight: bold;
+  background-color: $white;
+  color: $gray-4;
+  border: 1px solid $gray-2;
+  padding: .5rem 1.5rem;
+  border-radius: $border-radius-base;
+  outline: 0;
+  filter: blur(0);
+
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+}
+
+.btn:focus,
+.btn:active:focus {
+  box-shadow: 0 0 0 2px $gray-4;
+}
+
+.btn:hover,
+.btn:focus,
+.btn:active {
+  background-color: $gray-1;
+}
+
+.btn:active {
+  box-shadow: 0 0 0 2px $gray-4;
+}
+
+.btn-sm {
+  border-radius: $border-radius-sm;
+  font-size: .7rem;
+  padding: .35rem 1rem;
+  height: 30px;
+}
+
+.btn-lg {
+  border-radius: $border-radius-lg;
+  font-size: 1rem;
+  padding: .75rem 2.25rem;
+  height: 50px;
+}
+
+.btn-icon {
+  padding: .5rem 1rem;
+}
+
+.btn-primary {
+  color: $white;
+  background-color: $primary;
+  border-color: $primary;
+}
+
+.btn-primary:focus,
+.btn-primary:active {
+  color: $white;
+  background-color: $primary;
+  border-color: $primary;
+}
+
+.btn-primary:hover {
+  color: $white;
+  background-color: $primary-hover;
+  border-color: $primary-hover;
+}
+
+.btn-danger {
+  color: $white;
+  background-color: $danger;
+  border-color: $danger;
+}
+
+.btn-danger:focus,
+.btn-danger:active {
+  color: $white;
+  background-color: $danger;
+  border-color: $danger;
+}
+
+.btn-danger:hover {
+  color: $white;
+  background-color: $danger-hover;
+  border-color: $danger-hover;
+}
+
+.btn-success {
+  color: $white;
+  background-color: $success;
+  border-color: $success;
+}
+
+.btn-success:focus,
+.btn-success:active {
+  color: $white;
+  background-color: $success;
+  border-color: $success;
+}
+
+.btn-success:hover {
+  color: $white;
+  background-color: $success-hover;
+  border-color: $success-hover;
+}
+
+.btn-dark {
+  color: $white;
+  background-color: $dark;
+  border-color: $dark;
+}
+
+.btn-dark:focus,
+.btn-dark:active {
+  color: $white;
+  background-color: $dark;
+  border-color: $dark;
+}
+
+.btn-dark:hover {
+  color: $white;
+  background-color: $dark-hover;
+  border-color: $dark-hover;
 }
