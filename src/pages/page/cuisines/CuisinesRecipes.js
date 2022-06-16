@@ -14,6 +14,9 @@ import RecipeListCurrentPage from "../../../components/pagination/RecipeListCurr
 import FilterType from "../../../components/forms/filters/FilterType";
 import PageTitle from "../../../components/titles/PageTitle";
 import RecipeFilterBar from "../../../components/filter/RecipeFilterBar";
+import {faSpinner, faUserPlus} from "@fortawesome/pro-regular-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Loader from "../../../components/loader/Loader";
 
 function CuisinesRecipes() {
 
@@ -31,12 +34,24 @@ function CuisinesRecipes() {
 
 
     const cuisine = cuisines.find(({slug}) => slug === cuisineId);
+    const baseLink = '/cuisines/' + cuisineId;
 
     const number = 12;
 
     const offset = createPagination.Offset(page, number);
     const nextPage = createPagination.NextPage(page);
     const previousPage = createPagination.PreviousPage(page);
+
+    const previousParameters = [];
+    previousPage > 1 && previousParameters.push('page=' + previousPage);
+    type && previousParameters.push('type=' + type);
+
+    const nextParameters = [];
+    nextPage && nextParameters.push('page=' + nextPage);
+    type && nextParameters.push('type=' + type);
+
+    const previousLink = createPagination.PreviousPageURL(previousParameters, baseLink);
+    const nextLink = createPagination.NextPageURL(nextParameters, baseLink);
 
     const API = spoonacularService.GetCuisineAPI(cuisineId, type, number, offset);
 
@@ -107,6 +122,9 @@ function CuisinesRecipes() {
             <BackButton path={'/cuisines'}
                         label='All cuisines'/>
             <PageTitle title={cuisine.name + ' cuisine'}/>
+            {loading && (
+                <Loader label='recipes' />
+            )}
             {!loading && (
                 <div className='recipe-list__wrapper'>
 
@@ -125,9 +143,9 @@ function CuisinesRecipes() {
                     <RecipeListPagination offset={data.offset}
                                           number={data.number}
                                           totalResults={data.totalResults}
-                                          previousLink={`/cuisines/${cuisineId}?page=${previousPage}${type ? '&type=' + type : ''}`}
+                                          previousLink={previousLink}
                                           previousLabel='PREVIOUS'
-                                          nextLink={`/cuisines/${cuisineId}?page=${nextPage}${type ? '&type=' + type : ''}`}
+                                          nextLink={nextLink}
                                           nextLabel='NEXT'/>
                 </div>
             )}
