@@ -1,7 +1,6 @@
-import React, {useEffect, useState, useMemo} from 'react';
-import {Link, useParams, useLocation, useNavigate} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {useParams, useLocation} from "react-router-dom";
 import cuisines from '../../../config/cuisines';
-import types from '../../../config/types';
 import BackButton from "../../../components/buttons/back/BackButton";
 import RecipeList from "../../../components/list/RecipeList";
 import axios from "axios";
@@ -12,18 +11,23 @@ import cacheService from "../../../services/cache.service";
 import createPagination from "../../../helpers/createPagination";
 import spoonacularService from "../../../services/spoonacular.service";
 import RecipeListCurrentPage from "../../../components/pagination/RecipeListCurrentPage";
-import FilterType from "../../../components/filters/FilterType";
+import FilterType from "../../../components/forms/filters/FilterType";
+import PageTitle from "../../../components/titles/PageTitle";
+import RecipeFilterBar from "../../../components/filter/RecipeFilterBar";
 
 function CuisinesRecipes() {
 
     let {cuisineId} = useParams();
     let location = useLocation();
 
-    const cacheKey = cacheService.CreateKey(location);
-
     const query = getQuery.Params(location.search);
     const page = getQuery.PageNumber(query);
     const type = getQuery.Type(query);
+
+    const cacheKey = cacheService.CreateKey(location, {
+        page: query.get('page'),
+        type: query.get('type')
+    });
 
 
     const cuisine = cuisines.find(({slug}) => slug === cuisineId);
@@ -40,9 +44,13 @@ function CuisinesRecipes() {
     const [loading, setLoading] = useState(true);
 
     const fetchData = async (API) => {
+
+        setLoading(true);
+
         let getNewData = true;
-        setLoading(true)
+
         const cachedData = cacheService.GetCachedData(cacheKey);
+
         if (cachedData) {
             const parsedCacheData = JSON.parse(cachedData);
             const timeNow = Date.now();
@@ -55,10 +63,11 @@ function CuisinesRecipes() {
                 getNewData = true;
             }
         }
+
+
         if (getNewData === true) {
             await axios.get(API).then(
                 (response) => {
-                    setLoading(false);
                     const data = {
                         timeStamp: Date.now().toString(),
                         response: {
@@ -75,8 +84,11 @@ function CuisinesRecipes() {
                             }))
                         }
                     }
-                    cacheService.StoreCacheData(cacheKey, data);
+                    if (response.data.totalResults > 0) {
+                        cacheService.StoreCacheData(cacheKey, data);
+                    }
                     setData(data.response);
+                    setLoading(false);
                 }
             ).catch(
                 (error) => {
@@ -90,25 +102,23 @@ function CuisinesRecipes() {
         fetchData(API)
     }, [API])
 
-
     return (
         <div id='page-cuisines__recipes'>
             <BackButton path={'/cuisines'}
                         label='All cuisines'/>
-            <div className='page-title'>
-                <h1>{cuisine.name} cuisine</h1>
-            </div>
+            <PageTitle title={cuisine.name + ' cuisine'}/>
             {!loading && (
-                <div className='recipe-list-wrapper'>
+                <div className='recipe-list__wrapper'>
 
-                    <h3>{data.totalResults} recipes for {cuisine.name} cuisine {type ? ' - ' + type : ''}</h3>
+                    <h2>{data.totalResults} recipes for {cuisine.name} cuisine {type ? ' - ' + type : ''}</h2>
+                    <RecipeFilterBar>
+                        <RecipeListCurrentPage offset={data.offset}
+                                               number={data.number}
+                                               totalResults={data.totalResults}/>
 
-                    <FilterType navigateOnChange={location.pathname}
-                                currentType={type}/>
-
-                    <RecipeListCurrentPage offset={data.offset}
-                                           number={data.number}
-                                           totalResults={data.totalResults}/>
+                        <FilterType navigateOnChange={location.pathname}
+                                    currentType={type}/>
+                    </RecipeFilterBar>
 
                     <RecipeList recipesObject={data}/>
 

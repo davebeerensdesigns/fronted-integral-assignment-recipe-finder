@@ -14,7 +14,7 @@
   position: relative;
 }
 
-.form-field, input {
+.form-field, .form-select, input {
   display: block;
   width: 100%;
   padding: 0.5rem 1rem;
@@ -55,6 +55,36 @@
 
 ::-ms-input-placeholder { /* Microsoft Edge */
   color: $gray-3;
+}
+
+.filter__type{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.form-select__group{
+  position: relative;
+  .form-select{
+    position: relative;
+    z-index: 1;
+    padding-right: 2rem;
+  }
+  &:after{
+    top: 50%;
+    right: 1rem;
+    content:'';
+    border: solid $gray-3;
+    border-width: 0 2px 2px 0;
+    padding: 2px;
+    display: block;
+    position: absolute;
+    transform: rotate(45deg) translate(-25%, -75%);
+    z-index: 2;
+  }
+}
+.form-select{
+  cursor: pointer;
 }
 
 .form-field__icon {

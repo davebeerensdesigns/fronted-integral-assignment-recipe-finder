@@ -2,6 +2,7 @@ import React from 'react';
 import cuisines from '../../../config/cuisines';
 import CuisineCard from "../../../components/cards/cuisine/CuisineCard";
 import './Cuisines.scss';
+import PageTitle from "../../../components/titles/PageTitle";
 
 function Cuisines() {
     const cuisineCardList = cuisines.map(
@@ -9,10 +10,7 @@ function Cuisines() {
     );
     return (
         <div id='page-cuisines'>
-            {/*TODO: Make page title a component*/}
-            <div className='page-title'>
-                <h1>Cuisines</h1>
-            </div>
+            <PageTitle title='Cuisines' />
             <div className='cuisines-list__wrapper'>
                 <h2>Choose a cuisine</h2>
                 <div className='cuisines-list'>

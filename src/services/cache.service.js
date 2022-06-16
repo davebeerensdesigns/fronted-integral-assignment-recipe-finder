@@ -1,5 +1,14 @@
-const CreateKey = (location) => {
-    return location.pathname + location.search;
+const CreateKey = (location, parameters = {}) => {
+    const params = [];
+    if(parameters){
+        Object.entries(parameters).map(([key, value], index) => {
+            if(value !== null){
+                const string = key + '=' + encodeURIComponent(value.trim());
+                params.push(string)
+            }
+        });
+    }
+    return params ? location.pathname + '?' + params.join('&') : location.pathname;
 }
 
 const StoreCacheData = (cacheKey, data) => {

@@ -6,11 +6,14 @@ import {Link, useParams} from "react-router-dom";
 import './RecipeCard.scss';
 import {calculateRating} from "../../../helpers/calculateRating";
 import RecipeMeta from "../../meta/recipe/RecipeMeta";
+import {stripHTML} from "../../../helpers/stripHTML";
+import {trimText} from "../../../helpers/trimText";
 
 function RecipeCard({id, image, title, readyInMinutes, healthScore, summary}) {
+
     let params = useParams();
-    const strippedSummary = summary.replace(/(<([^>]+)>)/gi, "");
-    const trimmedSummary = strippedSummary.length > 100 ? strippedSummary.substring(0, 100 - 3) + "..." : strippedSummary.substring(0, 100);
+    const strippedSummary = stripHTML(summary);
+    const trimmedSummary = trimText(strippedSummary, 100);
 
     return (
         <Link to={`/cuisines/${params.cuisineId}/${id}`}
@@ -27,7 +30,7 @@ function RecipeCard({id, image, title, readyInMinutes, healthScore, summary}) {
             )}
             {title && (
                 <div className='recipe-card__content'>
-                    <h4>{title}</h4>
+                    <h3>{title}</h3>
                     <RecipeMeta>
                         {healthScore > 0 && (
                             <span className='recipe-card__rating'>
