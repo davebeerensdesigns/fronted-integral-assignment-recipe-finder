@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import {Link, useParams, useLocation, useNavigate} from "react-router-dom";
 import cuisines from '../../../config/cuisines';
 import types from '../../../config/types';
@@ -7,45 +7,46 @@ import RecipeList from "../../../components/list/RecipeList";
 import axios from "axios";
 import RecipeListPagination from "../../../components/pagination/RecipeListPagination";
 import notifyToast from "../../../utils/hooks/notifyToast";
+import getQuery from "../../../helpers/getQuery";
+import cacheService from "../../../services/cache.service";
+import createPagination from "../../../helpers/createPagination";
+import spoonacularService from "../../../services/spoonacular.service";
 
-function CuisinesRecipes(props) {
+function CuisinesRecipes() {
 
     let {cuisineId} = useParams();
-    let location = useLocation();
     let navigate = useNavigate();
-    function useQuery() {
-        return React.useMemo(() => new URLSearchParams(location.search), [location.search]);
-    }
+    let location = useLocation();
 
-    let query = useQuery();
-    const page = query.get("page") !== null ? query.get("page") : 1;
-    const cacheKey = location.pathname + location.search;
+    const cacheKey = cacheService.CreateKey(location);
+
+    const query = getQuery.Params(location.search);
+    const page = getQuery.PageNumber(query);
+    const type = getQuery.Type(query);
+
 
     const cuisine = cuisines.find(({slug}) => slug === cuisineId);
+
     const number = 12;
 
-    const offset = (parseInt(page) * number) - number;
-    const nextPage = parseInt(page) + 1;
-    const previousPage = parseInt(page) - 1;
+    const offset = createPagination.Offset(page, number);
+    const nextPage = createPagination.NextPage(page);
+    const previousPage = createPagination.PreviousPage(page);
 
-    const type = query.get('type');
-    const typeFilter = type ? type : '';
-
-    const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${cuisineId}&type=${typeFilter}&addRecipeInformation=true&sort=latest&number=${number}&offset=${offset}`;
+    const API = spoonacularService.GetCuisineAPI(cuisineId, type, number, offset);
 
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
 
     const handleTypeSelect = (event) => {
         const target = event.target.value !== '' ? '?type=' + event.target.value : '';
         navigate(location.pathname + target)
     };
 
-    const fetchData = async (url) => {
+    const fetchData = async (API) => {
         let getNewData = true;
         setLoading(true)
-        const cachedData = sessionStorage.getItem(cacheKey);
+        const cachedData = cacheService.GetCachedData(cacheKey);
         if(cachedData){
             const parsedCacheData = JSON.parse(cachedData);
             const timeNow = Date.now();
@@ -54,12 +55,12 @@ function CuisinesRecipes(props) {
                 getNewData = false;
                 setLoading(false);
             } else {
-                sessionStorage.removeItem(cacheKey);
+                cacheService.DeleteCachedData(cacheKey);
                 getNewData = true;
             }
         }
         if(getNewData === true){
-            await axios.get(url).then(
+            await axios.get(API).then(
                 (response) => {
                     setLoading(false);
                     const data = {
@@ -78,7 +79,7 @@ function CuisinesRecipes(props) {
                             }))
                         }
                     }
-                    sessionStorage.setItem(cacheKey, JSON.stringify(data));
+                    cacheService.StoreCacheData(cacheKey, data);
                     setData(data.response);
                 }
             ).catch(
@@ -90,8 +91,8 @@ function CuisinesRecipes(props) {
     };
 
     useEffect(() => {
-        fetchData(url)
-    }, [url])
+        fetchData(API)
+    }, [API])
 
 
     return (
@@ -104,7 +105,7 @@ function CuisinesRecipes(props) {
             {!loading && (<>
                     <h3>{data.totalResults} recipes for {cuisine.name} cuisine {type ? ' - ' + type : ''}</h3>
                     <div className='type-filter'>
-                        <select value={typeFilter}
+                        <select value={type}
                                 onChange={handleTypeSelect}>
                             <option value=''>all types</option>
                             {
