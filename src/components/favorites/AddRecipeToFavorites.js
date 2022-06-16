@@ -9,10 +9,12 @@ function AddRecipeToFavorites({recipeId}) {
     const [user] = useContext(UserContext);
     const [, setAccountTab] = useContext(AccountTabContext);
 
-    const addRecipe = async () => {
+    const addRecipe = (e) => {
         if(user){
+            e.preventDefault()
             //TODO: Create a context that holds all favorite recipe ids. these should also be stored on localstorage. then whenever a recipecard is loaded and the recipe id matches one of the favorite recipe ids it should mark the add to favorite button as active. keep in mind that these ids are also needed in the user favorites page and load an api get request for all these recipe IDs.
         } else {
+            e.preventDefault()
             setAccountTab(arr => ({show: true, guest: 'register'}))
             notifyToast.notifyInfo('Create an account to save your favorite recipes.');
         }
