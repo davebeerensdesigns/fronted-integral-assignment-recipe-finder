@@ -50,11 +50,12 @@
   margin-bottom: .5rem;
 }
 
-.main-nav__link:hover {
+a.main-nav__link:hover, a.main-nav__link:active, a.main-nav__link:focus {
   background-color: var(--recipe-gray-light);
+  color: var(--recipe-gray-3);
 }
 
-.main-nav__link:active, .main-nav__link.active {
+a.main-nav__link.active, a.main-nav__link.active:hover, a.main-nav__link.active:focus, a.main-nav__link.active:active {
   background-color: var(--recipe-primary);
   color: var(--recipe-white);
 }
