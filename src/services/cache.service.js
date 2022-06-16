@@ -8,7 +8,7 @@ const CreateKey = (location, parameters = {}) => {
             }
         });
     }
-    return params ? location.pathname + '?' + params.join('&') : location.pathname;
+    return params.length > 0 ? location.pathname + '?' + params.join('&') : location.pathname;
 }
 
 const StoreCacheData = (cacheKey, data) => {

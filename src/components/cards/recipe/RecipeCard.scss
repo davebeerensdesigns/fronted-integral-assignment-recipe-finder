@@ -1,7 +1,7 @@
 @import './src/utils/styles/scss-variables';
 @import './src/utils/styles/scss-mixins';
 
-.recipe-card {
+a.recipe-card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +33,7 @@
 }
 
 @include media-breakpoint-up(sm){
-  .recipe-card{
+  a.recipe-card{
     flex-direction: row;
 
     figure {
