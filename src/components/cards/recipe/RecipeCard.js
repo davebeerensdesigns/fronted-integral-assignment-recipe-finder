@@ -19,7 +19,6 @@ function RecipeCard({baseLink, id, image, title, readyInMinutes, healthScore, su
     let params = useParams();
     const strippedSummary = stripHTML(summary);
     const trimmedSummary = trimText(strippedSummary, 100);
-    console.log(baseLink)
     return (
         <Link to={`${baseLink}/recipe/${id}`}
               className={classNames('recipe-card', user && 'logged-in')}>
