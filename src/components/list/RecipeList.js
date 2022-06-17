@@ -2,9 +2,10 @@ import React from 'react';
 import RecipeCard from "../cards/recipe/RecipeCard";
 import './RecipeList.scss';
 
-function RecipeList({recipesObject}) {
+function RecipeList({recipesObject, baseLink}) {
     const recipeList = recipesObject.recipes.map(
         ({id, image, title, healthScore, readyInMinutes, summary}) => <RecipeCard key={id}
+                                                                                            baseLink={baseLink}
                                                                                   id={id}
                                                                                   image={image}
                                                                                   title={title}

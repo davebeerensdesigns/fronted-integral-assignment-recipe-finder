@@ -3,7 +3,7 @@ import PageTitle from "../../../components/titles/PageTitle";
 import RecipeArchive from "../../../components/archive/RecipeArchive";
 
 function Popular() {
-    const baseLink = '/latest';
+    const baseLink = '/popular';
 
     return (
         <div id='page-cuisines__recipes'>

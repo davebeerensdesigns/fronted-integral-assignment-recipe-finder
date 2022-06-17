@@ -36,7 +36,7 @@ const routes = [
         isPrivate: false,
     },
     {
-        path: '/cuisines/:cuisineId/:recipeId',
+        path: '/cuisines/recipe/:recipeId',
         element: <Recipe/>,
         isPrivate: false,
     },
@@ -46,8 +46,18 @@ const routes = [
         isPrivate: false,
     },
     {
+        path: '/popular/recipe/:recipeId',
+        element: <Recipe/>,
+        isPrivate: false,
+    },
+    {
         path: '/latest',
         element: <Latest/>,
+        isPrivate: false,
+    },
+    {
+        path: '/latest/recipe/:recipeId',
+        element: <Recipe/>,
         isPrivate: false,
     },
     {

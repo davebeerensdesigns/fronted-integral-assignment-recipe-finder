@@ -13,6 +13,7 @@ import {faSpinner} from "@fortawesome/pro-regular-svg-icons";
 import './Login.scss';
 import UserService from "../../../../services/user.service";
 import {AvatarContext} from "../../../../utils/providers/AvatarContextProvider";
+import {FavoriteRecipesContext} from "../../../../utils/providers/FavoriteRecipesContextProvider";
 
 function Login() {
 
@@ -21,7 +22,8 @@ function Login() {
     const [errorMessage, setErrorMessage] = useState('');
 
     const [, setUser] = useContext(UserContext);
-    const [, setAccountTab] = useContext(AccountTabContext);
+    const [, setAccountTab] = useContext(AccountTabContext);;
+    const [, setFavoriteRecipes] = useContext(FavoriteRecipesContext);
 
     const methods = useForm({mode: 'onBlur'});
     const {handleSubmit} = methods;
@@ -40,6 +42,10 @@ function Login() {
                                 if (response.data.profilePicture) {
                                     localStorage.setItem('image', response.data.profilePicture);
                                     setAvatarValue(response.data.profilePicture);
+                                }
+                                if (response.data.info) {
+                                    localStorage.setItem('favorites', response.data.info);
+                                    setFavoriteRecipes(response.data.info);
                                 }
                             }
                         )

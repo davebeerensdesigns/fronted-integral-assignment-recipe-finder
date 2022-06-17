@@ -145,7 +145,7 @@ function RecipeArchive({title, baseLink, apiFor, useParams}) {
                                     currentType={type}/>
                     </RecipeFilterBar>
 
-                    <RecipeList recipesObject={data}/>
+                    <RecipeList recipesObject={data} baseLink={baseLink}/>
 
                     <RecipeListPagination offset={data.offset}
                                           number={data.number}

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar} from "@fortawesome/pro-solid-svg-icons";
 import {faClock, faHeart} from "@fortawesome/pro-regular-svg-icons";
@@ -9,16 +9,21 @@ import RecipeMeta from "../../meta/recipe/RecipeMeta";
 import {stripHTML} from "../../../helpers/stripHTML";
 import {trimText} from "../../../helpers/trimText";
 import AddRecipeToFavorites from "../../favorites/AddRecipeToFavorites";
+import {UserContext} from "../../../utils/providers/UserContextProvider";
+import {classNames} from "../../../helpers/classNames";
 
-function RecipeCard({id, image, title, readyInMinutes, healthScore, summary}) {
+function RecipeCard({baseLink, id, image, title, readyInMinutes, healthScore, summary}) {
 
+    const [user] = useContext(UserContext);
 
     let params = useParams();
     const strippedSummary = stripHTML(summary);
     const trimmedSummary = trimText(strippedSummary, 100);
+    console.log(baseLink)
     return (
-        <Link to={`/cuisines/${params.cuisineId}/${id}`}
-              className='recipe-card'>
+        <Link to={`${baseLink}/recipe/${id}`}
+              className={classNames('recipe-card', user && 'logged-in')}>
+            <AddRecipeToFavorites recipeId={id} />
             {image && (
                 <figure className='recipe-card__image'>
                     <img width="312"
@@ -31,7 +36,6 @@ function RecipeCard({id, image, title, readyInMinutes, healthScore, summary}) {
             )}
             {title && (
                 <div className='recipe-card__content'>
-                    <AddRecipeToFavorites recipeId={id} />
                     <h3>{title}</h3>
                     <RecipeMeta>
                         {healthScore > 0 && (
