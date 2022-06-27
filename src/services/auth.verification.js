@@ -14,6 +14,9 @@ export const authVerification = ([userValue, setUserValue], token) => {
             AuthService.logout()
             setUserValue(false);
             notifyToast.notifyError('Your token has expired. Log in again.');
+            setTimeout(() => {
+                window.location.reload()
+            }, 2000);
         } else {
             UserService.verifyUser().then(() => {
                 setUserValue(true);
@@ -22,6 +25,9 @@ export const authVerification = ([userValue, setUserValue], token) => {
                 AuthService.logout()
                 setUserValue(false);
                 notifyToast.notifyError('Something went wrong. Log in again.');
+                setTimeout(() => {
+                    window.location.reload()
+                }, 2000);
             })
         }
     } catch (e) {
@@ -29,5 +35,8 @@ export const authVerification = ([userValue, setUserValue], token) => {
         AuthService.logout()
         setUserValue(false);
         notifyToast.notifyError('Something went wrong. Log in again.');
+        setTimeout(() => {
+            window.location.reload()
+        }, 2000);
     }
 }
