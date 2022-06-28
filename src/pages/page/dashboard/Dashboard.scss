@@ -1,6 +1,9 @@
 @import './src/utils/styles/scss-variables';
 @import './src/utils/styles/scss-mixins';
 
+.hero-banner{
+  margin-bottom: 3rem;
+}
 .hero-image {
   img {
     display: block;

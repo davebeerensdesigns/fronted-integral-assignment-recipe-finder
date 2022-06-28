@@ -105,7 +105,7 @@ function Recipe() {
         <>
             <div className='single-recipe__header'>
                 <BackButton path={-1}
-                            label='Back to recipes'/>
+                            label='Go back'/>
                 {!loading && (
                     <div className='single-recipe__tools'>
                         <AddRecipeToFavorites recipeId={data.id}/>
