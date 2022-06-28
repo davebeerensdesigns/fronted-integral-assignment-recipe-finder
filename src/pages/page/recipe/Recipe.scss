@@ -1,6 +1,40 @@
 @import './src/utils/styles/scss-variables';
 @import './src/utils/styles/scss-mixins';
 
+.single-recipe__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  a.back-button {
+    margin-bottom: 0
+  }}
+.single-recipe__tools{
+  display: flex;
+  gap:.5rem;
+}
+  .btn-favorites {
+    border: 1px solid var(--recipe-gray);
+  }
+
+  .btn-print {
+    padding: 1rem;
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    svg path {
+      fill: $gray-3;
+    }
+  }
+
+
 .single-recipe__intro {
   margin-bottom: 2rem;
 }
@@ -139,27 +173,33 @@
   }
 
   li {
-    span{display: block;}
+    span {
+      display: block;
+    }
+
     .measure {
       margin-right: 1rem;
     }
   }
 }
 
-.single-recipe__instructions{
-  ul{
+.single-recipe__instructions {
+  ul {
     list-style: none;
-    padding:0;
-    margin:0;
-    li:not(:last-child){
+    padding: 0;
+    margin: 0;
+
+    li:not(:last-child) {
       margin-bottom: 1rem;
     }
-    li p{
+
+    li p {
       margin-bottom: 0;
     }
   }
-  .instructions__group{
-    &:not(:last-child){
+
+  .instructions__group {
+    &:not(:last-child) {
       margin-bottom: 2rem;
     }
   }
@@ -171,6 +211,7 @@
     li:not(:last-child) {
       margin-bottom: .5rem;
     }
+
     li {
       display: flex;
       align-items: flex-start;
@@ -181,6 +222,7 @@
     }
   }
 }
+
 @include media-breakpoint-up(md) {
   .single-recipe__content, .ingredients__wrapper, .instructions__wrapper {
     padding: 2rem;
