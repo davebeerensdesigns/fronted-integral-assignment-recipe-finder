@@ -1,10 +1,10 @@
 import React, {useState, useEffect, useRef} from 'react';
 import BackButton from "../../../components/buttons/back/BackButton";
-import {useLocation, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPrint, faStar} from "@fortawesome/pro-solid-svg-icons";
 import {calculateRating} from "../../../helpers/calculateRating";
-import {faClock, faHeart} from "@fortawesome/pro-regular-svg-icons";
+import {faClock} from "@fortawesome/pro-regular-svg-icons";
 import RecipeMeta from "../../../components/meta/recipe/RecipeMeta";
 import {calculateServingPrice} from "../../../helpers/calculateServingPrice";
 import './Recipe.scss';
@@ -17,7 +17,7 @@ import AddRecipeToFavorites from "../../../components/favorites/AddRecipeToFavor
 import ReactToPrint from 'react-to-print';
 import {pluralize} from "../../../helpers/pluralize";
 import Loader from "../../../components/loader/Loader";
-import calculateIngredientsMetrics from "../../../helpers/calculateIngredientsMetrics";
+import {calculateIngredientsMetrics} from "../../../helpers/calculateIngredientsMetrics";
 
 function Recipe() {
     let {recipeId} = useParams();
@@ -279,10 +279,10 @@ function Recipe() {
                                             return <li key={'ingredient' + ingredient.id + index}>
                                             <span className='measure'>
                                                 {
-                                                    (recipeMetrics && ingredient.measures.us.amount && data.servings) && calculateIngredientsMetrics.calculate(recipeServings, ingredient.measures.us.amount, data.servings, ingredient.measures.us.unitShort)
+                                                    (recipeMetrics && ingredient.measures.us.amount && data.servings) && calculateIngredientsMetrics(recipeServings, ingredient.measures.us.amount, data.servings, ingredient.measures.us.unitShort)
                                                 }
                                                 {
-                                                    (!recipeMetrics && ingredient.measures.metric.amount && data.servings) && calculateIngredientsMetrics.calculate(recipeServings, ingredient.measures.metric.amount, data.servings, ingredient.measures.metric.unitShort)
+                                                    (!recipeMetrics && ingredient.measures.metric.amount && data.servings) && calculateIngredientsMetrics(recipeServings, ingredient.measures.metric.amount, data.servings, ingredient.measures.metric.unitShort)
                                                 }
                                             </span>
                                                 <span className='name'>
