@@ -1,0 +1,34 @@
+@import './src/utils/styles/scss-variables';
+@import './src/utils/styles/scss-mixins';
+
+
+
+@include media-breakpoint-up(lg) {
+  .main-hidden .recipe-list {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    > a {
+      max-width: calc(50% - .5rem);
+      margin-bottom: 0;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .main-show .recipe-list {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    > a {
+      max-width: calc(50% - .5rem);
+      margin-bottom: 0;
+    }
+  }
+}

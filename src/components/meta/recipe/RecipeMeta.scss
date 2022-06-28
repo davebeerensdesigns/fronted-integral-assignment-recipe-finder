@@ -1,0 +1,14 @@
+@import './src/utils/styles/scss-variables';
+.recipe-card__meta{
+  span{
+    margin-right: 1rem;
+    margin-bottom: .5rem;
+    display: inline-block;
+    svg{
+      margin-right: .1rem;
+    }
+  }
+  .recipe-card__rating svg{
+    color:$primary;
+  }
+}

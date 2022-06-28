@@ -1,4 +1,5 @@
 @import "utils/styles/scss-variables.scss";
+@import "utils/styles/scss-mixins.scss";
 
 #app__wrapper {
   position: relative;
@@ -14,7 +15,6 @@
   bottom: 0;
   position: fixed;
   transition: opacity .2s ease-in-out;
-  z-index: 1000;
 }
 
 #app__wrapper.account-hidden span.backdrop {
@@ -23,8 +23,24 @@
   right: -1px;
 }
 
-#app__wrapper.account-show span.backdrop {
+#app__wrapper.account-show.main-hidden span.backdrop,
+#app__wrapper.account-show.main-show span.backdrop {
   opacity: 1;
   width: 100%;
   right: 0;
+  z-index: 1000;
+}
+@include media-breakpoint-down(md) {
+  #app__wrapper.main-hidden span.backdrop {
+    opacity: 0;
+    width: 1px;
+    left: -1px;
+  }
+
+  #app__wrapper.main-show.account-hidden span.backdrop {
+    opacity: 1;
+    width: 100%;
+    left: 0;
+    z-index: 100;
+  }
 }

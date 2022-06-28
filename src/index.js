@@ -7,18 +7,19 @@ import UserContextProvider from "./utils/providers/UserContextProvider";
 import {history} from "./helpers/history";
 import AccountTabContextProvider from "./utils/providers/AccountTabContextProvider";
 import MainNavContextProvider from "./utils/providers/MainNavContextProvider";
+import FavoriteRecipesContextProvider from "./utils/providers/FavoriteRecipesContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
-        <BrowserRouter history={history}>
-            <UserContextProvider>
+    <BrowserRouter history={history}>
+        <UserContextProvider>
+            <FavoriteRecipesContextProvider>
                 <AccountTabContextProvider>
                     <MainNavContextProvider>
                         <App/>
                     </MainNavContextProvider>
                 </AccountTabContextProvider>
-            </UserContextProvider>
-        </BrowserRouter>
-    </React.StrictMode>
+            </FavoriteRecipesContextProvider>
+        </UserContextProvider>
+    </BrowserRouter>
 );

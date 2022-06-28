@@ -1,8 +1,50 @@
-#page-header__wrapper {
-  padding: 2rem;
+@import './src/utils/styles/scss-variables';
+@import './src/utils/styles/scss-mixins';
+
+#page-header{
   background-color: var(--recipe-white);
+  position: sticky;
+  top:0;
+  width: 100%;
+  box-shadow: 0 0 6px rgba($gray-2, 0.5);
+  z-index: 10;
+}
+#page-header__wrapper {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1rem;
+}
+
+a#app-icon__link {
+  display: block;
+  width: 40px;
+  height: 40px;
+  svg{
+    width: 40px;
+    height: auto;
+  }
+}
+
+
+@include media-breakpoint-only(xs) {
+  #page-header__wrapper{
+    flex-wrap: wrap;
+  }
+  #page-header__wrapper input{
+    order:4;
+    width: 100%;
+  }
+  #page-header__wrapper .btn-avatar{
+    order:3;
+    margin-left: auto;
+  }
+}
+@include media-breakpoint-up(sm){
+  #page-header__wrapper {
+    padding-top: 2em;
+    padding-bottom: 2rem;
+  }
 }

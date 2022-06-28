@@ -6,6 +6,8 @@ import Popular from "../pages/page/popular/Popular";
 import Latest from "../pages/page/latest/Latest";
 import NotFound from "../pages/page/not-found/NotFound";
 import Favorites from "../pages/page/favorites/Favorites";
+import CuisinesRecipes from "../pages/page/cuisines/CuisinesRecipes";
+import Recipe from "../pages/page/recipe/Recipe";
 
 const routes = [
     {
@@ -29,13 +31,33 @@ const routes = [
         isPrivate: false,
     },
     {
+        path: '/cuisines/:cuisineId',
+        element: <CuisinesRecipes/>,
+        isPrivate: false,
+    },
+    {
+        path: '/cuisines/:cuisineId/recipe/:recipeId',
+        element: <Recipe/>,
+        isPrivate: false,
+    },
+    {
         path: '/popular',
         element: <Popular/>,
         isPrivate: false,
     },
     {
+        path: '/popular/recipe/:recipeId',
+        element: <Recipe/>,
+        isPrivate: false,
+    },
+    {
         path: '/latest',
         element: <Latest/>,
+        isPrivate: false,
+    },
+    {
+        path: '/latest/recipe/:recipeId',
+        element: <Recipe/>,
         isPrivate: false,
     },
     {

@@ -1,0 +1,23 @@
+@import './src/utils/styles/scss-variables';
+
+.btn-favorites {
+  border: none;
+  padding: 1rem;
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+
+  svg path {
+    fill: $gray-3;
+  }
+
+  &.active {
+    svg path {
+      fill: $primary;
+    }
+  }
+}

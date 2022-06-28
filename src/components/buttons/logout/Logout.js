@@ -14,8 +14,11 @@ function Logout(props) {
     const logout = () => {
         AuthService.logout()
         setUser(false);
-        notifyToast.notifySuccess('You have been logged out successfully!');
         setAccountTab(arr => ({...arr, show: false}))
+        notifyToast.notifySuccess('You have been logged out successfully!');
+        setTimeout(() => {
+            window.location.reload()
+        }, 2000);
     }
 
     return (

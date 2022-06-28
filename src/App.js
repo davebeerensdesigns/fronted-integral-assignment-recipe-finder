@@ -16,13 +16,11 @@ import {authVerification} from "./services/auth.verification";
 
 function App() {
 
-    // TODO: improve styling for responsive breakpoints
     // TODO: style register account component
-    // TODO: file cleanup/restructure
 
     const [userValue, setUserValue] = useContext(UserContext);
     const [accountTab, setAccountTab] = useContext(AccountTabContext);
-    const [mainNav] = useContext(MainNavContext);
+    const [mainNav, setMainNav] = useContext(MainNavContext);
 
     const location = useLocation();
 
@@ -49,7 +47,14 @@ function App() {
                 </AvatarContextProvider>
                 <span className='backdrop'
                       onClick={() => {
-                          setAccountTab(arr => ({...arr, show: !arr.show}))
+
+                          if(accountTab['show'] === true && mainNav['show'] === true){
+                              setAccountTab(arr => ({...arr, show: false}))
+                          } else if(accountTab['show'] === true) {
+                              setAccountTab(arr => ({...arr, show: false}))
+                          } else if(mainNav['show'] === true) {
+                              setMainNav(arr => ({...arr, show: false}))
+                          }
                       }}/>
             </div>
         </>

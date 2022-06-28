@@ -1,0 +1,11 @@
+@import "../../utils/styles/scss-variables.scss";
+
+.recipe-list__filter-bar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap:1rem;
+  margin: 1rem 0;
+  font-size: $font-size-sm;
+}

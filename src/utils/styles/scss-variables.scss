@@ -1,11 +1,10 @@
 @use "sass:math";
+@use "sass:map";
 
-/********************
- * COLORS
- ********************/
+
 $gray-1: #F5F5F5;
 $gray-2: #DBDBDB;
-$gray-3: #837D8E;
+$gray-3: #736f7c;
 $gray-4: #2E2E2E;
 $white: #FFFFFF;
 $primary: #FF8000;
@@ -48,9 +47,24 @@ $theme-colors: map-merge(
                 $theme-colors
 );
 
-/********************
- * BORDERS
- ********************/
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1400px
+) !default;
+
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1140px,
+        xxl: 1320px
+) !default;
+
+
 $border-radius-base: 8px;
 $border-radius-sm: math.div($border-radius-base, 2);
 $border-radius-lg: $border-radius-base * 2;
@@ -66,15 +80,14 @@ $border-radius: map-merge(
 );
 
 
-/********************
- * FONT
- ********************/
+
 $font-family: 'Poppins', sans-serif;
+$font-size-sm: .8rem;
 $font-size-base: .9rem;
 
-$h1: 2.5rem;
-$h2: 2rem;
-$h3: 1.5rem;
-$h4: 1.2rem;
+$h1: 2rem;
+$h2: 1.5rem;
+$h3: 1.25rem;
+$h4: 1.1rem;
 $h5: 1rem;
 $h6: .9rem;
