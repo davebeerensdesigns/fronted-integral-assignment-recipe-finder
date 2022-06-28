@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import BackButton from "../../../components/buttons/back/BackButton";
 import {useLocation, useParams} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faStar} from "@fortawesome/pro-solid-svg-icons";
+import {faPrint, faStar} from "@fortawesome/pro-solid-svg-icons";
 import {calculateRating} from "../../../helpers/calculateRating";
-import {faClock} from "@fortawesome/pro-regular-svg-icons";
+import {faClock, faHeart} from "@fortawesome/pro-regular-svg-icons";
 import RecipeMeta from "../../../components/meta/recipe/RecipeMeta";
 import {calculateServingPrice} from "../../../helpers/calculateServingPrice";
 import './Recipe.scss';
@@ -13,11 +13,17 @@ import spoonacularService from "../../../services/spoonacular.service";
 import cacheService from "../../../services/cache.service";
 import axios from "axios";
 import notifyToast from "../../../utils/hooks/notifyToast";
+import AddRecipeToFavorites from "../../../components/favorites/AddRecipeToFavorites";
+import ReactToPrint from 'react-to-print';
+import {pluralize} from "../../../helpers/pluralize";
+import Loader from "../../../components/loader/Loader";
 
 function Recipe() {
     let {recipeId} = useParams();
-    let location = useLocation();
 
+    const location = {
+        pathname: 'recipe='+recipeId
+    }
     const cacheKey = cacheService.CreateKey(location, {});
 
     const api = spoonacularService.GetRecipeAPI(recipeId);
@@ -25,7 +31,7 @@ function Recipe() {
     const [loading, setLoading] = useState(true);
     const [recipeMetrics, setRecipeMetrics] = useState(true);
     const [recipeServings, setRecipeServings] = useState();
-
+    const [printing, setPrinting] = useState(false);
 
 
     useEffect(() => {
@@ -90,16 +96,73 @@ function Recipe() {
             }
         };
         fetchData()
-    },[api, cacheKey])
+    }, [api, cacheKey])
 
+    const componentToPrint = useRef(null);
 
     return (
         <>
-            <BackButton path={-1}
-                        label='Back to recipes'/>
+            <div className='single-recipe__header'>
+                <BackButton path={-1}
+                            label='Back to recipes'/>
+                {!loading && (
+                    <div className='single-recipe__tools'>
+                        <AddRecipeToFavorites recipeId={data.id}/>
+                        <ReactToPrint
+                            trigger={() => (
+                                <button className='btn btn-print'>
+                                    {!printing && <FontAwesomeIcon icon={faPrint}/>}
+                                    {printing && <Loader hideText={true}/>}
+                                </button>
+                            )}
+                            content={() => componentToPrint.current}
+                            onPrintError={() => {
+                                setPrinting(false)
+                                notifyToast.notifyError('Oops! Something went wrong. The recipe could not be printed.');
+                            }}
+                            onBeforePrint={() => {setPrinting(true)}}
+                            onAfterPrint={() => {setPrinting(false)}}
+                            pageStyle='
+                                @page{
+                                    margin:50px !important;
+                                }
+                                .ingredients__servings{
+                                    display:block !important;
+                                }
+                                .ingredients__servings > div{
+                                    display: inline;
+                                }
+                                .single-recipe__content, .single-recipe__wine, .ingredients__wrapper, .instructions__wrapper{
+                                    padding: 0 !important;
+                                }
+                                .single-recipe__tags li{
+                                    color: var(--recipe-gray-dark) !important;
+                                    padding:0 !important;
+                                    margin-right:6px !important;
+                                }
+                                .ingredients__servings .buttons button,
+                                .ingredients__metrics{
+                                    display:none !important;
+                                }
+                                .ingredients__list li {
+                                    margin:0 !important;
+                                }
+                                .ingredients__list li span.measure{
+                                    width:100px !important;
+                                }
+                                .ingredients__list li span{
+                                    display:inline-block !important;
+                                    margin-right: 6px !important;
+                                }
+                            '
+                        />
+                    </div>
+                )}
+            </div>
 
             {!loading && (
-                <>
+                <div className='single-recipe__wrapper'
+                     ref={(el) => (componentToPrint.current = el)}>
                     <div className='single-recipe__intro'>
                         {data.image && (
                             <figure className='single_recipe__image'>
@@ -111,7 +174,8 @@ function Recipe() {
                                     crossOrigin="anonymous"
                                     referrerPolicy="no-referrer"
                                 />
-                                <p className='single_recipe__image-source'><small>Image © <a rel="nofollow noreferrer" href={data.sourceUrl}
+                                <p className='single_recipe__image-source'><small>Image © <a rel="nofollow noreferrer"
+                                                                                             href={data.sourceUrl}
                                                                                              target='_blank'>{new URL(data.sourceUrl).hostname.replace('www.', '')}</a></small>
                                 </p>
                             </figure>
@@ -134,7 +198,7 @@ function Recipe() {
                                     )}
                                     {data.servings > 0 && (
                                         <span className='recipe-card__servings'>
-                                    {data.servings} servings
+                                        {pluralize(data.servings, 'serving')}
                                 </span>
                                     )}
                                     {data.pricePerServing > 0 && (
@@ -166,8 +230,10 @@ function Recipe() {
                                 </div>
                             )}
                             {data.sourceUrl && (
-                                <p className='single-recipe__source'><small>Original source: <a rel="nofollow noreferrer" href={data.sourceUrl}
-                                                                                                target='_blank'>{data.sourceUrl}</a></small>
+                                <p className='single-recipe__source'><small>Original
+                                    source: <a rel="nofollow noreferrer"
+                                               href={data.sourceUrl}
+                                               target='_blank'>{data.sourceUrl}</a></small>
                                 </p>
                             )}
                         </div>
@@ -184,7 +250,7 @@ function Recipe() {
                                                      setRecipeMetrics(!recipeMetrics)
                                                  }}>
                                                 <span className={recipeMetrics ? 'active' : ''}>US</span>
-                                                <span className={!recipeMetrics ? 'active' : ''}>metrics</span>
+                                                <span className={!recipeMetrics ? 'active' : ''}>Metric</span>
                                             </div>
                                         </div>
                                         {data.servings && (
@@ -258,7 +324,7 @@ function Recipe() {
                             </div>
                         )}
                     </div>
-                </>
+                </div>
             )}
         </>
     );
