@@ -17,6 +17,7 @@ import AddRecipeToFavorites from "../../../components/favorites/AddRecipeToFavor
 import ReactToPrint from 'react-to-print';
 import {pluralize} from "../../../helpers/pluralize";
 import Loader from "../../../components/loader/Loader";
+import calculateIngredientsMetrics from "../../../helpers/calculateIngredientsMetrics";
 
 function Recipe() {
     let {recipeId} = useParams();
@@ -278,10 +279,10 @@ function Recipe() {
                                             return <li key={'ingredient' + ingredient.id + index}>
                                             <span className='measure'>
                                                 {
-                                                    (recipeMetrics && ingredient.measures.us.amount && data.servings) && (Math.round((ingredient.measures.us.amount / data.servings * recipeServings + Number.EPSILON) * 100) / 100) + ' ' + (ingredient.measures.us.unitShort ? ingredient.measures.us.unitShort : '')
+                                                    (recipeMetrics && ingredient.measures.us.amount && data.servings) && calculateIngredientsMetrics.calculate(recipeServings, ingredient.measures.us.amount, data.servings, ingredient.measures.us.unitShort)
                                                 }
                                                 {
-                                                    (!recipeMetrics && ingredient.measures.metric.amount && data.servings) && (Math.round((ingredient.measures.metric.amount / data.servings * recipeServings + Number.EPSILON) * 100) / 100) + ' ' + (ingredient.measures.metric.unitShort ? ingredient.measures.metric.unitShort : '')
+                                                    (!recipeMetrics && ingredient.measures.metric.amount && data.servings) && calculateIngredientsMetrics.calculate(recipeServings, ingredient.measures.metric.amount, data.servings, ingredient.measures.metric.unitShort)
                                                 }
                                             </span>
                                                 <span className='name'>
