@@ -1,0 +1,45 @@
+@import './src/utils/styles/scss-variables';
+@import './src/utils/styles/scss-mixins';
+
+.recipe-slider__wrapper {
+  margin-bottom: 3rem;
+}
+
+.splide__slide {
+  a.recipe-card {
+    flex-direction: column;
+    height: 100%;
+    .btn-favorites{
+      top:1.5rem;
+      right:1.5rem;
+    }
+  }
+}
+
+.splide__header {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap:1rem;
+  .splide__title{
+    margin-bottom: 0;
+  }
+  .splide__arrows {
+    margin-left: auto;
+    display: flex;
+    gap:.5rem;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .splide__slide a.recipe-card figure {
+    width: 100%;
+    height: auto;
+    min-width: inherit;
+    min-height: auto;
+    max-width: 312px;
+    max-height: 231px;
+  }
+}
