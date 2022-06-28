@@ -12,9 +12,12 @@ const CreateKey = (location, parameters = {}) => {
 }
 
 const StoreCacheData = (cacheKey, data) => {
-    sessionStorage.setItem(cacheKey, JSON.stringify(data));
+    try {
+        sessionStorage.setItem(cacheKey, JSON.stringify(data));
+    } catch (e) {
+        sessionStorage.clear();
+    }
 }
-
 const GetCachedData = (cacheKey) => {
     return sessionStorage.getItem(cacheKey);
 }
