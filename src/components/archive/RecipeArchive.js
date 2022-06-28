@@ -60,72 +60,71 @@ function RecipeArchive({title, baseLink, apiFor, useParams}) {
     }
 
 
-
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
 
-    const fetchData = async (api) => {
-        if(api !== '') {
-
-            setLoading(true);
-
-            let getNewData = true;
-
-            const cachedData = cacheService.GetCachedData(cacheKey);
-
-            if (cachedData) {
-                const parsedCacheData = JSON.parse(cachedData);
-                const timeNow = Date.now();
-                if ((timeNow - parsedCacheData.timeStamp) < (15 * 60 * 1000)) {
-                    setData(parsedCacheData.response)
-                    getNewData = false;
-                    setLoading(false);
-                } else {
-                    cacheService.DeleteCachedData(cacheKey);
-                    getNewData = true;
-                }
-            }
-
-
-            if (getNewData === true) {
-                await axios.get(api).then(
-                    (response) => {
-                        const data = {
-                            timeStamp: Date.now().toString(),
-                            response: {
-                                number: response.data.number,
-                                offset: response.data.offset,
-                                totalResults: response.data.totalResults,
-                                recipes: response.data.results.map((recipe) => ({
-                                    id: recipe.id,
-                                    image: recipe.image,
-                                    title: recipe.title,
-                                    healthScore: recipe.healthScore,
-                                    readyInMinutes: recipe.readyInMinutes,
-                                    summary: recipe.summary
-                                }))
-                            }
-                        }
-                        if (response.data.totalResults > 0) {
-                            cacheService.StoreCacheData(cacheKey, data);
-                        }
-                        setData(data.response);
-                        setLoading(false);
-                    }
-                ).catch(
-                    (error) => {
-                        notifyToast.notifyError(error.response.data.message);
-                    }
-                )
-            }
-        } else {
-            notifyToast.notifyError('Something went wrong. API is not responding.');
-        }
-    };
 
     useEffect(() => {
+        const fetchData = async (api) => {
+            if (api !== '') {
+
+                setLoading(true);
+
+                let getNewData = true;
+
+                const cachedData = cacheService.GetCachedData(cacheKey);
+
+                if (cachedData) {
+                    const parsedCacheData = JSON.parse(cachedData);
+                    const timeNow = Date.now();
+                    if ((timeNow - parsedCacheData.timeStamp) < (15 * 60 * 1000)) {
+                        setData(parsedCacheData.response)
+                        getNewData = false;
+                        setLoading(false);
+                    } else {
+                        cacheService.DeleteCachedData(cacheKey);
+                        getNewData = true;
+                    }
+                }
+
+
+                if (getNewData === true) {
+                    await axios.get(api).then(
+                        (response) => {
+                            const data = {
+                                timeStamp: Date.now().toString(),
+                                response: {
+                                    number: response.data.number,
+                                    offset: response.data.offset,
+                                    totalResults: response.data.totalResults,
+                                    recipes: response.data.results.map((recipe) => ({
+                                        id: recipe.id,
+                                        image: recipe.image,
+                                        title: recipe.title,
+                                        healthScore: recipe.healthScore,
+                                        readyInMinutes: recipe.readyInMinutes,
+                                        summary: recipe.summary
+                                    }))
+                                }
+                            }
+                            if (response.data.totalResults > 0) {
+                                cacheService.StoreCacheData(cacheKey, data);
+                            }
+                            setData(data.response);
+                            setLoading(false);
+                        }
+                    ).catch(
+                        (error) => {
+                            notifyToast.notifyError(error.response.data.message);
+                        }
+                    )
+                }
+            } else {
+                notifyToast.notifyError('Something went wrong. API is not responding.');
+            }
+        };
         fetchData(api)
-    }, [api])
+    }, [api, cacheKey])
 
     return (
         <>
@@ -145,7 +144,8 @@ function RecipeArchive({title, baseLink, apiFor, useParams}) {
                                     currentType={type}/>
                     </RecipeFilterBar>
 
-                    <RecipeList recipesObject={data} baseLink={baseLink}/>
+                    <RecipeList recipesObject={data}
+                                baseLink={baseLink}/>
 
                     <RecipeListPagination offset={data.offset}
                                           number={data.number}

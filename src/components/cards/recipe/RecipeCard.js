@@ -42,7 +42,7 @@ function RecipeCard({baseLink, id, image, title, readyInMinutes, healthScore, su
                             <FontAwesomeIcon icon={faStar}/> {calculateRating(healthScore)} Health score
                         </span>
                         )}
-                        {readyInMinutes && (
+                        {readyInMinutes > 0 && (
                             <span className='recipe-card__time'>
                             <FontAwesomeIcon icon={faClock}/> {readyInMinutes} min.
                         </span>
