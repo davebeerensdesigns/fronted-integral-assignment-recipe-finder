@@ -6,7 +6,7 @@ function Popular() {
     const baseLink = '/popular';
 
     return (
-        <div id='page-cuisines__recipes'>
+        <div id='page-popular__recipes'>
 
             <PageTitle title='Popular recipes'/>
 
