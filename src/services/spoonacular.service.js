@@ -16,6 +16,10 @@ const GetFavoritesAPI = (ids) => {
     return `${baseAPI}/informationBulk?apiKey=${process.env.REACT_APP_API_KEY}&ids=${ids}&includeNutrition=false`;
 }
 
+const GetAutocompleteSearchAPI = (query, number) => {
+    return `${baseAPI}/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&number=${number}&query=${query}`;
+}
+
 const GetRecipeAPI = (id) => {
     return `${baseAPI}/${id}/information?apiKey=${process.env.REACT_APP_API_KEY}&includeNutrition=false`;
 }
@@ -25,6 +29,7 @@ const spoonacularService = {
     GetLatestAPI,
     GetPopularAPI,
     GetFavoritesAPI,
+    GetAutocompleteSearchAPI,
     GetRecipeAPI
 }
 

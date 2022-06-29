@@ -61,6 +61,11 @@ const routes = [
         isPrivate: false,
     },
     {
+        path: '/search/recipe/:recipeId',
+        element: <Recipe/>,
+        isPrivate: false,
+    },
+    {
         path: '/about',
         element: <About/>,
         isPrivate: false,

@@ -1,0 +1,55 @@
+@import './src/utils/styles/scss-variables';
+@import './src/utils/styles/scss-mixins';
+
+.searchbar{
+  width: 100%;
+  position: relative;
+}
+.searchbar__results{
+  margin-top: .5rem;
+  width: 100%;
+  border-radius: $border-radius-base;
+  box-shadow: 0 0 6px rgba($gray-2, 0.5);
+  background-color: $white;
+  position: absolute;
+  padding:1rem;
+}
+
+.searchbar__list{
+  list-style: none;
+  display: flex;
+  gap:1rem;
+  flex-direction: column;
+  padding:0;
+  margin:0;
+}
+
+.searchbar__item{
+  text-decoration: none;
+  color:$gray-3;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  &:hover{
+    color:$gray-4;
+  }
+}
+
+figure.searchbar__thumbnail {
+  width:50px;
+  height:50px;
+  min-width:50px;
+  min-height:50px;
+  position: relative;
+  border-radius: $border-radius-sm;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
