@@ -24,7 +24,7 @@ function AddRecipeToFavorites({recipeId}) {
             e.preventDefault()
             if(match){
                 const currentFavorites = favoritesArray;
-                for( var i = 0; i < currentFavorites.length; i++){
+                for( let i = 0; i < currentFavorites.length; i++){
 
                     if ( currentFavorites[i] === recipeId.toString()) {
 
@@ -39,6 +39,7 @@ function AddRecipeToFavorites({recipeId}) {
                     (response) => {
                         localStorage.setItem('favorites', response.data.info);
                         setFavoriteRecipes(response.data.info);
+                        window.location.reload()
                     }
                 ).catch(
                     (error) => {
@@ -47,12 +48,13 @@ function AddRecipeToFavorites({recipeId}) {
                 )
             } else {
                 const data = {
-                    'info': favoriteRecipes+','+recipeId
+                    'info': favoriteRecipes ? favoriteRecipes+','+recipeId : recipeId
                 }
                 await userService.updateUserDetails(JSON.stringify(data)).then(
                     (response) => {
                         localStorage.setItem('favorites', response.data.info);
                         setFavoriteRecipes(response.data.info);
+                        window.location.reload()
                     }
                 ).catch(
                     (error) => {
@@ -60,7 +62,6 @@ function AddRecipeToFavorites({recipeId}) {
                     }
                 )
             }
-            //TODO: Create a context that holds all favorite recipe ids. these should also be stored on localstorage. then whenever a recipecard is loaded and the recipe id matches one of the favorite recipe ids it should mark the add to favorite button as active. keep in mind that these ids are also needed in the user favorites page and load an api get request for all these recipe IDs.
         } else {
             e.preventDefault()
             setAccountTab(arr => ({show: true, guest: 'register'}))

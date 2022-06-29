@@ -6,7 +6,7 @@ function Latest() {
     const baseLink = '/latest';
 
     return (
-        <div id='page-cuisines__recipes'>
+        <div id='page-latest__recipes'>
 
             <PageTitle title='Latest recipes'/>
 

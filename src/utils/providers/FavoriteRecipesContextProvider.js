@@ -1,4 +1,5 @@
 import React, {createContext, useEffect, useState} from "react";
+import cacheService from "../../services/cache.service";
 
 export const FavoriteRecipesContext = createContext(null);
 
@@ -15,6 +16,7 @@ const FavoriteRecipesContextProvider = ({children}) => {
 
     useEffect(() => {
         setFavoriteRecipes(currentFavorites ? currentFavorites : '');
+        cacheService.DeleteCachedData('/favorites');
     }, [currentFavorites]);
 
     return <Provider value={[favoriteRecipes, setFavoriteRecipes]}>{children}</Provider>;
