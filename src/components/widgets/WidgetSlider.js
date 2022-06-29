@@ -38,7 +38,6 @@ function WidgetSlider({slidesFor, title}) {
                 let getNewData = true;
 
                 const cachedData = cacheService.GetCachedData(cacheKey);
-
                 if (cachedData) {
                     const parsedCacheData = JSON.parse(cachedData);
                     const timeNow = Date.now();
