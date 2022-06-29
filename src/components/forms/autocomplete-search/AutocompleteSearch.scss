@@ -25,9 +25,14 @@
 }
 
 .searchbar__item{
+  text-decoration: none;
+  color:$gray-3;
   display: flex;
   align-items: center;
   gap: 1rem;
+  &:hover{
+    color:$gray-4;
+  }
 }
 
 figure.searchbar__thumbnail {

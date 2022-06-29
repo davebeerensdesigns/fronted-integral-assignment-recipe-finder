@@ -41,6 +41,7 @@ code {
 
 a, button {
   outline: 0;
+  transition: all .2s ease-in-out;
 }
 
 input::-moz-focus-inner {
