@@ -1,0 +1,35 @@
+@import './src/utils/styles/scss-variables';
+@import './src/utils/styles/scss-mixins';
+
+.modal__overlay{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  content: '';
+  background-color: rgba(0, 0, 0, 0.3);
+  top: 0;
+  bottom: 0;
+  left:0;
+  right:0;
+  position: fixed;
+  transition: opacity .2s ease-in-out;
+  z-index: 10000;
+}
+.modal__window{
+  width: 100%;
+  max-width: 320px;
+  padding:2rem;
+  border-radius: $border-radius-base;
+  background-color: $white;
+  margin:1rem;
+}
+
+.modal__body{
+  text-align: center;
+  .button-group{
+    margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+}}
