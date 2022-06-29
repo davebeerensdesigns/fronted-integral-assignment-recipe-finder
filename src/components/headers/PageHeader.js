@@ -5,6 +5,7 @@ import AvatarButton from "../buttons/avatar-button/AvatarButton";
 import Container from "../container/Container";
 import {ReactComponent as AppIcon} from "../../assets/logo/icon.svg";
 import {Link} from "react-router-dom";
+import AutocompleteSearch from "../forms/autocomplete-search/AutocompleteSearch";
 
 function PageHeader() {
 
@@ -29,8 +30,9 @@ function PageHeader() {
                             }}>
                         MENU
                     </button>
-                    <input type='text'
-                           placeholder='search recipes'/>
+
+                    <AutocompleteSearch/>
+
                     <AvatarButton/>
                 </div>
             </Container>
