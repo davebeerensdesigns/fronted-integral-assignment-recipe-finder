@@ -2,12 +2,12 @@ import React, {useContext} from 'react';
 import {Link, NavLink} from "react-router-dom";
 import './MainNav.scss';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faClose} from "@fortawesome/pro-regular-svg-icons"
 import {UserContext} from "../../../utils/providers/UserContextProvider";
 import {ReactComponent as AppLogo} from "../../../assets/logo/logo.svg";
 import {MainNavContext} from "../../../utils/providers/MainNavContextProvider";
 import CardRegister from "../../../components/cards/register/CardRegister";
 import links from "../../../config/mainNav";
+import CloseSidebar from "../../../components/buttons/sidebar/CloseSidebar";
 
 function MainNav() {
 
@@ -25,6 +25,7 @@ function MainNav() {
         if(!user & item.user){ return }
         return (
             <NavLink
+                key={item.path}
                 className='main-nav__link'
                 to={item.path}
                 onClick={closeMenu}
@@ -37,15 +38,14 @@ function MainNav() {
     return (
         <aside id='main-nav__wrapper'
         >
-            <button id='main-nav__close'
-                    className='btn btn-icon btn-round'
-                    onClick={
-                        () => {
-                            setMainNav(arr => ({...arr, show: !arr.show}))
-                        }
-                    }>
-                <FontAwesomeIcon icon={faClose}/>
-            </button>
+            <CloseSidebar id='main-nav__close'
+                          screenSide='right'
+                          customClick={
+                              () => {
+                                  setMainNav(arr => ({...arr, show: !arr.show}))
+                              }
+                          }/>
+
             <Link
                 id='app-logo__link'
                 to='/'

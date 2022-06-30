@@ -65,24 +65,3 @@ a.main-nav__link.active, a.main-nav__link.active:hover, a.main-nav__link.active:
   margin-right: 1rem;
   font-size: $font-size-base * 1.2;
 }
-
-#main-nav__close {
-  position: fixed;
-  top: 1rem;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  transition: left .2s ease-in-out;
-}
-
-.main-hidden #main-nav__close{
-  left: -50px;
-}
-.main-show #main-nav__close {
-  left: 270px;
-}
-
-@include media-breakpoint-up(md){
-  #main-nav__close {
-    display: none;
-  }
-}

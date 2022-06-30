@@ -21,22 +21,6 @@
   right: 0;
 }
 
-#account-nav__close {
-  position: absolute;
-  top: 1rem;
-  left: 0;
-  transform: translateX(-50%);
-  border-radius: 50%;
-}
-
-.account-show #account-nav__close {
-  display: inline-block;
-}
-
-.account-hidden #account-nav__close {
-  display: none;
-}
-
 #account-nav__tabs-btn {
   margin-bottom: 1rem;
   display: flex;
