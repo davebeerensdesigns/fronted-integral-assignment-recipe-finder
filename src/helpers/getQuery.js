@@ -12,10 +12,20 @@ const Type = (query) => {
     return query.get('type') !== null ? query.get('type') : '';
 }
 
+const Time = (query) => {
+    return query.get('maxReadyTime') !== null ? query.get('maxReadyTime') : '';
+}
+
+const Ingredients = (query) => {
+    return query.get('includeIngredients') !== null ? query.get('includeIngredients') : '';
+}
+
 const GetQuery = {
     Params,
     PageNumber,
-    Type
+    Type,
+    Time,
+    Ingredients
 }
 
 export default GetQuery;

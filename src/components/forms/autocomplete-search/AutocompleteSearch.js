@@ -4,6 +4,7 @@ import spoonacularService from "../../../services/spoonacular.service";
 import './AutocompleteSearch.scss';
 import Loader from "../../loader/Loader";
 import {Link} from "react-router-dom";
+import notifyToast from "../../../utils/hooks/notifyToast";
 
 function AutocompleteSearch() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -59,6 +60,7 @@ function AutocompleteSearch() {
                         setLoading(false)
                     }).catch(
                     (error) => {
+                        notifyToast.notifyError(error.response.data.message);
                         setLoading(false)
                     })
             };

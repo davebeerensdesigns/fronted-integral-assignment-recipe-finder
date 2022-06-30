@@ -8,6 +8,7 @@ import {history} from "./helpers/history";
 import AccountTabContextProvider from "./utils/providers/AccountTabContextProvider";
 import MainNavContextProvider from "./utils/providers/MainNavContextProvider";
 import FavoriteRecipesContextProvider from "./utils/providers/FavoriteRecipesContextProvider";
+import PantryFilterContextProvider from "./utils/providers/PantryFilterContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,7 +17,9 @@ root.render(
             <FavoriteRecipesContextProvider>
                 <AccountTabContextProvider>
                     <MainNavContextProvider>
-                        <App/>
+                        <PantryFilterContextProvider>
+                            <App/>
+                        </PantryFilterContextProvider>
                     </MainNavContextProvider>
                 </AccountTabContextProvider>
             </FavoriteRecipesContextProvider>
