@@ -28,11 +28,26 @@ const getCurrentUser = () => {
     return localStorage.getItem('token');
 }
 
+const getCurrentAvatar = () => {
+    return localStorage.getItem('image');
+}
+
+const removeCurrentAvatar = () => {
+    return localStorage.removeItem('image');
+}
+
+const getCurrentFavorites = () => {
+    return localStorage.getItem('favorites');
+}
+
 const AuthService = {
     register,
     login,
     logout,
-    getCurrentUser
+    getCurrentUser,
+    getCurrentAvatar,
+    removeCurrentAvatar,
+    getCurrentFavorites
 };
 
 export default AuthService;

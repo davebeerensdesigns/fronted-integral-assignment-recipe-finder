@@ -1,4 +1,5 @@
 import React, {createContext, useEffect, useState} from "react";
+import Appservice from "../../services/app.service";
 
 export const AccountTabContext = createContext(null);
 
@@ -6,7 +7,7 @@ const {Provider} = AccountTabContext;
 
 const AccountTabContextProvider = ({children}) => {
 
-    let accountTabObject = localStorage.getItem('accountTab');
+    let accountTabObject = Appservice.getAccountTab();
 
     let accountTabData = {
         show: false,
@@ -31,7 +32,7 @@ const AccountTabContextProvider = ({children}) => {
     const [accountTab, setAccountTab] = useState(accountTabData);
 
     useEffect(() => {
-        localStorage.setItem('accountTab', JSON.stringify(accountTab));
+        Appservice.setAccountTab(JSON.stringify(accountTab));
     }, [accountTab]);
 
     return <Provider value={[accountTab, setAccountTab]}>{children}</Provider>;
