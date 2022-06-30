@@ -17,6 +17,7 @@ import {faTrash} from "@fortawesome/pro-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Modal from "../modal/Modal";
 import cacheService from "../../services/cache.service";
+import {pluralize} from "../../helpers/pluralize";
 
 function RecipeFavoritesArchive({title, baseLink}) {
     let location = useLocation();
@@ -158,7 +159,7 @@ function RecipeFavoritesArchive({title, baseLink}) {
             )}
             {!loading && !noRecipes && (
                 <div className='recipe-list__wrapper'>
-                    <h2>{data.totalResults} recipes for {title}</h2>
+                    <h2>{pluralize(data.totalResults, 'recipe')} for {title}</h2>
 
                     <RecipeFilterBar>
                         <RecipeListCurrentPage offset={data.offset}

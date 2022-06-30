@@ -12,6 +12,7 @@ import axios from "axios";
 import notifyToast from "../../utils/hooks/notifyToast";
 import Loader from "../loader/Loader";
 import spoonacularService from "../../services/spoonacular.service";
+import {pluralize} from "../../helpers/pluralize";
 
 function RecipeArchive({title, baseLink, apiFor, useParams}) {
     let location = useLocation();
@@ -19,10 +20,14 @@ function RecipeArchive({title, baseLink, apiFor, useParams}) {
     const query = getQuery.Params(location.search);
     const page = getQuery.PageNumber(query);
     const type = getQuery.Type(query);
+    const time = getQuery.Time(query);
+    const ingredients = getQuery.Ingredients(query);
 
     const cacheKey = cacheService.CreateKey(location, {
         page: query.get('page'),
-        type: query.get('type')
+        type: query.get('type'),
+        time: query.get('maxReadyTime'),
+        ingredients: query.get('includeIngredients')
     });
 
     const number = 12;
@@ -34,10 +39,14 @@ function RecipeArchive({title, baseLink, apiFor, useParams}) {
     const previousParameters = [];
     previousPage > 1 && previousParameters.push('page=' + previousPage);
     type && previousParameters.push('type=' + type);
+    time && previousParameters.push('maxReadyTime=' + time);
+    ingredients && previousParameters.push('includeIngredients=' + ingredients);
 
     const nextParameters = [];
     nextPage && nextParameters.push('page=' + nextPage);
     type && nextParameters.push('type=' + type);
+    time && nextParameters.push('maxReadyTime=' + time);
+    ingredients && nextParameters.push('includeIngredients=' + ingredients);
 
     const previousLink = createPagination.PreviousPageURL(previousParameters, baseLink);
     const nextLink = createPagination.NextPageURL(nextParameters, baseLink);
@@ -53,6 +62,9 @@ function RecipeArchive({title, baseLink, apiFor, useParams}) {
             break;
         case 'popular':
             api = spoonacularService.GetPopularAPI(type, number, offset);
+            break;
+        case 'search-pantry':
+            api = spoonacularService.GetSearchPantryAPI(type, time, ingredients, number, offset);
             break;
         default:
             api = '';
@@ -126,6 +138,12 @@ function RecipeArchive({title, baseLink, apiFor, useParams}) {
         fetchData(api)
     }, [api, cacheKey])
 
+    console.log(ingredients)
+
+    const formatIngredients = (items) => {
+        const itemArray = items.split(',');
+        return [itemArray.slice(0, -1).join(', '), itemArray.slice(-1)[0]].join(itemArray.length < 2 ? '' : ' and ');
+    }
     return (
         <>
             {loading && (
@@ -134,14 +152,21 @@ function RecipeArchive({title, baseLink, apiFor, useParams}) {
             {!loading && (
                 <div className='recipe-list__wrapper'>
 
-                    <h2>{data.totalResults} recipes for {title} {type ? ' - ' + type : ''}</h2>
+                    {apiFor !== 'search-pantry' && (
+                        <h2>{pluralize(data.totalResults, 'recipe')} for {title} {type ? ' - ' + type : ''}</h2>
+                    )}
+
+                    {apiFor === 'search-pantry' && (
+                        <h2>{pluralize(data.totalResults, 'recipe')} for {ingredients ? formatIngredients(ingredients) : ''} {time ? ' - ' + time + ' minutes' : ''} {type ? ' - ' + type : ''}</h2>
+                    )}
+
                     <RecipeFilterBar>
                         <RecipeListCurrentPage offset={data.offset}
                                                number={data.number}
                                                totalResults={data.totalResults}/>
 
-                        <FilterType navigateOnChange={location.pathname}
-                                    currentType={type}/>
+                        {apiFor !== 'search-pantry' && (<FilterType navigateOnChange={location.pathname}
+                                    currentType={type}/>)}
                     </RecipeFilterBar>
 
                     <RecipeList recipesObject={data}

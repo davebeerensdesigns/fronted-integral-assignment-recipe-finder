@@ -12,8 +12,13 @@ import {PantryFilterContext} from "../../utils/providers/PantryFilterContextProv
 import types from "../../config/types";
 import time from "../../config/time";
 import '../forms/Forms.scss';
+import RecipeArchive from "../archive/RecipeArchive";
+import {useLocation, useNavigate} from "react-router-dom";
 
 function PantryFilterBar() {
+    let navigate = useNavigate();
+    let location = useLocation();
+    const baseLink = '/search-pantry';
     const [pantryFilter, setPantryFilter] = useContext(PantryFilterContext)
 
     const [searchQuery, setSearchQuery] = useState('');
@@ -100,8 +105,12 @@ function PantryFilterBar() {
 
     const handlePantryForm = (e) => {
         e.preventDefault();
-        console.log(pantryFilter)
+        navigate({
+            pathname: baseLink,
+            search: '?type='+pantryFilter.type+'&maxReadyTime='+pantryFilter.time+'&includeIngredients='+pantryFilter.ingredients.join(',')
+        })
     }
+
 
     return (
         <div className='pantry-filter-bar__wrapper'>
@@ -187,6 +196,11 @@ function PantryFilterBar() {
                     <button className='btn-primary' type='submit'>Search recipes</button>
                 </div>
             </form>
+            {location.search.length > 0 && (
+                <>
+                    <RecipeArchive baseLink={baseLink} apiFor='search-pantry' />
+                </>
+            )}
         </div>
     );
 }

@@ -21,6 +21,11 @@ const routes = [
         isPrivate: false,
     },
     {
+        path: '/search-pantry/recipe/:recipeId',
+        element: <Recipe/>,
+        isPrivate: false,
+    },
+    {
         path: '/favorites',
         element: <Favorites/>,
         isPrivate: true,

@@ -13,6 +13,10 @@ const GetPopularAPI = (type, number, offset) => {
     return `${recipeApi}/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&type=${type}&addRecipeInformation=true&sort=popularity&number=${number}&offset=${offset}`;
 }
 
+const GetSearchPantryAPI = (type, time, ingredients, number, offset) => {
+    return `${recipeApi}/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}${type && '&type='+type}${time && '&maxReadyTime='+time}${ingredients && '&includeIngredients='+ingredients}&addRecipeInformation=true&number=${number}&offset=${offset}`;
+}
+
 const GetFavoritesAPI = (ids) => {
     return `${recipeApi}/informationBulk?apiKey=${process.env.REACT_APP_API_KEY}&ids=${ids}&includeNutrition=false`;
 }
@@ -33,6 +37,7 @@ const spoonacularService = {
     GetCuisineAPI,
     GetLatestAPI,
     GetPopularAPI,
+    GetSearchPantryAPI,
     GetFavoritesAPI,
     GetAutocompleteSearchAPI,
     GetIngredientSearchAPI,
