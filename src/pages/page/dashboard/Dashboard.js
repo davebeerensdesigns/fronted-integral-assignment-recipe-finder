@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 import './Dashboard.scss';
 import '@splidejs/react-splide/css/core';
 import WidgetSlider from "../../../components/widgets/WidgetSlider";
+import PageTitle from "../../../components/titles/PageTitle";
 
 function Dashboard() {
 
@@ -12,9 +13,7 @@ function Dashboard() {
 
     return (
         <>
-            <div className='page-title'>
-                <h1>Dashboard</h1>
-            </div>
+            <PageTitle title='Dashboard' />
             <div className='hero-banner'>
                 <div className='hero-image'>
                     <img src={Fridge}
