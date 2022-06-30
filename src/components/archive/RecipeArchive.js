@@ -138,8 +138,6 @@ function RecipeArchive({title, baseLink, apiFor, useParams}) {
         fetchData(api)
     }, [api, cacheKey])
 
-    console.log(ingredients)
-
     const formatIngredients = (items) => {
         const itemArray = items.split(',');
         return [itemArray.slice(0, -1).join(', '), itemArray.slice(-1)[0]].join(itemArray.length < 2 ? '' : ' and ');
