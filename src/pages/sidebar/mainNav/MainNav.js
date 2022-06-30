@@ -22,8 +22,7 @@ function MainNav() {
 
 
     const navItems = links.map(item => {
-        if(!user & item.user){ return }
-        return (
+        return !user && item.user ? '' : (
             <NavLink
                 key={item.path}
                 className='main-nav__link'
