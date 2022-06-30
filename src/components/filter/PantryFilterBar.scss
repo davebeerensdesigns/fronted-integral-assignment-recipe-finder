@@ -1,0 +1,122 @@
+@import "../../utils/styles/scss-variables.scss";
+
+.pantry-filter-bar__form {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+
+  label {
+    display: block;
+    margin-bottom: .5rem;
+  }
+}
+
+.pantry-filter-bar__form {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.form-field__ingredients {
+  position: relative;
+}
+
+.form-field__ingredients, .form-field__type, .form-field__time {
+  min-width: 200px;
+  max-width: 700px;
+  flex: auto;
+}
+
+.ingredients-input__results {
+  z-index: 9;
+  margin-top: .5rem;
+  width: 100%;
+  border-radius: $border-radius-base;
+  box-shadow: 0 0 6px rgba($gray-2, 0.5);
+  background-color: $white;
+  position: absolute;
+  padding: .25rem;
+}
+
+.ingredients-input__list {
+  list-style: none;
+  display: flex;
+  gap: .25rem;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+
+.ingredients-input__item {
+  padding: .5rem .75rem;
+  border-radius: $border-radius-sm;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $gray-1;
+  }
+
+  &.disabled {
+    color: $gray-2;
+
+    &:hover {
+      background-color: transparent;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.ingredients-input__wrapper {
+  position: relative;
+  display: flex;
+  padding: 3px 46px 3px 3px;
+  gap: 3px;
+  flex-wrap: wrap;
+  width: 100%;
+  color: $gray-4;
+  font-size: $font-size-base;
+  background-color: $white;
+  background-clip: padding-box;
+  border: 1px solid $gray-2;
+  border-radius: $border-radius-base;
+
+  &.focus {
+    background-color: $white;
+    border-color: $primary;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba($primary, .25);
+  }
+
+  button {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+  }
+
+  button, input {
+    border-radius: $border-radius-sm;
+    height: 34px;
+    padding: 0.3rem 1rem;
+  }
+
+  input {
+    border: transparent;
+    width: auto;
+    display: inline;
+    flex: auto;
+    min-width: 100px;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  .btn-remove__ingredients {
+    position: absolute;
+    border: transparent;
+    top: 3px;
+    right: 3px;
+  }
+}
+
+.form-field__submit {
+  align-self: flex-end;
+}
