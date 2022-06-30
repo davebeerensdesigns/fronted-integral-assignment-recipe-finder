@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import Fridge from '../../../assets/images/fridge.png';
+import Fridge from '../../../assets/images/fridge-tags.png';
 import Button from "../../../components/buttons/button/Button";
 import {useNavigate} from "react-router-dom";
 import './Dashboard.scss';
@@ -19,7 +19,6 @@ function Dashboard() {
                 <div className='hero-image'>
                     <img src={Fridge}
                          alt='Fridge with ingredients'/>
-                    {/*TODO: remove shadow on image*/}
                 </div>
                 <div className='hero-content'>
                     <h2>Discover <span className='text-primary'>recipes</span> with <span className='text-primary'>ingredients</span> you
