@@ -21,6 +21,7 @@ function Favorites() {
                 })
                 .catch(
                     () => {
+                        setUsername('unknown user')
                         setLoading(false)
                     });
         }
