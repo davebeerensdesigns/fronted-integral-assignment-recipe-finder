@@ -2,8 +2,7 @@ import React, {useContext} from 'react';
 import './AccountNav.scss';
 import {
     faUserPlus,
-    faArrowRightToBracket,
-    faClose
+    faArrowRightToBracket
 } from "@fortawesome/pro-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Login from "../../../components/forms/form/login/Login";
