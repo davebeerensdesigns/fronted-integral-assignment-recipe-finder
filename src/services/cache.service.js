@@ -1,7 +1,7 @@
 const CreateKey = (location, parameters = {}) => {
     const params = [];
     if(parameters){
-        Object.entries(parameters).map(([key, value], index) => {
+        Object.entries(parameters).map(([key, value]) => {
             if(value !== null){
                 const string = key + '=' + encodeURIComponent(value.trim());
                 params.push(string)
