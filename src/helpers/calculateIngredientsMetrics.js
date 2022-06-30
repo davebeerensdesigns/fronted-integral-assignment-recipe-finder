@@ -4,9 +4,7 @@ export function calculateIngredientsMetrics(recipeServings, amount, servings, un
         case 'g':
         case 'ml':
             return Math.ceil(math) + ' ' + (unitShort ? unitShort : '')
-            break;
         default:
             return parseFloat(math.toFixed(1)) + ' ' + (unitShort ? unitShort : '')
-            break;
     }
 }
