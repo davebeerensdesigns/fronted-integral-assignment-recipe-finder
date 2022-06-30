@@ -43,7 +43,7 @@ function AutocompleteSearch() {
                          crossOrigin="anonymous"
                          referrerPolicy="no-referrer"/>
                 </figure>
-                {id} - {title}
+                {title}
             </Link>
         )}
     </nav>;
