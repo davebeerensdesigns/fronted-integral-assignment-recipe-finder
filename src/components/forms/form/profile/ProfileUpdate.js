@@ -1,14 +1,17 @@
 import React, {useEffect, useState, useContext} from 'react';
-import Input from "../forms/inputs/input/Input";
-import Password from "../forms/inputs/password/Password";
-import Button from "../buttons/button/Button";
+import Input from "../../inputs/input/Input";
+import Password from "../../inputs/password/Password";
+import Button from "../../../buttons/button/Button";
 import {FormProvider, useForm} from "react-hook-form";
-import UserService from "../../services/user.service";
-import Alert from "../alert/Alert";
-import {faSpinner} from "@fortawesome/pro-regular-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import Image from "../forms/inputs/image/Image";
-import {AvatarContext} from "../../utils/providers/AvatarContextProvider";
+import UserService from "../../../../services/user.service";
+import Alert from "../../../alert/Alert";
+import ProfileImage from "../../inputs/image/ProfileImage";
+import {AvatarContext} from "../../../../utils/providers/AvatarContextProvider";
+import authService from "../../../../services/auth.service";
+import Loader from "../../../loader/Loader";
+import './ProfileUpdate.scss';
+import FormNotice from "../../elements/notice/FormNotice";
+import FieldGroup from "../../elements/group/FieldGroup";
 
 function ProfileUpdate() {
 
@@ -57,7 +60,7 @@ function ProfileUpdate() {
                             username: response.data.username,
                             email: response.data.email
                         });
-                        localStorage.setItem('image', response.data.profilePicture)
+                        authService.setCurrentAvatar(response.data.profilePicture)
                         setAvatarValue(response.data.profilePicture)
                         setSuccessMessage('You have successfully updated your account!');
                         methods.reset();
@@ -107,14 +110,14 @@ function ProfileUpdate() {
             <form id='updateAccount'
                   className='form'
                   onSubmit={handleSubmit(onSubmitUpdate)}>
-                <div className='form-field__group'>
-                    <Image
+                <FieldGroup>
+                    <ProfileImage
                         type='file'
                         id='avatarUpdate'
                         label='Avatar'
                     />
-                </div>
-                <div className='form-field__group'>
+                </FieldGroup>
+                <FieldGroup>
                     <Input
                         id='usernameUpdate'
                         label='Username'
@@ -122,8 +125,8 @@ function ProfileUpdate() {
                         readOnly={true}
                         value={profileData.username}
                     />
-                </div>
-                <div className='form-field__group'>
+                </FieldGroup>
+                <FieldGroup>
                     <Input
                         type='email'
                         id='emailUpdate'
@@ -136,8 +139,8 @@ function ProfileUpdate() {
                             }
                         }}
                     />
-                </div>
-                <div className='form-field__group'>
+                </FieldGroup>
+                <FieldGroup>
                     <Password
                         id='passwordUpdate'
                         label='New password'
@@ -153,8 +156,8 @@ function ProfileUpdate() {
                             }
                         }}
                     />
-                </div>
-                <div className='form-field__group'>
+                </FieldGroup>
+                <FieldGroup>
                     <Password
                         id='passwordUpdateConfirm'
                         label='Confirm password'
@@ -167,26 +170,25 @@ function ProfileUpdate() {
                             }
                         }}
                     />
-                </div>
+                </FieldGroup>
 
                 <Button type='submit'
-                        customClass='btn-primary'>Save settings {loading && <FontAwesomeIcon icon={faSpinner}
-                                                                                       spin={true}/>}</Button>
+                        customClass='btn-primary'>Save settings {loading && <Loader hideText={true} />}</Button>
 
                 {errorMessage && (
-                    <div className="form-notice">
+                    <FormNotice>
                         <Alert type='danger'>
                             {errorMessage}
                         </Alert>
-                    </div>
+                    </FormNotice>
                 )}
 
                 {successMessage && (
-                    <div className="form-notice">
+                    <FormNotice>
                         <Alert type='success'>
                             {successMessage}
                         </Alert>
-                    </div>
+                    </FormNotice>
                 )}
             </form>
         </FormProvider>

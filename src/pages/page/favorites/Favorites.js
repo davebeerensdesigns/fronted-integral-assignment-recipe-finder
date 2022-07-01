@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, {useEffect, useState} from 'react';
 import PageTitle from "../../../components/titles/PageTitle";
 import UserService from "../../../services/user.service";
 import Loader from "../../../components/loader/Loader";
@@ -21,6 +21,7 @@ function Favorites() {
                 })
                 .catch(
                     () => {
+                        setUsername('unknown user')
                         setLoading(false)
                     });
         }

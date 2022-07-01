@@ -19,20 +19,60 @@ const login = (username, password) => {
 }
 
 const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('image');
-    localStorage.removeItem('favorites');
+    removeCurrentUser()
+    removeCurrentAvatar()
+    removeCurrentFavorites()
 }
 
 const getCurrentUser = () => {
     return localStorage.getItem('token');
 }
 
+const setCurrentUser = (data) => {
+    localStorage.setItem('token', data);
+}
+
+const removeCurrentUser = () => {
+    localStorage.removeItem('token');
+}
+
+const getCurrentAvatar = () => {
+    return localStorage.getItem('image');
+}
+
+const setCurrentAvatar = (data) => {
+    localStorage.setItem('image', data);
+}
+
+const removeCurrentAvatar = () => {
+    localStorage.removeItem('image');
+}
+
+const getCurrentFavorites = () => {
+    return localStorage.getItem('favorites');
+}
+
+const setCurrentFavorites = (data) => {
+    localStorage.setItem('favorites', data);
+}
+
+const removeCurrentFavorites = () => {
+    localStorage.removeItem('favorites');
+}
+
 const AuthService = {
     register,
     login,
     logout,
-    getCurrentUser
+    getCurrentUser,
+    setCurrentUser,
+    removeCurrentUser,
+    getCurrentAvatar,
+    setCurrentAvatar,
+    removeCurrentAvatar,
+    getCurrentFavorites,
+    setCurrentFavorites,
+    removeCurrentFavorites
 };
 
 export default AuthService;

@@ -1,30 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import cacheService from "../../services/cache.service";
-import spoonacularService from "../../services/spoonacular.service";
 import axios from "axios";
 import notifyToast from "../../utils/hooks/notifyToast";
 import Loader from "../loader/Loader";
 import RecipeSlider from "../slider/RecipeSlider";
 
-function WidgetSlider({slidesFor, title}) {
+function WidgetSlider({slidesFor, title, api}) {
 
 
     const location = {
         pathname: slidesFor+'Slides'
     }
     const cacheKey = cacheService.CreateKey(location, {});
-
-    let api = '';
-    switch (slidesFor) {
-        case 'popular':
-            api = spoonacularService.GetPopularAPI('', 6, 0);
-            break;
-        case 'latest':
-            api = spoonacularService.GetLatestAPI('', 6, 0);
-            break;
-        default:
-            break;
-    }
 
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);

@@ -1,7 +1,8 @@
 import React from 'react';
-import types from "../../../config/types";
+import types from "../../../../config/types";
 import {useNavigate} from "react-router-dom";
-import '../Forms.scss';
+import './FilterType.scss';
+import SelectGroup from "../../elements/group/SelectGroup";
 
 function FilterType({navigateOnChange, currentType}) {
     let navigate = useNavigate();
@@ -14,7 +15,7 @@ function FilterType({navigateOnChange, currentType}) {
             <div className='filter__name'>
                 Type of meal
             </div>
-            <div className='form-select__group'>
+            <SelectGroup>
                 <select className='form-select' value={currentType}
                         onChange={handleTypeSelect}>
                     <option value=''>all types</option>
@@ -25,7 +26,7 @@ function FilterType({navigateOnChange, currentType}) {
                         })
                     }
                 </select>
-            </div>
+            </SelectGroup>
         </div>
     );
 }

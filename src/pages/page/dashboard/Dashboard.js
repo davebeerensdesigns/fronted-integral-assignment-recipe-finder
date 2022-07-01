@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from "react";
-import Fridge from '../../../assets/images/fridge.png';
+import React from "react";
+import Fridge from '../../../assets/images/fridge-tags.png';
 import Button from "../../../components/buttons/button/Button";
 import {useNavigate} from "react-router-dom";
 import './Dashboard.scss';
 import '@splidejs/react-splide/css/core';
 import WidgetSlider from "../../../components/widgets/WidgetSlider";
+import PageTitle from "../../../components/titles/PageTitle";
+import spoonacularService from "../../../services/spoonacular.service";
 
 function Dashboard() {
 
@@ -12,14 +14,11 @@ function Dashboard() {
 
     return (
         <>
-            <div className='page-title'>
-                <h1>Dashboard</h1>
-            </div>
+            <PageTitle title='Dashboard' />
             <div className='hero-banner'>
                 <div className='hero-image'>
                     <img src={Fridge}
-                         alt='Fridge with ingredients'/>
-                    {/*TODO: remove shadow on image*/}
+                         alt='Fridge with ingredients' width='451' height='386'/>
                 </div>
                 <div className='hero-content'>
                     <h2>Discover <span className='text-primary'>recipes</span> with <span className='text-primary'>ingredients</span> you
@@ -38,8 +37,8 @@ function Dashboard() {
                     </div>
                 </div>
             </div>
-            <WidgetSlider slidesFor='popular' title='Popular'/>
-            <WidgetSlider slidesFor='latest' title='Latest'/>
+            <WidgetSlider slidesFor='popular' title='Popular' api={spoonacularService.GetPopularAPI('', 6, 0)}/>
+            <WidgetSlider slidesFor='latest' title='Latest' api={spoonacularService.GetLatestAPI('', 6, 0)}/>
 
         </>
     );

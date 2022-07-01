@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import spoonacularService from "../../../services/spoonacular.service";
+import spoonacularService from "../../../../services/spoonacular.service";
 import './AutocompleteSearch.scss';
-import Loader from "../../loader/Loader";
+import Loader from "../../../loader/Loader";
 import {Link} from "react-router-dom";
-import notifyToast from "../../../utils/hooks/notifyToast";
+import notifyToast from "../../../../utils/hooks/notifyToast";
 
 function AutocompleteSearch() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -55,7 +55,6 @@ function AutocompleteSearch() {
                 setLoading(true)
                 await axios.get(api).then(
                     (response) => {
-                        console.log(response)
                         setSearchResults(response.data.results)
                         setLoading(false)
                     }).catch(
@@ -70,7 +69,7 @@ function AutocompleteSearch() {
             return () => clearTimeout(delayDebounceFn)
 
         }
-    }, [api])
+    }, [api, runSearch])
 
     return (
         <div className='searchbar'>

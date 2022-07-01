@@ -5,7 +5,10 @@ import AvatarButton from "../buttons/avatar-button/AvatarButton";
 import Container from "../container/Container";
 import {ReactComponent as AppIcon} from "../../assets/logo/icon.svg";
 import {Link} from "react-router-dom";
-import AutocompleteSearch from "../forms/autocomplete-search/AutocompleteSearch";
+import AutocompleteSearch from "../forms/form/autocomplete-search/AutocompleteSearch";
+import Button from "../buttons/button/Button";
+import {faBars} from "@fortawesome/pro-regular-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 function PageHeader() {
 
@@ -19,17 +22,18 @@ function PageHeader() {
                     <Link
                         id='app-icon__link'
                         to='/'
+                        title='logo icon'
                     >
                         <AppIcon
                             id='app-icon__img'
                         />
                     </Link>
-                    <button className='btn btn-icon'
-                            onClick={() => {
+                    <Button customClass='btn-icon'
+                            customClick={() => {
                                 setMainNav(arr => ({...arr, show: !arr.show}))
                             }}>
-                        MENU
-                    </button>
+                        <FontAwesomeIcon icon={faBars}/> MENU
+                    </Button>
 
                     <AutocompleteSearch/>
 

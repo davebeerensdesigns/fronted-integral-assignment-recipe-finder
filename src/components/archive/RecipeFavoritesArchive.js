@@ -18,6 +18,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Modal from "../modal/Modal";
 import cacheService from "../../services/cache.service";
 import {pluralize} from "../../helpers/pluralize";
+import authService from "../../services/auth.service";
 
 function RecipeFavoritesArchive({title, baseLink}) {
     let location = useLocation();
@@ -66,7 +67,7 @@ function RecipeFavoritesArchive({title, baseLink}) {
         }
         await userService.updateUserDetails(JSON.stringify(data)).then(
             () => {
-                localStorage.removeItem('favorites');
+                authService.removeCurrentFavorites();
                 notifyToast.notifyInfo('All your favorite recipes are removed.')
                 setFavoriteRecipes('');
                 setRemoveAllWindow(false)

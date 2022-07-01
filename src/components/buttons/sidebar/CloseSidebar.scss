@@ -1,0 +1,38 @@
+@import "../../../utils/styles/scss-mixins";
+
+#account-nav__close {
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  transform: translateX(-50%);
+  border-radius: 50%;
+}
+
+.account-show #account-nav__close {
+  display: inline-block;
+}
+
+.account-hidden #account-nav__close {
+  display: none;
+}
+
+#main-nav__close {
+  position: fixed;
+  top: 1rem;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  transition: left .2s ease-in-out;
+}
+
+.main-hidden #main-nav__close{
+  left: -50px;
+}
+.main-show #main-nav__close {
+  left: 270px;
+}
+
+@include media-breakpoint-up(md){
+  #main-nav__close {
+    display: none;
+  }
+}

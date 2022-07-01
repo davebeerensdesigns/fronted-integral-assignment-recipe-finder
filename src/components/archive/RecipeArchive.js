@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import RecipeFilterBar from "../filter/RecipeFilterBar";
 import RecipeListCurrentPage from "../pagination/RecipeListCurrentPage";
-import FilterType from "../forms/filters/FilterType";
+import FilterType from "../forms/select/filter-type/FilterType";
 import RecipeList from "../list/RecipeList";
 import RecipeListPagination from "../pagination/RecipeListPagination";
 import {useLocation} from "react-router-dom";
@@ -138,8 +138,6 @@ function RecipeArchive({title, baseLink, apiFor, useParams}) {
         fetchData(api)
     }, [api, cacheKey])
 
-    console.log(ingredients)
-
     const formatIngredients = (items) => {
         const itemArray = items.split(',');
         return [itemArray.slice(0, -1).join(', '), itemArray.slice(-1)[0]].join(itemArray.length < 2 ? '' : ' and ');
@@ -153,11 +151,11 @@ function RecipeArchive({title, baseLink, apiFor, useParams}) {
                 <div className='recipe-list__wrapper'>
 
                     {apiFor !== 'search-pantry' && (
-                        <h2>{pluralize(data.totalResults, 'recipe')} for {title} {type ? ' - ' + type : ''}</h2>
+                        <h2>{pluralize(data.totalResults, 'recipe')} {(title || type) && 'for'} {title} {type ? ' - ' + type : ''}</h2>
                     )}
 
                     {apiFor === 'search-pantry' && (
-                        <h2>{pluralize(data.totalResults, 'recipe')} for {ingredients ? formatIngredients(ingredients) : ''} {time ? ' - ' + time + ' minutes' : ''} {type ? ' - ' + type : ''}</h2>
+                        <h2>{pluralize(data.totalResults, 'recipe')} {(ingredients || time || type) && 'for'} {ingredients ? formatIngredients(ingredients) : ''} {time ? ' - ' + time + ' minutes' : ''} {type ? ' - ' + type : ''}</h2>
                     )}
 
                     <RecipeFilterBar>

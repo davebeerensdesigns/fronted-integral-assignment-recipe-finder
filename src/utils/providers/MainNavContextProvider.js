@@ -1,4 +1,5 @@
 import React, {createContext, useEffect, useState} from "react";
+import appService from "../../services/app.service";
 
 export const MainNavContext = createContext(null);
 
@@ -6,7 +7,7 @@ const {Provider} = MainNavContext;
 
 const MainNavContextProvider = ({children}) => {
 
-    let mainNavObject = localStorage.getItem('mainNav');
+    let mainNavObject = appService.getMainNavTab();
 
     let mainNavData = true;
 
@@ -25,7 +26,7 @@ const MainNavContextProvider = ({children}) => {
 
 
     useEffect(() => {
-        localStorage.setItem('mainNav', JSON.stringify(mainNav));
+        appService.setMainNavTab(JSON.stringify(mainNav));
     }, [mainNav]);
 
     return <Provider value={[mainNav, setMainNav]}>{children}</Provider>;

@@ -16,8 +16,8 @@ import {authVerification} from "./services/auth.verification";
 
 function App() {
 
-    // TODO: if there is time left then cleanup code a little bit
-    // TODO: improve error messages for visitors i.e. wrong password message
+    // TODO: create readme installation file
+    // TODO: create scripts
 
     const [userValue, setUserValue] = useContext(UserContext);
     const [accountTab, setAccountTab] = useContext(AccountTabContext);

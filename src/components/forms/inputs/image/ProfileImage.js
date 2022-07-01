@@ -1,12 +1,13 @@
 import React, {useFormContext} from 'react-hook-form';
 import {classNames} from '../../../../helpers/classNames';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faExclamationCircle} from "@fortawesome/pro-regular-svg-icons";
-import '../../Forms.scss'
 import Avatar from "../../../profile/Avatar";
+import './ProfileImage.scss';
+import FormFieldIconError from "../../elements/error/FormFieldIconError";
+import FormFieldMeta from "../../elements/meta/FormFieldMeta";
+import FieldLabel from "../../elements/label/FieldLabel";
 
 
-export default function Image(
+export default function ProfileImage(
     {
         label,
         placeholder = '',
@@ -27,8 +28,7 @@ export default function Image(
 
     return (
         <>
-            <label htmlFor={id}
-                   className='form-field__label'>
+            <FieldLabel id={id}>
                 {label}
                 <figure id='profile-picture'>
                     <Avatar/>
@@ -58,20 +58,11 @@ export default function Image(
                     />
 
                     {errors[id] && (
-                        <span className='form-field__icon form-field__icon-error'>
-                            <FontAwesomeIcon icon={faExclamationCircle}/>
-                        </span>
+                        <FormFieldIconError/>
                     )}
                 </div>
-            </label>
-            <div className='form-field__meta'>
-                {helperText !== '' && (
-                    <p className='form-field__helper'>{helperText}</p>
-                )}
-                {errors[id] && (
-                    <span className='form-field__error'>{errors[id].message}</span>
-                )}
-            </div>
+            </FieldLabel>
+            <FormFieldMeta helperText={helperText} error={errors[id]} />
         </>
     );
 }

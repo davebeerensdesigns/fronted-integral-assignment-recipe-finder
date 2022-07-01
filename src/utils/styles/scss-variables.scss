@@ -37,12 +37,16 @@ $theme-colors: map-merge(
                 (
                         "primary": $primary,
                         "primary-hover": $primary-hover,
+                        "primary-bg": $primary-bg,
                         "danger": $danger,
                         "danger-hover": $danger-hover,
+                        "danger-bg": $danger-bg,
                         "success": $success,
                         "success-hover": $success-hover,
+                        "success-bg": $success-bg,
                         "dark": $dark,
-                        "dark-hover": $dark-hover
+                        "dark-hover": $dark-hover,
+                        "dark-bg": $dark-bg
                 ),
                 $theme-colors
 );

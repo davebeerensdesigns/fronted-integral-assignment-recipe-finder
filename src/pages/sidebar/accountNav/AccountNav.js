@@ -2,8 +2,7 @@ import React, {useContext} from 'react';
 import './AccountNav.scss';
 import {
     faUserPlus,
-    faArrowRightToBracket,
-    faClose
+    faArrowRightToBracket
 } from "@fortawesome/pro-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Login from "../../../components/forms/form/login/Login";
@@ -12,6 +11,8 @@ import Profile from "../../../components/profile/Profile";
 import {UserContext} from "../../../utils/providers/UserContextProvider";
 import {AccountTabContext} from "../../../utils/providers/AccountTabContextProvider";
 import {classNames} from "../../../helpers/classNames";
+import CloseSidebar from "../../../components/buttons/sidebar/CloseSidebar";
+import Button from "../../../components/buttons/button/Button";
 
 function AccountNav() {
 
@@ -23,15 +24,13 @@ function AccountNav() {
         <aside
             id='account-nav__wrapper'
         >
-            <button id='account-nav__close'
-                    className='btn btn-icon btn-round'
-                    onClick={
-                        () => {
-                            setAccountTab(arr => ({...arr, show: !arr.show}))
-                        }
-                    }>
-                <FontAwesomeIcon icon={faClose}/>
-            </button>
+            <CloseSidebar id='account-nav__close'
+                          screenSide='right'
+                          customClick={
+                              () => {
+                                  setAccountTab(arr => ({...arr, show: !arr.show}))
+                              }
+                          }/>
 
             {
                 accountTab.show && (
@@ -40,20 +39,20 @@ function AccountNav() {
                     ) : (
                         <>
                             <nav id='account-nav__tabs-btn'>
-                                <button id='btn-tab__register'
-                                        className={classNames(accountTab['guest'] === 'register' ? 'active' : '', 'btn btn-icon')}
-                                        onClick={() => {
+                                <Button id='btn-tab__register'
+                                        customClass={classNames(accountTab['guest'] === 'register' ? 'active' : '', 'btn-icon')}
+                                        customClick={() => {
                                             setAccountTab(arr => ({...arr, guest: 'register'}))
                                         }}>
                                     <FontAwesomeIcon icon={faUserPlus}/>
-                                </button>
-                                <button id='btn-tab__login'
-                                        className={classNames(accountTab['guest'] === 'login' ? 'active' : '', 'btn btn-icon')}
-                                        onClick={() => {
+                                </Button>
+                                <Button id='btn-tab__login'
+                                        customClass={classNames(accountTab['guest'] === 'login' ? 'active' : '', 'btn-icon')}
+                                        customClick={() => {
                                             setAccountTab(arr => ({...arr, guest: 'login'}))
                                         }}>
                                     <FontAwesomeIcon icon={faArrowRightToBracket}/>
-                                </button>
+                                </Button>
                             </nav>
                             <div className='account-nav__tabs'>
                                 {accountTab['guest'] === 'login' &&

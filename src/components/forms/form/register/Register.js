@@ -7,6 +7,8 @@ import Button from "../../../buttons/button/Button";
 import Alert from "../../../alert/Alert";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSpinner} from "@fortawesome/pro-regular-svg-icons";
+import FormNotice from "../../elements/notice/FormNotice";
+import FieldGroup from "../../elements/group/FieldGroup";
 
 function Register() {
 
@@ -53,7 +55,7 @@ function Register() {
             <FormProvider {...methods}>
                 <form id='registerAccount'
                       onSubmit={handleSubmit(onSubmitRegister)}>
-                    <div className='form-field__group'>
+                    <FieldGroup>
                         <Input
                             id='usernameRegister'
                             label='Username'
@@ -74,8 +76,8 @@ function Register() {
                                 }
                             }}
                         />
-                    </div>
-                    <div className='form-field__group'>
+                    </FieldGroup>
+                    <FieldGroup>
                         <Input
                             id='emailRegister'
                             label='Email'
@@ -88,8 +90,8 @@ function Register() {
                                 }
                             }}
                         />
-                    </div>
-                    <div className='form-field__group'>
+                    </FieldGroup>
+                    <FieldGroup>
                         <Password
                             id='passwordRegister'
                             label='Password'
@@ -106,26 +108,26 @@ function Register() {
                                 },
                             }}
                         />
-                    </div>
+                    </FieldGroup>
 
                     <Button type='submit'
                             customClass='btn-primary'>Register {loading && <FontAwesomeIcon icon={faSpinner}
                                                                                       spin={true}/>}</Button>
 
                     {errorMessage && (
-                        <div className="form-notice">
+                        <FormNotice>
                             <Alert type='danger'>
                                 {errorMessage}
                             </Alert>
-                        </div>
+                        </FormNotice>
                     )}
 
                     {successMessage && (
-                        <div className="form-notice">
+                        <FormNotice>
                             <Alert type='success'>
                                 {successMessage}
                             </Alert>
-                        </div>
+                        </FormNotice>
                     )}
                 </form>
             </FormProvider>
