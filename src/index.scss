@@ -48,6 +48,49 @@ input::-moz-focus-inner {
   border: 0;
 }
 
+.form-field, .form-select, input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  color: $gray-4;
+  font-size: $font-size-base;
+  line-height: 1.5;
+  height: 40px;
+  background-color: $white;
+  background-clip: padding-box;
+  border: 1px solid $gray-2;
+  appearance: none;
+  border-radius: $border-radius-base;
+  transition: border-color .2s ease-in-out, box-shadow .2s ease-in-out;
+}
+
+.form-field:read-only,
+.form-field:read-only:focus {
+  background-color: var(--recipe-gray-light);
+  cursor: not-allowed;
+}
+
+.form-field:focus {
+  color: $gray-4;
+  background-color: $white;
+  border-color: $primary;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba($primary, .25);
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $gray-3;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: $gray-3;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: $gray-3;
+}
+
 a {
   color: var(--recipe-primary);
 }
