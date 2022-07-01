@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import RecipeFilterBar from "../filter/RecipeFilterBar";
 import RecipeListCurrentPage from "../pagination/RecipeListCurrentPage";
-import FilterType from "../forms/filters/FilterType";
+import FilterType from "../forms/select/filter-type/FilterType";
 import RecipeList from "../list/RecipeList";
 import RecipeListPagination from "../pagination/RecipeListPagination";
 import {useLocation} from "react-router-dom";

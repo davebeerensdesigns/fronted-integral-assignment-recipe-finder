@@ -1,9 +1,13 @@
 import React, {useState} from 'react';
 import {useFormContext} from 'react-hook-form';
 import {classNames} from '../../../../helpers/classNames';
-import {faEye, faEyeSlash, faExclamationCircle} from "@fortawesome/pro-regular-svg-icons";
+import {faEye, faEyeSlash} from "@fortawesome/pro-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import './Password.scss';
+import FormFieldIconError from "../../elements/error/FormFieldIconError";
+import FormFieldMeta from "../../elements/meta/FormFieldMeta";
+import FieldLabel from "../../elements/label/FieldLabel";
+import FieldWrapper from "../../elements/wrapper/FieldWrapper";
 
 export default function Password(
     {
@@ -25,28 +29,28 @@ export default function Password(
 
     return (
         <>
-            <label htmlFor={id}
-                   className='form-field__label'>
+            <FieldLabel id={id}>
                 {label}
-            </label>
-            <div className='form-field__wrapper'>
-                <input{...register(id, validation)}
-                      {...rest}
-                      type={showPassword ? 'text' : 'password'}
-                      name={id}
-                      id={id}
-                      readOnly={readOnly}
-                      autoComplete='on'
-                      className={classNames(
-                          readOnly
-                              ? 'readonly'
-                              : errors[id]
-                                  ? 'form-field__invalid'
-                                  : '',
-                          'form-field'
-                      )}
-                      placeholder={placeholder}
-                      aria-describedby={id}
+            </FieldLabel>
+            <FieldWrapper>
+                <input
+                    {...register(id, validation)}
+                    {...rest}
+                    type={showPassword ? 'text' : 'password'}
+                    name={id}
+                    id={id}
+                    readOnly={readOnly}
+                    autoComplete='on'
+                    className={classNames(
+                        readOnly
+                            ? 'readonly'
+                            : errors[id]
+                                ? 'form-field__invalid'
+                                : '',
+                        'form-field'
+                    )}
+                    placeholder={placeholder}
+                    aria-describedby={id}
                 />
                 <span
                     onClick={(e) => {
@@ -62,19 +66,11 @@ export default function Password(
                     )}
                 </span>
                 {errors[id] && (
-                    <span className='form-field__icon form-field__icon-error'>
-                        <FontAwesomeIcon icon={faExclamationCircle}/>
-                    </span>
+                    <FormFieldIconError/>
                 )}
-            </div>
-            <div className='form-field__meta'>
-                {helperText !== '' && (
-                    <p className='form-field__helper'>{helperText}</p>
-                )}
-                {errors[id] && (
-                    <span className='form-field__error'>{errors[id].message}</span>
-                )}
-            </div>
+            </FieldWrapper>
+            <FormFieldMeta helperText={helperText}
+                           error={errors[id]}/>
         </>
     );
 

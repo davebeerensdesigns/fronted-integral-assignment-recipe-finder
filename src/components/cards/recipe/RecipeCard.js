@@ -1,8 +1,8 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar} from "@fortawesome/pro-solid-svg-icons";
-import {faClock, faHeart} from "@fortawesome/pro-regular-svg-icons";
-import {Link, useParams} from "react-router-dom";
+import {faClock} from "@fortawesome/pro-regular-svg-icons";
+import {Link} from "react-router-dom";
 import './RecipeCard.scss';
 import {calculateRating} from "../../../helpers/calculateRating";
 import RecipeMeta from "../../meta/recipe/RecipeMeta";
@@ -16,7 +16,6 @@ function RecipeCard({baseLink, id, image, title, readyInMinutes, healthScore, su
 
     const [user] = useContext(UserContext);
 
-    let params = useParams();
     const strippedSummary = stripHTML(summary);
     const trimmedSummary = trimText(strippedSummary, 100);
     return (

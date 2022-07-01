@@ -1,8 +1,9 @@
 import React, {useFormContext} from 'react-hook-form';
 import {classNames} from '../../../../helpers/classNames';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faExclamationCircle} from "@fortawesome/pro-regular-svg-icons";
-import '../../Forms.scss'
+import FormFieldIconError from "../../elements/error/FormFieldIconError";
+import FormFieldMeta from "../../elements/meta/FormFieldMeta";
+import FieldLabel from "../../elements/label/FieldLabel";
+import FieldWrapper from "../../elements/wrapper/FieldWrapper";
 
 
 export default function Input(
@@ -24,11 +25,10 @@ export default function Input(
 
     return (
         <>
-            <label htmlFor={id}
-                   className='form-field__label'>
+            <FieldLabel id={id}>
                 {label}
-            </label>
-            <div className='form-field__wrapper'>
+            </FieldLabel>
+            <FieldWrapper>
                 <input
                     {...register(id, validation)}
                     {...rest}
@@ -50,19 +50,10 @@ export default function Input(
                 />
 
                 {errors[id] && (
-                    <span className='form-field__icon form-field__icon-error'>
-                        <FontAwesomeIcon icon={faExclamationCircle}/>
-                    </span>
+                    <FormFieldIconError/>
                 )}
-            </div>
-            <div className='form-field__meta'>
-                {helperText !== '' && (
-                    <p className='form-field__helper'>{helperText}</p>
-                )}
-                {errors[id] && (
-                    <span className='form-field__error'>{errors[id].message}</span>
-                )}
-            </div>
+            </FieldWrapper>
+            <FormFieldMeta helperText={helperText} error={errors[id]} />
         </>
     );
 }
