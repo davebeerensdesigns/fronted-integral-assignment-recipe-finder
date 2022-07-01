@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHeart} from "@fortawesome/pro-regular-svg-icons";
 import {faHeart as faSolidHeart} from "@fortawesome/pro-solid-svg-icons";
@@ -9,6 +9,9 @@ import {FavoriteRecipesContext} from "../../utils/providers/FavoriteRecipesConte
 import {classNames} from "../../helpers/classNames";
 import './AddRecipeToFavorites.scss';
 import userService from "../../services/user.service";
+import Button from "../buttons/button/Button";
+import cacheService from "../../services/cache.service";
+import authService from "../../services/auth.service";
 
 function AddRecipeToFavorites({recipeId}) {
     const [user] = useContext(UserContext);
@@ -37,12 +40,13 @@ function AddRecipeToFavorites({recipeId}) {
                 }
                 await userService.updateUserDetails(JSON.stringify(data)).then(
                     (response) => {
-                        localStorage.setItem('favorites', response.data.info);
+                        authService.setCurrentFavorites(response.data.info);
                         setFavoriteRecipes(response.data.info);
+                        cacheService.DeleteCachedData('/favorites');
                         window.location.reload()
                     }
                 ).catch(
-                    (error) => {
+                    () => {
                         notifyToast.notifyError('Oops! Could not remove the recipe from your favorites.')
                     }
                 )
@@ -52,27 +56,28 @@ function AddRecipeToFavorites({recipeId}) {
                 }
                 await userService.updateUserDetails(JSON.stringify(data)).then(
                     (response) => {
-                        localStorage.setItem('favorites', response.data.info);
+                        authService.setCurrentFavorites(response.data.info);
                         setFavoriteRecipes(response.data.info);
+                        cacheService.DeleteCachedData('/favorites');
                         window.location.reload()
                     }
                 ).catch(
-                    (error) => {
+                    () => {
                         notifyToast.notifyError('Oops! Could not add the recipe to your favorites.')
                     }
                 )
             }
         } else {
             e.preventDefault()
-            setAccountTab(arr => ({show: true, guest: 'register'}))
+            setAccountTab({show: true, guest: 'register'})
             notifyToast.notifyInfo('Create an account to save your favorite recipes.');
         }
     }
 
     return (
-        <button onClick={addRecipe} className={classNames('btn btn-favorites', active)}>
+        <Button customClick={addRecipe} customClass={classNames('btn-favorites', active)}>
             {match ? <FontAwesomeIcon icon={faSolidHeart}/> : <FontAwesomeIcon icon={faHeart}/>}
-        </button>
+        </Button>
     );
 }
 

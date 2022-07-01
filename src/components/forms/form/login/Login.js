@@ -14,6 +14,9 @@ import './Login.scss';
 import UserService from "../../../../services/user.service";
 import {AvatarContext} from "../../../../utils/providers/AvatarContextProvider";
 import {FavoriteRecipesContext} from "../../../../utils/providers/FavoriteRecipesContextProvider";
+import FormNotice from "../../elements/notice/FormNotice";
+import FieldGroup from "../../elements/group/FieldGroup";
+import authService from "../../../../services/auth.service";
 
 function Login() {
 
@@ -22,7 +25,7 @@ function Login() {
     const [errorMessage, setErrorMessage] = useState('');
 
     const [, setUser] = useContext(UserContext);
-    const [, setAccountTab] = useContext(AccountTabContext);;
+    const [, setAccountTab] = useContext(AccountTabContext);
     const [, setFavoriteRecipes] = useContext(FavoriteRecipesContext);
 
     const methods = useForm({mode: 'onBlur'});
@@ -36,15 +39,15 @@ function Login() {
                     if (response.data.accessToken) {
                         notifyToast.notifySuccess('You are successfully logged in!');
                         setUser(true);
-                        localStorage.setItem('token', response.data.accessToken);
+                        authService.setCurrentUser(response.data.accessToken);
                         UserService.getUserDetails().then(
                             (response) => {
                                 if (response.data.profilePicture) {
-                                    localStorage.setItem('image', response.data.profilePicture);
+                                    authService.setCurrentAvatar(response.data.profilePicture);
                                     setAvatarValue(response.data.profilePicture);
                                 }
                                 if (response.data.info) {
-                                    localStorage.setItem('favorites', response.data.info);
+                                    authService.setCurrentFavorites(response.data.info);
                                     setFavoriteRecipes(response.data.info);
                                 }
                             }
@@ -82,7 +85,7 @@ function Login() {
                 <form id='loginAccount'
                       className='form'
                       onSubmit={handleSubmit(onSubmitLogin)}>
-                    <div className='form-field__group'>
+                    <FieldGroup>
                         <Input
                             id='usernameLogin'
                             label='Username'
@@ -91,8 +94,8 @@ function Login() {
                                 required: 'Username is required.',
                             }}
                         />
-                    </div>
-                    <div className='form-field__group'>
+                    </FieldGroup>
+                    <FieldGroup>
                         <Password
                             id='passwordLogin'
                             label='Password'
@@ -101,18 +104,18 @@ function Login() {
                                 required: 'Password is required',
                             }}
                         />
-                    </div>
+                    </FieldGroup>
 
                     <Button type='submit'
                             customClass='btn-primary'>Login {loading && <FontAwesomeIcon icon={faSpinner}
                                                                                    spin={true}/>}</Button>
 
                     {errorMessage && (
-                        <div className="form-notice">
+                        <FormNotice>
                             <Alert type='danger'>
                                 {errorMessage}
                             </Alert>
-                        </div>
+                        </FormNotice>
                     )}
                 </form>
             </FormProvider>
