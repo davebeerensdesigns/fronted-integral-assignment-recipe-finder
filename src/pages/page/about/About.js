@@ -17,7 +17,7 @@ function About() {
 
             <p>With their food search engine, you will find everything from "protein shake with 20 grams of protein" to "best vegan restaurant in Chicago" to "Paleo brownie recipes."</p>
 
-            <p><a href='https://spoonacular.com/food-api' target='_blank'>https://spoonacular.com/food-api</a></p>
+            <p><a href='https://spoonacular.com/food-api' target='_blank' rel='noreferrer'>https://spoonacular.com/food-api</a></p>
 
             <h2>NOVI Educational Backend</h2>
 
