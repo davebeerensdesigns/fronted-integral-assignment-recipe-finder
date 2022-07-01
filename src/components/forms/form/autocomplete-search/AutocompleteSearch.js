@@ -55,7 +55,6 @@ function AutocompleteSearch() {
                 setLoading(true)
                 await axios.get(api).then(
                     (response) => {
-                        console.log(response)
                         setSearchResults(response.data.results)
                         setLoading(false)
                     }).catch(

@@ -15,8 +15,9 @@ import AvatarContextProvider from "./utils/providers/AvatarContextProvider";
 import {authVerification} from "./services/auth.verification";
 
 function App() {
-    
+
     // TODO: create readme installation file
+    // TODO: create scripts
 
     const [userValue, setUserValue] = useContext(UserContext);
     const [accountTab, setAccountTab] = useContext(AccountTabContext);
