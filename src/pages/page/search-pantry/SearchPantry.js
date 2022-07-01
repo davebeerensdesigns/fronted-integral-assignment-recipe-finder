@@ -1,6 +1,6 @@
 import React from 'react';
 import PageTitle from "../../../components/titles/PageTitle";
-import PantryFilterBar from "../../../components/filter/PantryFilterBar";
+import PantryFilterBar from "../../../components/forms/form/pantry-search/PantryFilterBar";
 
 function SearchPantry() {
 
