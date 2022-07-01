@@ -4,17 +4,21 @@ import './RecipeSlider.scss';
 import {Splide, SplideSlide, SplideTrack} from "@splidejs/react-splide";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faAngleRight} from "@fortawesome/pro-regular-svg-icons";
+import Button from "../buttons/button/Button";
 
 function RecipeSlider({recipesObject, baseLink, title}) {
     const recipeSlider = recipesObject.recipes.map(
-        ({id, image, title, healthScore, readyInMinutes, summary}) => <SplideSlide key={id}><RecipeCard
-            baseLink={baseLink}
-            id={id}
-            image={image}
-            title={title}
-            readyInMinutes={readyInMinutes}
-            healthScore={healthScore}
-            summary={summary}/></SplideSlide>
+        ({id, image, title, healthScore, readyInMinutes, summary}) => (
+            <SplideSlide key={id}>
+                <RecipeCard
+                    baseLink={baseLink}
+                    id={id}
+                    image={image}
+                    title={title}
+                    readyInMinutes={readyInMinutes}
+                    healthScore={healthScore}
+                    summary={summary}/>
+            </SplideSlide>)
     );
     return (
         <Splide hasTrack={false}
@@ -42,12 +46,12 @@ function RecipeSlider({recipesObject, baseLink, title}) {
                 <div className='splide__header'>
                     {title && (<h2 className='splide__title'>{title}</h2>)}
                     <div className="splide__arrows">
-                        <button className="splide__arrow splide__arrow--prev btn btn-icon">
+                        <Button customClass="splide__arrow splide__arrow--prev btn-icon">
                             <FontAwesomeIcon icon={faAngleLeft}/>
-                        </button>
-                        <button className="splide__arrow splide__arrow--next btn btn-icon">
+                        </Button>
+                        <Button customClass="splide__arrow splide__arrow--next btn-icon">
                             <FontAwesomeIcon icon={faAngleRight}/>
-                        </button>
+                        </Button>
                     </div>
                 </div>
                 <SplideTrack>
