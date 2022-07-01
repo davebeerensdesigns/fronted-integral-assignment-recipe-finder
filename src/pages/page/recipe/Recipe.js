@@ -31,7 +31,7 @@ function Recipe() {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
     const [recipeMetrics, setRecipeMetrics] = useState(true);
-    const [recipeServings, setRecipeServings] = useState();
+    const [recipeServings, setRecipeServings] = useState(null);
     const [printing, setPrinting] = useState(false);
 
 
