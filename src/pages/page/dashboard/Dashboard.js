@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Fridge from '../../../assets/images/fridge-tags.png';
 import Button from "../../../components/buttons/button/Button";
 import {useNavigate} from "react-router-dom";
@@ -6,6 +6,7 @@ import './Dashboard.scss';
 import '@splidejs/react-splide/css/core';
 import WidgetSlider from "../../../components/widgets/WidgetSlider";
 import PageTitle from "../../../components/titles/PageTitle";
+import spoonacularService from "../../../services/spoonacular.service";
 
 function Dashboard() {
 
@@ -36,8 +37,8 @@ function Dashboard() {
                     </div>
                 </div>
             </div>
-            <WidgetSlider slidesFor='popular' title='Popular'/>
-            <WidgetSlider slidesFor='latest' title='Latest'/>
+            <WidgetSlider slidesFor='popular' title='Popular' api={spoonacularService.GetPopularAPI('', 6, 0)}/>
+            <WidgetSlider slidesFor='latest' title='Latest' api={spoonacularService.GetLatestAPI('', 6, 0)}/>
 
         </>
     );
