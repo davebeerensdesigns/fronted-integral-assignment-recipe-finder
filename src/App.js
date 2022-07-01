@@ -15,9 +15,7 @@ import AvatarContextProvider from "./utils/providers/AvatarContextProvider";
 import {authVerification} from "./services/auth.verification";
 
 function App() {
-
-    // TODO: improve index.html header
-    // TODO: run some tests with google lighthouse
+    
     // TODO: create readme installation file
 
     const [userValue, setUserValue] = useContext(UserContext);

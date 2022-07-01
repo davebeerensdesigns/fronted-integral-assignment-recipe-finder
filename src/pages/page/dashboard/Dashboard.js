@@ -18,7 +18,7 @@ function Dashboard() {
             <div className='hero-banner'>
                 <div className='hero-image'>
                     <img src={Fridge}
-                         alt='Fridge with ingredients'/>
+                         alt='Fridge with ingredients' width='451' height='386'/>
                 </div>
                 <div className='hero-content'>
                     <h2>Discover <span className='text-primary'>recipes</span> with <span className='text-primary'>ingredients</span> you

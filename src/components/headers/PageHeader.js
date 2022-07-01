@@ -22,6 +22,7 @@ function PageHeader() {
                     <Link
                         id='app-icon__link'
                         to='/'
+                        title='logo icon'
                     >
                         <AppIcon
                             id='app-icon__img'

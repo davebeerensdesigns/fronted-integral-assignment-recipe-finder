@@ -75,7 +75,7 @@ function AddRecipeToFavorites({recipeId}) {
     }
 
     return (
-        <Button customClick={addRecipe} customClass={classNames('btn-favorites', active)}>
+        <Button customClick={addRecipe} customClass={classNames('btn-favorites', active)} name='add to favorites'>
             {match ? <FontAwesomeIcon icon={faSolidHeart}/> : <FontAwesomeIcon icon={faHeart}/>}
         </Button>
     );
