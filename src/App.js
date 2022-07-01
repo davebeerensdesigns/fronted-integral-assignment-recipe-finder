@@ -16,7 +16,6 @@ import {authVerification} from "./services/auth.verification";
 
 function App() {
 
-    // TODO: improve error messages for visitors i.e. wrong password message
     // TODO: improve index.html header
     // TODO: run some tests with google lighthouse
     // TODO: create readme installation file
