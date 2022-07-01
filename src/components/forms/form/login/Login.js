@@ -55,7 +55,7 @@ function Login() {
                         methods.reset();
                         setAccountTab(arr => ({...arr, show: false}))
                     } else {
-                        setErrorMessage('Something went wrong');
+                        setErrorMessage('Something went wrong. Please try again.');
                         methods.reset();
                     }
                     toggleLoading(false);
@@ -63,7 +63,8 @@ function Login() {
             .catch(
                 (error) => {
                     const errorMessage =
-                        (error.response.data.error && (error.response.data.status === 401 ? 'Wrong username and/or password' : error.response.data.error)) ||
+                        error.response.status === 401 && 'Wrong username and/or password' ||
+                        error.response.data.error ||
                         error.response.data.message ||
                         error.message ||
                         error.toString();
