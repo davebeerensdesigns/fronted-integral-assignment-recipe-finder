@@ -26,7 +26,7 @@ const MainNavContextProvider = ({children}) => {
 
 
     useEffect(() => {
-        appService.getMainNavTab(JSON.stringify(mainNav));
+        appService.setMainNavTab(JSON.stringify(mainNav));
     }, [mainNav]);
 
     return <Provider value={[mainNav, setMainNav]}>{children}</Provider>;
