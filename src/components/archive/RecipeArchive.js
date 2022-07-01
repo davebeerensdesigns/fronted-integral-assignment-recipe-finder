@@ -151,11 +151,11 @@ function RecipeArchive({title, baseLink, apiFor, useParams}) {
                 <div className='recipe-list__wrapper'>
 
                     {apiFor !== 'search-pantry' && (
-                        <h2>{pluralize(data.totalResults, 'recipe')} for {title} {type ? ' - ' + type : ''}</h2>
+                        <h2>{pluralize(data.totalResults, 'recipe')} {(title || type) && 'for'} {title} {type ? ' - ' + type : ''}</h2>
                     )}
 
                     {apiFor === 'search-pantry' && (
-                        <h2>{pluralize(data.totalResults, 'recipe')} for {ingredients ? formatIngredients(ingredients) : ''} {time ? ' - ' + time + ' minutes' : ''} {type ? ' - ' + type : ''}</h2>
+                        <h2>{pluralize(data.totalResults, 'recipe')} {(ingredients || time || type) && 'for'} {ingredients ? formatIngredients(ingredients) : ''} {time ? ' - ' + time + ' minutes' : ''} {type ? ' - ' + type : ''}</h2>
                     )}
 
                     <RecipeFilterBar>
