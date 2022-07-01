@@ -5,6 +5,7 @@ import notifyToast from "../../../utils/hooks/notifyToast";
 import {classNames} from "../../../helpers/classNames";
 import './Logout.scss';
 import {AccountTabContext} from "../../../utils/providers/AccountTabContextProvider";
+import Button from "../button/Button";
 
 function Logout(props) {
 
@@ -22,10 +23,10 @@ function Logout(props) {
     }
 
     return (
-        <button className={classNames(props.buttonClass, 'btn-logout')}
-                onClick={logout}>
+        <Button customClass={classNames(props.buttonClass, 'btn-logout')}
+                customClick={logout}>
             {props.children}
-        </button>
+        </Button>
     );
 }
 

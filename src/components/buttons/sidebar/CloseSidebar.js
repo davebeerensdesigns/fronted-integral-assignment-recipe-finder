@@ -2,14 +2,15 @@ import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClose} from "@fortawesome/pro-regular-svg-icons";
 import './CloseSidebar.scss';
+import Button from "../button/Button";
 
 function CloseSidebar({id, customClick}) {
     return (
-        <button id={id}
-                className='btn btn-icon btn-round'
-                onClick={customClick}>
+        <Button id={id}
+                customClass='btn-icon btn-round'
+                customClick={customClick}>
             <FontAwesomeIcon icon={faClose}/>
-        </button>
+        </Button>
     );
 }
 
