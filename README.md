@@ -14,8 +14,6 @@
   </p>
 </div>
 
-
-
 <h3>Table of contents</h3>
   <ol>
     <li>
@@ -34,9 +32,6 @@
     <li><a href="#usage">Usage</a></li>
   </ol>
 
-
-
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 
 <a href="https://github.com/davebeerensdesigns/fronted-integral-assignment-recipe-finder">
@@ -56,8 +51,6 @@ To do this I use the NOVI backend where a user can create an account. I use the 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 ### Built With
 
 * [React.js](https://reactjs.org/)
@@ -68,9 +61,6 @@ To do this I use the NOVI backend where a user can create an account. I use the 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
-<!-- GETTING STARTED -->
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
@@ -108,17 +98,26 @@ To setup the application you need to install npm. You also need API keys for Spo
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
-<!-- USAGE EXAMPLES -->
 ## Usage
+"npm run start": "react-scripts start",
 
+### Start
+Runs the app in the development mode. Open http://localhost:3000 to view it in the browser.
 
+The page will reload if you make edits. You will also see any lint errors in the console.
+```sh
+npm run start
+```
 
+### Build
+Builds the app for production to the build folder. It correctly bundles React in production mode and optimizes the build for the best performance.
+```sh
+npm run build
+```
 
-TUTORIALS USED
-https://www.digitalocean.com/community/tutorials/react-tabs-component
-https://www.bezkoder.com/react-hooks-jwt-auth/
-https://towardsdatascience.com/react-js-basic-hooks-usestate-useeffect-usecontext-1ed82a799db2
-https://www.bezkoder.com/handle-jwt-token-expiration-react/
-https://soshace.com/react-user-login-authentication-using-usecontext-and-usereducer/
+### Production
+Runs the app in production mode created by the build command.
+```sh
+npm run serve
+```
+
