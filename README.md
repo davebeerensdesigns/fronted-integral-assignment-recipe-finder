@@ -5,7 +5,7 @@
     <img src="src/assets/logo/logo.svg" alt="Logo" width="200" height="auto">
   </a>
 
-<h3 align="center">RecipeFinder</h3>
+<h2 align="center">RecipeFinder</h2>
 
   <p align="center">
     React application that helps you find recipes based on ingredients in your pantry!
@@ -16,9 +16,7 @@
 
 
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
+<h3>Table of contents</h3>
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
@@ -34,13 +32,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
-</details>
 
 
 
