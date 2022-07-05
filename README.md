@@ -100,7 +100,6 @@ To setup the application you need to install npm. You also need API keys for Spo
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Usage
-"npm run start": "react-scripts start",
 
 ### Start
 Runs the app in the development mode. Open http://localhost:3000 to view it in the browser.
