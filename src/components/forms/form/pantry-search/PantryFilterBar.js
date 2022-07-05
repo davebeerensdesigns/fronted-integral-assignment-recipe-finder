@@ -70,11 +70,11 @@ function PantryFilterBar() {
     }
 
     const handleTypeSelect = (event) => {
-        setPantryFilter(arr => ({...arr, type:event.target.value}))
+        setPantryFilter(arr => ({...arr, type: event.target.value}))
     };
 
     const handleTimeSelect = (event) => {
-        setPantryFilter(arr => ({...arr, time:event.target.value}))
+        setPantryFilter(arr => ({...arr, time: event.target.value}))
     };
 
 
@@ -98,20 +98,21 @@ function PantryFilterBar() {
             return () => clearTimeout(delayDebounceFn)
 
         }
-    },[api, runSearch])
+    }, [api, runSearch])
 
     const handlePantryForm = (e) => {
         e.preventDefault();
         navigate({
             pathname: baseLink,
-            search: '?type='+pantryFilter.type+'&maxReadyTime='+pantryFilter.time+'&includeIngredients='+pantryFilter.ingredients.join(',')
+            search: '?type=' + pantryFilter.type + '&maxReadyTime=' + pantryFilter.time + '&includeIngredients=' + pantryFilter.ingredients.join(',')
         })
     }
 
 
     return (
         <div className='pantry-filter-bar__wrapper'>
-            <form onSubmit={handlePantryForm} className='pantry-filter-bar__form'>
+            <form onSubmit={handlePantryForm}
+                  className='pantry-filter-bar__form'>
                 <div className='form-field__ingredients'>
                     <FieldLabel id='ingredients-input'>
                         Include ingredients
@@ -122,10 +123,12 @@ function PantryFilterBar() {
                                                                                 key={index}
                                                                                 customClick={() => {
                                                                                     removeIngredient(item)
-                                                                                }}>{item} <FontAwesomeIcon icon={faClose}/></Button>))}
-                        <input id='ingredients-input' onFocus={() => {
-                            setShowSearch(true)
-                        }}
+                                                                                }}>{item}
+                            <FontAwesomeIcon icon={faClose}/></Button>))}
+                        <input id='ingredients-input'
+                               onFocus={() => {
+                                   setShowSearch(true)
+                               }}
                                onBlur={() => {
                                    setShowSearch(false)
                                }}
@@ -135,18 +138,18 @@ function PantryFilterBar() {
                                placeholder='search ingredients'
                                value={searchQuery}/>
                         {searchQuery.length > 0 && (<Button customClass='btn-remove__ingredients'
-                                                                         type='button'
-                                                                         customClick={
-                                                                             removeSearchValue
-                                                                         }><FontAwesomeIcon icon={faClose}/></Button>)}
+                                                            type='button'
+                                                            customClick={
+                                                                removeSearchValue
+                                                            }><FontAwesomeIcon icon={faClose}/></Button>)}
                     </div>
-                    {runSearch && searchResults.length > 0 && (
+                    {runSearch && (
                         <div className='ingredients-input__results'>
                             {loading && (
                                 <Loader/>
                             )}
                             {!loading && <div className='ingredients-input__list'>
-                                {searchResults.map(
+                                {searchResults.length > 0 ? searchResults.map(
                                     ({id, name}) =>
                                         <li className={classNames(pantryFilter.ingredients.indexOf(name) > -1 && 'disabled', 'ingredients-input__item')}
                                             key={id}>
@@ -156,7 +159,7 @@ function PantryFilterBar() {
                                                 {name}
                                             </div>
                                         </li>
-                                )}
+                                ) : <li className='no-results ingredients-input__item '>No results</li>}
                             </div>}
                         </div>
                     )}
@@ -166,7 +169,9 @@ function PantryFilterBar() {
                         Dish type
                     </FieldLabel>
                     <SelectGroup>
-                        <select id='type-input' className='form-select' value={pantryFilter.type}
+                        <select id='type-input'
+                                className='form-select'
+                                value={pantryFilter.type}
                                 onChange={handleTypeSelect}>
                             <option value=''>all types</option>
                             {
@@ -183,7 +188,9 @@ function PantryFilterBar() {
                         Time limit
                     </FieldLabel>
                     <SelectGroup>
-                        <select id='time-input' className='form-select' value={pantryFilter.time}
+                        <select id='time-input'
+                                className='form-select'
+                                value={pantryFilter.time}
                                 onChange={handleTimeSelect}>
                             <option value=''>no limit</option>
                             {
@@ -196,11 +203,13 @@ function PantryFilterBar() {
                     </SelectGroup>
                 </div>
                 <div className='form-field__submit'>
-                    <Button customClass='btn-primary' type='submit'>Search recipes</Button>
+                    <Button customClass='btn-primary'
+                            type='submit'>Search recipes</Button>
                 </div>
             </form>
             {location.search.length > 0 && (
-                <RecipeArchive baseLink={baseLink} apiFor='search-pantry' />
+                <RecipeArchive baseLink={baseLink}
+                               apiFor='search-pantry'/>
             )}
         </div>
     );

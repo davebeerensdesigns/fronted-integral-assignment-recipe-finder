@@ -30,22 +30,23 @@ function AutocompleteSearch() {
     let api = spoonacularService.GetAutocompleteSearchAPI(searchQuery, number);
 
     const SearchData = <nav className='searchbar__list'>
-        {searchResults.map(
-            ({id, title, image}) => <Link onClick={clearSearchQuery}
-                                          to={'/search/recipe/' + id}
-                                          className='searchbar__item'
-                                          key={id}>
-                <figure className='searchbar__thumbnail'>
-                    <img width='312'
-                         height='231'
-                         src={image}
-                         alt={title}
-                         crossOrigin="anonymous"
-                         referrerPolicy="no-referrer"/>
-                </figure>
-                {title}
-            </Link>
-        )}
+        {searchResults.length > 0 ?
+            searchResults.map(({id, title, image}) => <Link onClick={clearSearchQuery}
+                                                            to={'/search/recipe/' + id}
+                                                            className='searchbar__item'
+                                                            key={id}>
+                    <figure className='searchbar__thumbnail'>
+                        <img width='312'
+                             height='231'
+                             src={image}
+                             alt={title}
+                             crossOrigin="anonymous"
+                             referrerPolicy="no-referrer"/>
+                    </figure>
+                    {title}
+                </Link>
+            ) : <div className='empty'>no results</div>
+        }
     </nav>;
 
 
@@ -78,7 +79,7 @@ function AutocompleteSearch() {
                    type='text'
                    placeholder='search recipes'
                    value={searchQuery}/>
-            {runSearch && searchResults.length > 0 && (
+            {runSearch && (
                 <div className='searchbar__results'>
                     {loading && (
                         <Loader/>
