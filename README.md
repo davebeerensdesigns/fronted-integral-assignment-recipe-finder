@@ -88,7 +88,8 @@ To setup the application you need to install npm. You also need API keys for Spo
    Replace the * for the Spoonacular api key.
 4. Create a .npmrc file with fontawesome authToken to use fontawesome pro icons.
    ```sh
-   @fortawesome:registry=https://npm.fontawesome.com/ //npm.fontawesome.com/:_authToken=********************
+   @fortawesome:registry=https://npm.fontawesome.com/
+   //npm.fontawesome.com/:_authToken=********************
    ```
    Replace the * for the fontawesome authToken.
 5. Install NPM packages
@@ -116,8 +117,9 @@ npm run build
 ```
 
 ### Production
-Runs the app in production mode created by the build command.
+Runs the app in production mode created by the build command. First install a static server to run it on.
 ```sh
+npm install -g serve
 npm run serve
 ```
 
