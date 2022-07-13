@@ -11,6 +11,8 @@
     React application that helps you find recipes based on ingredients in your pantry!
     <br />
     <a href="https://github.com/davebeerensdesigns/fronted-integral-assignment-recipe-finder"><strong>Explore the docs »</strong></a>
+<br />.
+    <a href="https://recipefinder-react-db.netlify.app"><strong>View the app »</strong></a>
   </p>
 </div>
 
@@ -38,16 +40,24 @@
     <img src="screenshot.jpg" alt="Logo" width="1200" height="auto">
   </a>
 
-<i>Disclaimer: This is a school project for my education at NOVI Hogeschool - ICT Opleiding. I am following the HBO Software development education. This project is built for the Frontend development course. It is not meant to be used as a real application.</i>
+<i>Disclaimer: This is a school project for my education at NOVI Hogeschool - ICT Opleiding. I am following the HBO
+Software development education. This project is built for the Frontend development course. It is not meant to be used as
+a real application.</i>
 
-Do you never know what to cook tonight? Does it seem as if your creativity and decisiveness around dinner time has also suddenly disappeared? And then resist yourself to go shopping. Personally, I experience this about every day. That is why I built this app where you can enter a number of ingredients, after which this application will propose a number of suitable recipes to choose from. For example, when someone is short on time, the application will suggest more quick recipes.
+Do you never know what to cook tonight? Does it seem as if your creativity and decisiveness around dinner time has also
+suddenly disappeared? And then resist yourself to go shopping. Personally, I experience this about every day. That is
+why I built this app where you can enter a number of ingredients, after which this application will propose a number of
+suitable recipes to choose from. For example, when someone is short on time, the application will suggest more quick
+recipes.
 
-On the days when the user does feel like going shopping, there is also an option to browse through all available recipes and search for specific recipes using a search function.
+On the days when the user does feel like going shopping, there is also an option to browse through all available recipes
+and search for specific recipes using a search function.
 
-To do this I make HTTP requests to the Spoontacular API (https://spoonacular.com/food-api/docs) to request the correct data and process it in my application.
+To do this I make HTTP requests to the Spoontacular API (https://spoonacular.com/food-api/docs) to request the correct
+data and process it in my application.
 
-Finally, the user also has the option to add recipes to a favorites list to quickly find them.
-To do this I use the NOVI backend where a user can create an account. I use the information field to store recipe IDs.
+Finally, the user also has the option to add recipes to a favorites list to quickly find them. To do this I use the NOVI
+backend where a user can create an account. I use the information field to store recipe IDs.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -76,7 +86,8 @@ To setup the application you need to install npm. You also need API keys for Spo
 
 ### Installation
 
-1. Get a API Key for Spoonacular and FontAwesome Pro. These can also be found in the Functional Requirements document provided by the developer.
+1. Get a API Key for Spoonacular and FontAwesome Pro. These can also be found in the Functional Requirements document
+   provided by the developer.
 2. Clone the repo
    ```sh
    git clone https://github.com/davebeerensdesigns/fronted-integral-assignment-recipe-finder.git
@@ -102,21 +113,28 @@ To setup the application you need to install npm. You also need API keys for Spo
 ## Usage
 
 ### Start
+
 Runs the app in the development mode. Open http://localhost:3000 to view it in the browser.
 
 The page will reload if you make edits. You will also see any lint errors in the console.
+
 ```sh
 npm run start
 ```
 
 ### Build
-Builds the app for production to the build folder. It correctly bundles React in production mode and optimizes the build for the best performance.
+
+Builds the app for production to the build folder. It correctly bundles React in production mode and optimizes the build
+for the best performance.
+
 ```sh
 npm run build
 ```
 
 ### Production
+
 Runs the app in production mode created by the build command. First install a static server to run it on.
+
 ```sh
 npm install -g serve
 npm run serve
